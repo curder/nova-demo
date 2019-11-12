@@ -2,6 +2,8 @@
 
 namespace App\Nova;
 
+use App\Models\Auth\Permission;
+use App\Models\Auth\Role;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BooleanGroup;
@@ -63,11 +65,12 @@ class User extends Resource
                 ->updateRules('nullable', 'string', 'min:8'),
 
             BooleanGroup::make('Roles')->options(
-                \Spatie\Permission\Models\Role::get()->pluck('name', 'id')->toArray()
-            )->exceptOnForms(),
+                Role::get()->pluck('name', 'id')->toArray()
+            ),
+
             BooleanGroup::make('Permissions')->options(
-                \Spatie\Permission\Models\Permission::get()->pluck('name', 'id')->toArray()
-            )->exceptOnForms(),
+                Permission::get()->pluck('name', 'id')->toArray()
+            ),
         ];
     }
 
