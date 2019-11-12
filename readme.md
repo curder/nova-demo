@@ -11,3 +11,4 @@ composer config http-basic.nova.laravel.com ${NOVA_USERNAME} ${NOVA_PASSWORD}
 ## 插件
 
 -   [Laravel 权限管理 spatie/laravel-permission](https://github.com/spatie/laravel-permission)
+-   [权限管理 vyuldashev/nova-permission](https://github.com/vyuldashev/nova-permission)
