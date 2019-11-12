@@ -21,6 +21,7 @@ class CreatePermissionTables extends Migration
             $table->string('name');
             $table->string('group');
             $table->string('guard_name');
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -28,6 +29,7 @@ class CreatePermissionTables extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('guard_name');
+            $table->softDeletes();
             $table->timestamps();
         });
 

@@ -1,0 +1,30 @@
+{
+    "name": "curder/nova-permission",
+    "description": "A laravel nova tool for permission.",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^7.2",
+        "spatie/laravel-permission": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Curder\\NovaPermission\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Curder\\NovaPermission\\ToolServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

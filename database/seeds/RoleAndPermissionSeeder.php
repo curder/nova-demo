@@ -1,18 +1,16 @@
 <?php
 
-use App\Enums\PermissionsEnum;
-use App\Enums\RolesEnum;
-use App\Models\Auth\Permission;
-use App\Models\Auth\Role;
 use App\Models\User;
+use App\Enums\RolesEnum;
+use App\Enums\PermissionsEnum;
 use Illuminate\Database\Seeder;
+use Curder\NovaPermission\Models\Role;
+use Curder\NovaPermission\Models\Permission;
 
 class RoleAndPermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
@@ -29,7 +27,7 @@ class RoleAndPermissionSeeder extends Seeder
         // 编辑
         $saleRole = Role::whereName(RolesEnum::EDITOR_MANAGER)->first();
         $saleRole->givePermissionTo([
-            PermissionsEnum::VIEW_USERS
+            PermissionsEnum::VIEW_USERS,
         ]);
     }
 

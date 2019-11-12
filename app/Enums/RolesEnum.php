@@ -9,5 +9,5 @@ final class RolesEnum extends Enum implements LocalizedEnum
 {
     public const SUPER_ADMIN_MANAGER = 'superAdminManager';
 
-    public const EDITOR_MANAGER = 'ediotrManager';
+    public const EDITOR_MANAGER = 'editorManager';
 }

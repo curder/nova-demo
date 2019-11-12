@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b35da21ffce66938d2fc71227dd38d29",
+    "content-hash": "ae6db4e17df9da870e2c9620d7e88bc7",
     "packages": [
         {
             "name": "bensampo/laravel-enum",
@@ -139,6 +139,40 @@
                 "time"
             ],
             "time": "2019-06-17T15:19:18+00:00"
+        },
+        {
+            "name": "curder/nova-permission",
+            "version": "dev-develop",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/nova-permission",
+                "reference": "8afa25e44c7774630e32b2d747b2d6aa1ef29276"
+            },
+            "require": {
+                "php": "^7.2",
+                "spatie/laravel-permission": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Curder\\NovaPermission\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Curder\\NovaPermission\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A laravel nova tool for permission.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3891,58 +3925,6 @@
                 "environment"
             ],
             "time": "2019-09-10T21:37:39+00:00"
-        },
-        {
-            "name": "vyuldashev/nova-permission",
-            "version": "v2.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vyuldashev/nova-permission.git",
-                "reference": "05594a9a979436a2f5859fa955d2b70fd29916d5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vyuldashev/nova-permission/zipball/05594a9a979436a2f5859fa955d2b70fd29916d5",
-                "reference": "05594a9a979436a2f5859fa955d2b70fd29916d5",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": "^7.2",
-                "spatie/laravel-permission": "^3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Vyuldashev\\NovaPermission\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Vyuldashev\\NovaPermission\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova tool for Spatie's Permission library.",
-            "keywords": [
-                "laravel",
-                "nova",
-                "spatie-permission"
-            ],
-            "time": "2019-11-08T18:16:10+00:00"
         },
         {
             "name": "zendframework/zend-code",

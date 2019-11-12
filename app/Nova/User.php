@@ -2,13 +2,14 @@
 
 namespace App\Nova;
 
-use App\Models\Auth\Permission;
-use App\Models\Auth\Role;
+use Curder\NovaPermission\Models\Permission;
+use Curder\NovaPermission\Models\Role;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Password;
 
 class User extends Resource
@@ -64,13 +65,15 @@ class User extends Resource
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
 
+//            MorphToMany::make('Roles', 'roles', \Curder\NovaPermission\Resources\Role::class),
+//            MorphToMany::make('Permissions', 'permissions', \Curder\NovaPermission\Resources\Permission::class),
+
             BooleanGroup::make('Roles')->options(
                 Role::get()->pluck('name', 'id')->toArray()
             ),
-
-            BooleanGroup::make('Permissions')->options(
-                Permission::get()->pluck('name', 'id')->toArray()
-            ),
+//            BooleanGroup::make('Permissions')->options(
+//                Permission::get()->pluck('name', 'id')->toArray()
+//            ),
         ];
     }
 

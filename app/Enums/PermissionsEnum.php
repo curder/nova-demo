@@ -37,12 +37,22 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
     public const PERMISSIONS = 'permissions'; // 分组标示
     public const MANAGER_PERMISSIONS = 'managerPermissions'; // 列表
     public const VIEW_PERMISSIONS = 'viewPermissions'; // 查看
-    public const CREATE_PERMISSIONS = 'createPermissions'; // 新建
-    public const UPDATE_PERMISSIONS = 'updatePermissions'; // 编辑
+//    public const CREATE_PERMISSIONS = 'createPermissions'; // 新建
+//    public const UPDATE_PERMISSIONS = 'updatePermissions'; // 编辑
     public const DELETE_PERMISSIONS = 'deletePermissions'; // 删除
     public const RESTORE_PERMISSIONS = 'restorePermissions'; // 恢复删除
     public const FORCE_DELETE_PERMISSIONS = 'forceDeletePermissions'; // 强制删除
     public const PERMISSION_ATTACH_ANY_ROLES = 'permissionAttachAnyRoles'; // 赋予角色权限
     public const PERMISSION_ATTACH_ROLES = 'permissionAttachRoles'; // 更新角色权限
     public const PERMISSION_DETACH_ROLES = 'permissionDetachRoles'; // 取消赋予角色权限
+    /**
+     * @return array
+     */
+    public static function getGroups() {
+        return [
+            self::USERS => self::getDescription(self::USERS),
+            self::ROLES => self::getDescription(self::ROLES),
+            self::PERMISSIONS => self::getDescription(self::PERMISSIONS),
+        ];
+    }
 }

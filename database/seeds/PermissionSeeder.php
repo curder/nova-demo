@@ -1,24 +1,21 @@
 <?php
 
 use App\Enums\PermissionsEnum;
-use App\Models\Auth\Permission;
-use App\Models\Auth\Role;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\PermissionRegistrar;
+use Curder\NovaPermission\Models\Permission;
 
 class PermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
         $this->refresh(); // 刷新权限
         $this->freshCache(); // 清空缓存
         $this->generatePermissions(); // 生成权限
-
     }
 
     protected function generatePermissions()
@@ -31,7 +28,6 @@ class PermissionSeeder extends Seeder
         });
     }
 
-
     protected function refresh(): void
     {
         // refresh all prev permissions.
@@ -41,13 +37,11 @@ class PermissionSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 
-
     protected function freshCache(): void
     {
         // Reset cached roles and permissions
         app(PermissionRegistrar::class)->forgetCachedPermissions();
     }
-
 
     protected function getPermissions()
     {
@@ -64,7 +58,7 @@ class PermissionSeeder extends Seeder
                 PermissionsEnum::PERMISSION_ATTACH_USERS,
                 PermissionsEnum::PERMISSION_DETACH_USERS,
             ],
-            PermissionsEnum::ROLES       => [
+            PermissionsEnum::ROLES => [
                 PermissionsEnum::MANAGER_ROLES,
                 PermissionsEnum::VIEW_ROLES,
                 PermissionsEnum::CREATE_ROLES,
@@ -76,11 +70,11 @@ class PermissionSeeder extends Seeder
                 PermissionsEnum::ROLE_ATTACH_USERS,
                 PermissionsEnum::ROLE_DETACH_USERS,
             ],
-            PermissionsEnum::PERMISSIONS                  => [
+            PermissionsEnum::PERMISSIONS => [
                 PermissionsEnum::MANAGER_PERMISSIONS,
                 PermissionsEnum::VIEW_PERMISSIONS,
-                PermissionsEnum::CREATE_PERMISSIONS,
-                PermissionsEnum::UPDATE_PERMISSIONS,
+//                PermissionsEnum::CREATE_PERMISSIONS,
+//                PermissionsEnum::UPDATE_PERMISSIONS,
                 PermissionsEnum::DELETE_PERMISSIONS,
                 PermissionsEnum::RESTORE_PERMISSIONS,
                 PermissionsEnum::FORCE_DELETE_PERMISSIONS,

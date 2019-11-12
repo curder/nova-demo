@@ -15,7 +15,7 @@
         "laravel/nova": "~2.0",
         "laravel/tinker": "^1.0",
         "spatie/laravel-permission": "^3.2",
-        "vyuldashev/nova-permission": "^2.2"
+        "curder/nova-permission": "*"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
@@ -28,6 +28,10 @@
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/nova-permission"
         }
     ],
     "config": {

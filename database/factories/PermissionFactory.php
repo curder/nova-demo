@@ -1,9 +1,8 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-
-use App\Models\Auth\Permission;
 use Faker\Generator as Faker;
+use Curder\NovaPermission\Models\Permission;
 
 $factory->define(Permission::class, function (Faker $faker) {
     return [
