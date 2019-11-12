@@ -11,6 +11,7 @@
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
+        "laravel/nova": "~2.0",
         "laravel/tinker": "^1.0"
     },
     "require-dev": {
@@ -20,6 +21,12 @@
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^8.0"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
