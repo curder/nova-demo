@@ -2,7 +2,6 @@
 
 namespace Curder\NovaPermission\Resources;
 
-use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Nova;
 use App\Enums\RolesEnum;
 use Laravel\Nova\Resource;
@@ -14,8 +13,8 @@ use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\MorphToMany;
 use Curder\NovaPermission\Models\Role as RoleModel;
-use Curder\NovaPermission\Models\Permission as PermissionModel;
 use Curder\NovaPermission\Fields\GroupCheckBoxListField;
+use Curder\NovaPermission\Models\Permission as PermissionModel;
 
 /**
  * Class Role.
@@ -165,5 +164,15 @@ class Role extends Resource
     public static function singularLabel()
     {
         return __('nova-permission::resources.Roles');
+    }
+
+    /**
+     * Get the logical group associated with the resource.
+     *
+     * @return string
+     */
+    public static function group(): string
+    {
+        return __('nova-permission::navigations.User & Role & Permission');
     }
 }

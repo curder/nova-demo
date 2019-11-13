@@ -165,4 +165,14 @@ class Permission extends Resource
     {
         return __('nova-permission::resources.Permissions');
     }
+
+    /**
+     * Get the logical group associated with the resource.
+     *
+     * @return string
+     */
+    public static function group(): string
+    {
+        return __('nova-permission::navigations.User & Role & Permission');
+    }
 }

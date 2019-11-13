@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'label' => '管理员列表',
+    'label' => '用户',
     'singularLabel' => '管理员',
 
     'nameLabel' => '姓名',

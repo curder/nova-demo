@@ -68,7 +68,7 @@ class User extends Resource
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
 
-            new Panel('Role & Permission', $this->getRoleAndPermissionFields()),
+            new Panel(__('nova-permission::navigations.Role & Permission'), $this->getRoleAndPermissionFields()),
 
 //            BooleanGroup::make('Permissions')->options(
 //                Permission::get()->pluck('name', 'id')->toArray()
@@ -208,5 +208,14 @@ class User extends Resource
     public static function singularLabel()
     {
         return __('users.singularLabel');
+    }
+    /**
+     * Get the logical group associated with the resource.
+     *
+     * @return string
+     */
+    public static function group(): string
+    {
+        return __('nova-permission::navigations.User & Role & Permission');
     }
 }
