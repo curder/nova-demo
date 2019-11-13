@@ -11,6 +11,7 @@ use App\Enums\PermissionsEnum;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\BooleanGroup;
+use Curder\NovaPermission\Models\Role;
 use Curder\NovaPermission\Models\Permission;
 
 class User extends Resource
@@ -77,7 +78,8 @@ class User extends Resource
 
     public function getRoleAndPermissionFields(): array
     {
-        $roles = \Curder\NovaPermission\Models\Role::get()->pluck('name', 'id');
+        $roles = Role::get()->pluck('name', 'id');
+        $permissions = Permission::get()->pluck('name', 'id');
 
         return [
             BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
@@ -107,6 +109,35 @@ class User extends Resource
                             return $user->isSuperAdmin()
                                 || $user->can(PermissionsEnum::ROLE_ATTACH_ANY_USERS)
                                 || $user->can(PermissionsEnum::ROLE_ATTACH_USERS);
+                        }),
+
+            BooleanGroup::make(__('nova-permission::resources.Permissions'), 'permissions')
+                        ->options(function () use ($permissions) {
+                            return $permissions->mapWithKeys(function ($permission, $id) {
+                                return [$id => PermissionsEnum::getDescription($permission)];
+                            });
+                        })->resolveUsing(function () use ($permissions) {
+                            return $permissions->mapWithKeys(function ($permission, $id) {
+                                return [$id => $this->hasPermissionTo($permission)];
+                            });
+                        })->exceptOnForms(),
+
+            BooleanGroup::make(__('nova-permission::resources.Permissions'), 'permissions')
+                        ->options(function () use ($permissions) {
+                            return $permissions->mapWithKeys(function ($permission, $id) {
+                                return [$id => PermissionsEnum::getDescription($permission)];
+                            });
+                        })->resolveUsing(function () use ($permissions) {
+                            return $permissions->mapWithKeys(function ($permission, $id) {
+                                return [$id => $this->hasPermissionTo($permission)];
+                            });
+                        })->onlyOnForms()->canSee(function () {
+                            /* @var \App\Models\User $user */
+                            $user = request()->user();
+
+                            return $user->isSuperAdmin()
+                        || $user->can(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS)
+                        || $user->can(PermissionsEnum::PERMISSION_ATTACH_USERS);
                         }),
         ];
     }
