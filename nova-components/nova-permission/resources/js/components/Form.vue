@@ -2,8 +2,8 @@
     <default-field :field="field" :full-width-content="true">
         <template slot="field">
             <div class="w-full mb-4">
-                <span class="ml-auto mr-3 cursor-default btn btn-default btn-primary " @click="checkAll()">{{ __('Select all permissions')}}</span>
-                <span class="ml-auto cursor-default btn btn-default btn-primary" @click="uncheckAll()">{{ __('Do not select any permissions') }}</span>
+                <span class="ml-auto mr-3 cursor-default btn btn-default btn-primary " @click="checkAll()">{{ __('Select All Permissions')}}</span>
+                <span class="ml-auto cursor-default btn btn-default btn-primary" @click="uncheckAll()">{{ __('Do Not Select Any Permissions') }}</span>
             </div>
             <div class="w-full flex items-start justify-around flex-wrap" v-if="field.withGroups">
                 <div v-for="(permissions, group) in field.options" :key="group" class="mb-4 mr-4">

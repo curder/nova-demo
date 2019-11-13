@@ -1,4 +1,5 @@
 <?php
+
 return [
     'name' => '名称',
     'group_display_name' => '分组中文名',

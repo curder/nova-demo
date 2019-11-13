@@ -1,4 +1,5 @@
 <?php
+
 return [
     'name' => 'Name',
     'group_display_name' => 'Group Name',
