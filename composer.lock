@@ -1167,17 +1167,17 @@
         },
         {
             "name": "laravel/nova",
-            "version": "v2.6.1",
+            "version": "v2.7.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:laravel/nova.git",
-                "reference": "c2e0448986c23af336d8bf44cb02a74801f61c56"
+                "reference": "8476c492e8420d315d91cab15cac819e04422b42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://nova.laravel.com/dist/laravel/nova/laravel-nova-c2e0448986c23af336d8bf44cb02a74801f61c56-zip-59afb4.zip",
-                "reference": "c2e0448986c23af336d8bf44cb02a74801f61c56",
-                "shasum": "83bd0827d315ac13856fd753d0fbb3bd0731054d"
+                "url": "https://nova.laravel.com/dist/laravel/nova/laravel-nova-8476c492e8420d315d91cab15cac819e04422b42-zip-e6a5ec.zip",
+                "reference": "8476c492e8420d315d91cab15cac819e04422b42",
+                "shasum": "df6977c1206f1e943f7437f7676ccc748df460f0"
             },
             "require": {
                 "cakephp/chronos": "^1.0",
@@ -1185,7 +1185,7 @@
                 "illuminate/support": "^5.7.15 | 5.8.* | ^6.0",
                 "moontoast/math": "^1.1",
                 "php": ">=7.1.0",
-                "spatie/once": "^1.1",
+                "spatie/once": "^1.1 | ^2.0",
                 "symfony/finder": "^4.0"
             },
             "require-dev": {
@@ -1233,7 +1233,7 @@
                 "admin",
                 "laravel"
             ],
-            "time": "2019-10-29T20:04:49+00:00"
+            "time": "2019-11-12T20:23:10+00:00"
         },
         {
             "name": "laravel/tinker",
