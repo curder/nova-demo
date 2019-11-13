@@ -29,8 +29,10 @@ class UserPolicy extends Policy
 
     /**
      * Determine whether the user can delete the model.
-     * 1. 自己不能删除自己
-     * 2. 超级管理员不允许被删除.
+     * 1. 不能删除其他超级管理员
+     * 2. 自己不能删除自己
+     * 3. 超级管理员不允许被删除.
+     *
      *
      * @param $user
      * @param $model
@@ -41,11 +43,11 @@ class UserPolicy extends Policy
     {
         /* @var $user User */
         if ($user->isSuperAdmin()) {
-            return $user->id !== $model->id;
+            return $user->id !== $model->id && !$model->isSuperAdmin();
         }
         /* @var $model User */
-        return $user->can(PermissionsEnum::DELETE_USERS)
-            && $user->id !== $model->id
+        return $user->can(PermissionsEnum::DELETE_USERS) // 拥有删除用户权限
+            && $user->id !== $model->id //
             && !$model->isSuperAdmin();
     }
 

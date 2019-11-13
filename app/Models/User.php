@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\RolesEnum;
+use Curder\NovaPermission\Models\SyncRole;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,6 +23,7 @@ class User extends Authenticatable
     use HasRoles;
     use Notifiable;
     use SoftDeletes;
+    use SyncRole;
 
     /**
      * The attributes that are mass assignable.

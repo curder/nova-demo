@@ -2,15 +2,16 @@
 
 namespace App\Nova;
 
-use Curder\NovaPermission\Models\Permission;
-use Curder\NovaPermission\Models\Role;
+use Laravel\Nova\Panel;
+use App\Enums\RolesEnum;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Fields\Text;
+use App\Enums\PermissionsEnum;
 use Laravel\Nova\Fields\Gravatar;
-use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\BooleanGroup;
+use Curder\NovaPermission\Models\Permission;
 
 class User extends Resource
 {
@@ -40,7 +41,8 @@ class User extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function fields(Request $request)
@@ -65,22 +67,52 @@ class User extends Resource
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
 
-//            MorphToMany::make('Roles', 'roles', \Curder\NovaPermission\Resources\Role::class),
-//            MorphToMany::make('Permissions', 'permissions', \Curder\NovaPermission\Resources\Permission::class),
+            new Panel('Role & Permission', $this->getRoleAndPermissionFields()),
 
-            BooleanGroup::make('Roles')->options(
-                Role::get()->pluck('name', 'id')->toArray()
-            ),
 //            BooleanGroup::make('Permissions')->options(
 //                Permission::get()->pluck('name', 'id')->toArray()
 //            ),
         ];
     }
 
+    public function getRoleAndPermissionFields(): array
+    {
+        $roles = \Curder\NovaPermission\Models\Role::get()->pluck('name', 'id');
+
+        return [
+            BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
+                        ->options(function () use ($roles) {
+                            return $roles->mapWithKeys(function ($role, $id) {
+                                return [$id => RolesEnum::getDescription($role)];
+                            });
+                        })->resolveUsing(function () use ($roles) {
+                            return $roles->mapWithKeys(function ($role, $id) {
+                                return [$id => $this->hasRole($role)];
+                            });
+                        })->exceptOnForms(),
+
+            BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
+                        ->options(function () use ($roles) {
+                            return $roles->mapWithKeys(function ($role, $id) {
+                                return [$id => RolesEnum::getDescription($role)];
+                            });
+                        })->resolveUsing(function () use ($roles) {
+                            return $roles->mapWithKeys(function ($role, $id) {
+                                return [$id => $this->hasRole($role)];
+                            });
+                        })->onlyOnForms()->canSee(function () {
+                            /* @var \App\Models\User $user */
+                            $user = request()->user();
+                            return $user->isSuperAdmin() || $user->can(PermissionsEnum::ROLE_ATTACH_USERS);
+                        }),
+        ];
+    }
+
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function cards(Request $request)
@@ -91,7 +123,8 @@ class User extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function filters(Request $request)
@@ -102,7 +135,8 @@ class User extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function lenses(Request $request)
@@ -113,7 +147,8 @@ class User extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function actions(Request $request)

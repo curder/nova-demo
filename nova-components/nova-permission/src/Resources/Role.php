@@ -2,6 +2,7 @@
 
 namespace Curder\NovaPermission\Resources;
 
+use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Nova;
 use App\Enums\RolesEnum;
 use Laravel\Nova\Resource;
