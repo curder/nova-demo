@@ -27,6 +27,7 @@ class UserPolicy extends Policy
     {
     }
 
+
     /**
      * Determine whether the user can delete the model.
      * 1. 不能删除其他超级管理员
@@ -240,7 +241,6 @@ class UserPolicy extends Policy
      */
     public function viewAny($user): bool
     {
-        return true;
         /* @var User $user */
         return $user->hasPermissionTo('manager'.static::getKey());
     }

@@ -27,6 +27,7 @@ class RoleAndPermissionSeeder extends Seeder
         // 编辑
         $saleRole = Role::whereName(RolesEnum::EDITOR_MANAGER)->first();
         $saleRole->givePermissionTo([
+            PermissionsEnum::MANAGER_USERS,
             PermissionsEnum::VIEW_USERS,
         ]);
     }

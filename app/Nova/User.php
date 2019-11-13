@@ -103,7 +103,10 @@ class User extends Resource
                         })->onlyOnForms()->canSee(function () {
                             /* @var \App\Models\User $user */
                             $user = request()->user();
-                            return $user->isSuperAdmin() || $user->can(PermissionsEnum::ROLE_ATTACH_USERS);
+
+                            return $user->isSuperAdmin()
+                                || $user->can(PermissionsEnum::ROLE_ATTACH_ANY_USERS)
+                                || $user->can(PermissionsEnum::ROLE_ATTACH_USERS);
                         }),
         ];
     }
