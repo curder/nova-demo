@@ -78,67 +78,75 @@ class User extends Resource
 
     public function getRoleAndPermissionFields(): array
     {
-        $roles = Role::get()->pluck('name', 'id');
-        $permissions = Permission::get()->pluck('name', 'id');
+        $roles = Role::get();
+        $permissions = Permission::get();
 
         return [
             BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
                         ->options(function () use ($roles) {
-                            return $roles->mapWithKeys(function ($role, $id) {
-                                return [$id => RolesEnum::getDescription($role)];
+                            return $roles->mapWithKeys(function ($role) {
+                                return [$role->id => RolesEnum::getDescription($role->name)];
                             });
                         })->resolveUsing(function () use ($roles) {
-                            return $roles->mapWithKeys(function ($role, $id) {
-                                return [$id => $this->hasRole($role)];
-                            });
-                        })->exceptOnForms(),
+                    return $roles->mapWithKeys(function ($role) {
+                        return [$role->id => $this->hasRole($role->name)];
+                    });
+                })->exceptOnForms(),
 
             BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
                         ->options(function () use ($roles) {
-                            return $roles->mapWithKeys(function ($role, $id) {
-                                return [$id => RolesEnum::getDescription($role)];
+                            return $roles->mapWithKeys(function ($role) {
+                                return [$role->id => RolesEnum::getDescription($role->name)];
                             });
                         })->resolveUsing(function () use ($roles) {
-                            return $roles->mapWithKeys(function ($role, $id) {
-                                return [$id => $this->hasRole($role)];
-                            });
-                        })->onlyOnForms()->canSee(function () {
-                            /* @var \App\Models\User $user */
-                            $user = request()->user();
+                    return $roles->mapWithKeys(function ($role) {
+                        return [$role->id => $this->hasRole($role->name)];
+                    });
+                })->onlyOnForms()->canSee(function () {
+                    /* @var \App\Models\User $user */
+                    $user = request()->user();
 
-                            return $user->isSuperAdmin()
-                                || $user->can(PermissionsEnum::ROLE_ATTACH_ANY_USERS)
-                                || $user->can(PermissionsEnum::ROLE_ATTACH_USERS);
-                        }),
-
-            BooleanGroup::make(__('nova-permission::resources.Permissions'), 'permissions')
-                        ->options(function () use ($permissions) {
-                            return $permissions->mapWithKeys(function ($permission, $id) {
-                                return [$id => PermissionsEnum::getDescription($permission)];
-                            });
-                        })->resolveUsing(function () use ($permissions) {
-                            return $permissions->mapWithKeys(function ($permission, $id) {
-                                return [$id => $this->hasPermissionTo($permission)];
-                            });
-                        })->exceptOnForms(),
+                    return $user->isSuperAdmin()
+                        || $user->can(PermissionsEnum::ROLE_ATTACH_ANY_USERS)
+                        || $user->can(PermissionsEnum::ROLE_ATTACH_USERS);
+                }),
 
             BooleanGroup::make(__('nova-permission::resources.Permissions'), 'permissions')
                         ->options(function () use ($permissions) {
-                            return $permissions->mapWithKeys(function ($permission, $id) {
-                                return [$id => PermissionsEnum::getDescription($permission)];
+                            return $permissions->mapWithKeys(function ($permission) {
+                                $group_name = PermissionsEnum::getDescription($permission->group);
+                                $permission_name = PermissionsEnum::getDescription($permission->name);
+                                return [
+                                    $permission->id => sprintf('%s-%s', $permission_name, $group_name)
+                                ];
                             });
                         })->resolveUsing(function () use ($permissions) {
-                            return $permissions->mapWithKeys(function ($permission, $id) {
-                                return [$id => $this->hasPermissionTo($permission)];
-                            });
-                        })->onlyOnForms()->canSee(function () {
-                            /* @var \App\Models\User $user */
-                            $user = request()->user();
+                    return $permissions->mapWithKeys(function ($permission) {
+                        return [$permission->id => $this->hasPermissionTo($permission->name)];
+                    });
+                })->exceptOnForms(),
 
-                            return $user->isSuperAdmin()
+            BooleanGroup::make(__('nova-permission::resources.Permissions'), 'permissions')
+                        ->options(function () use ($permissions) {
+                            return $permissions->mapWithKeys(function ($permission) {
+                                $group_name = PermissionsEnum::getDescription($permission->group);
+                                $permission_name = PermissionsEnum::getDescription($permission->name);
+                                return [
+                                    $permission->id => sprintf('%s-%s', $permission_name, $group_name)
+                                ];
+                            });
+                        })->resolveUsing(function () use ($permissions) {
+                    return $permissions->mapWithKeys(function ($permission) {
+                        return [$permission->id => $this->hasPermissionTo($permission->name)];
+                    });
+                })->onlyOnForms()->canSee(function () {
+                    /* @var \App\Models\User $user */
+                    $user = request()->user();
+
+                    return $user->isSuperAdmin()
                         || $user->can(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS)
                         || $user->can(PermissionsEnum::PERMISSION_ATTACH_USERS);
-                        }),
+                }),
         ];
     }
 
