@@ -14,6 +14,11 @@
 <dropdown-menu slot="menu" width="200" direction="rtl">
     <ul class="list-reset">
         <li>
+            <nova-dark-theme-toggle
+                label="{{ __('Dark Theme') }}"
+            ></nova-dark-theme-toggle>
+        </li>
+        <li>
             <a href="{{ route('nova.logout') }}" class="block no-underline text-90 hover:bg-30 p-3">
                 {{ __('Logout') }}
             </a>
