@@ -42,8 +42,6 @@ class User extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param \Illuminate\Http\Request $request
-     *
      * @return array
      */
     public function fields(Request $request)
@@ -88,10 +86,10 @@ class User extends Resource
                                 return [$role->id => RolesEnum::getDescription($role->name)];
                             });
                         })->resolveUsing(function () use ($roles) {
-                    return $roles->mapWithKeys(function ($role) {
-                        return [$role->id => $this->hasRole($role->name)];
-                    });
-                })->exceptOnForms(),
+                            return $roles->mapWithKeys(function ($role) {
+                                return [$role->id => $this->hasRole($role->name)];
+                            });
+                        })->exceptOnForms(),
 
             BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
                         ->options(function () use ($roles) {
@@ -99,61 +97,61 @@ class User extends Resource
                                 return [$role->id => RolesEnum::getDescription($role->name)];
                             });
                         })->resolveUsing(function () use ($roles) {
-                    return $roles->mapWithKeys(function ($role) {
-                        return [$role->id => $this->hasRole($role->name)];
-                    });
-                })->onlyOnForms()->canSee(function () {
-                    /* @var \App\Models\User $user */
-                    $user = request()->user();
+                            return $roles->mapWithKeys(function ($role) {
+                                return [$role->id => $this->hasRole($role->name)];
+                            });
+                        })->onlyOnForms()->canSee(function () {
+                            /* @var \App\Models\User $user */
+                            $user = request()->user();
 
-                    return $user->isSuperAdmin()
-                        || $user->can(PermissionsEnum::ROLE_ATTACH_ANY_USERS)
-                        || $user->can(PermissionsEnum::ROLE_ATTACH_USERS);
-                }),
+                            return $user->isSuperAdmin()
+                                || $user->can(PermissionsEnum::ROLE_ATTACH_ANY_USERS)
+                                || $user->can(PermissionsEnum::ROLE_ATTACH_USERS);
+                        }),
 
             BooleanGroup::make(__('nova-permission::resources.Permissions'), 'permissions')
                         ->options(function () use ($permissions) {
                             return $permissions->mapWithKeys(function ($permission) {
                                 $group_name = PermissionsEnum::getDescription($permission->group);
                                 $permission_name = PermissionsEnum::getDescription($permission->name);
+
                                 return [
-                                    $permission->id => sprintf('%s-%s', $permission_name, $group_name)
+                                    $permission->id => sprintf('%s-%s', $permission_name, $group_name),
                                 ];
                             });
                         })->resolveUsing(function () use ($permissions) {
-                    return $permissions->mapWithKeys(function ($permission) {
-                        return [$permission->id => $this->hasPermissionTo($permission->name)];
-                    });
-                })->exceptOnForms(),
+                            return $permissions->mapWithKeys(function ($permission) {
+                                return [$permission->id => $this->hasPermissionTo($permission->name)];
+                            });
+                        })->exceptOnForms(),
 
             BooleanGroup::make(__('nova-permission::resources.Permissions'), 'permissions')
                         ->options(function () use ($permissions) {
                             return $permissions->mapWithKeys(function ($permission) {
                                 $group_name = PermissionsEnum::getDescription($permission->group);
                                 $permission_name = PermissionsEnum::getDescription($permission->name);
+
                                 return [
-                                    $permission->id => sprintf('%s-%s', $permission_name, $group_name)
+                                    $permission->id => sprintf('%s-%s', $permission_name, $group_name),
                                 ];
                             });
                         })->resolveUsing(function () use ($permissions) {
-                    return $permissions->mapWithKeys(function ($permission) {
-                        return [$permission->id => $this->hasPermissionTo($permission->name)];
-                    });
-                })->onlyOnForms()->canSee(function () {
-                    /* @var \App\Models\User $user */
-                    $user = request()->user();
+                            return $permissions->mapWithKeys(function ($permission) {
+                                return [$permission->id => $this->hasPermissionTo($permission->name)];
+                            });
+                        })->onlyOnForms()->canSee(function () {
+                            /* @var \App\Models\User $user */
+                            $user = request()->user();
 
-                    return $user->isSuperAdmin()
-                        || $user->can(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS)
-                        || $user->can(PermissionsEnum::PERMISSION_ATTACH_USERS);
-                }),
+                            return $user->isSuperAdmin()
+                                || $user->can(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS)
+                                || $user->can(PermissionsEnum::PERMISSION_ATTACH_USERS);
+                        }),
         ];
     }
 
     /**
      * Get the cards available for the request.
-     *
-     * @param \Illuminate\Http\Request $request
      *
      * @return array
      */
@@ -165,8 +163,6 @@ class User extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param \Illuminate\Http\Request $request
-     *
      * @return array
      */
     public function filters(Request $request)
@@ -177,8 +173,6 @@ class User extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param \Illuminate\Http\Request $request
-     *
      * @return array
      */
     public function lenses(Request $request)
@@ -188,8 +182,6 @@ class User extends Resource
 
     /**
      * Get the actions available for the resource.
-     *
-     * @param \Illuminate\Http\Request $request
      *
      * @return array
      */
@@ -217,13 +209,12 @@ class User extends Resource
     {
         return __('users.singularLabel');
     }
+
     /**
      * Get the logical group associated with the resource.
-     *
-     * @return string
      */
     public static function group(): string
     {
-        return __('nova-permission::navigations.User & Role & Permission');
+        return __('users.groupLabel');
     }
 }
