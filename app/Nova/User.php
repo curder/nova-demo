@@ -10,10 +10,16 @@ use Laravel\Nova\Fields\Text;
 use App\Enums\PermissionsEnum;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
+use App\Models\User as UserModel;
 use Laravel\Nova\Fields\BooleanGroup;
 use Curder\NovaPermission\Models\Role;
 use Curder\NovaPermission\Models\Permission;
 
+/**
+ * Class User
+ *
+ * @package App\Nova
+ */
 class User extends Resource
 {
     /**
@@ -21,7 +27,7 @@ class User extends Resource
      *
      * @var string
      */
-    public static $model = 'App\\Models\\User';
+    public static $model = UserModel::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -38,13 +44,14 @@ class User extends Resource
     public static $search = [
         'id', 'name', 'email',
     ];
-
     /**
      * Get the fields displayed by the resource.
      *
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
-    public function fields(Request $request)
+    public function fields(Request $request): array
     {
         return [
             ID::make()->sortable(),
@@ -149,43 +156,47 @@ class User extends Resource
                         }),
         ];
     }
-
     /**
      * Get the cards available for the request.
      *
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
-    public function cards(Request $request)
+    public function cards(Request $request): array
     {
         return [];
     }
-
     /**
      * Get the filters available for the resource.
      *
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
-    public function filters(Request $request)
+    public function filters(Request $request): array
     {
         return [];
     }
-
     /**
      * Get the lenses available for the resource.
      *
-     * @return array
-     */
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the actions available for the resource.
+     * @param \Illuminate\Http\Request $request
      *
      * @return array
      */
-    public function actions(Request $request)
+    public function lenses(Request $request): array
+    {
+        return [];
+    }
+    /**
+     * Get the actions available for the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return array
+     */
+    public function actions(Request $request): array
     {
         return [];
     }
@@ -195,7 +206,7 @@ class User extends Resource
      *
      * @return string
      */
-    public static function label()
+    public static function label(): string
     {
         return __('users.label');
     }
@@ -205,7 +216,7 @@ class User extends Resource
      *
      * @return string
      */
-    public static function singularLabel()
+    public static function singularLabel(): string
     {
         return __('users.singularLabel');
     }
