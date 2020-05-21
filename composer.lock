@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "23e2b3cb3091ca78021ec7e7e9e7bd32",
+    "content-hash": "448a27bc9180926f27053ee8990a490e",
     "packages": [
         {
             "name": "bensampo/laravel-enum",
-            "version": "v1.37.0",
+            "version": "v1.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BenSampo/laravel-enum.git",
-                "reference": "25cd11ab85ca0b9b8bc2eb969c0f1cddd9e175c4"
+                "reference": "f9dffdf1e9eeb74e77d65125b96d5090011e4df6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenSampo/laravel-enum/zipball/25cd11ab85ca0b9b8bc2eb969c0f1cddd9e175c4",
-                "reference": "25cd11ab85ca0b9b8bc2eb969c0f1cddd9e175c4",
+                "url": "https://api.github.com/repos/BenSampo/laravel-enum/zipball/f9dffdf1e9eeb74e77d65125b96d5090011e4df6",
+                "reference": "f9dffdf1e9eeb74e77d65125b96d5090011e4df6",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -28,16 +28,16 @@
             },
             "require": {
                 "hanneskod/classtools": "~1.0",
-                "illuminate/support": "5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0",
-                "laminas/laminas-code": "^3.4",
-                "php": "~7.1"
+                "illuminate/support": "5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6.0",
+                "php": "~7.1",
+                "zendframework/zend-code": "^3.3"
             },
             "require-dev": {
                 "doctrine/dbal": "^2.9",
-                "laravel/framework": "5.6.*|5.7.*|5.8.*|^6.0|^7.0",
-                "orchestra/testbench": "3.6.*|3.7.*|3.8.*|3.9.*|^4.0|^5.0",
-                "phpstan/phpstan": "^0.12.9",
-                "phpunit/phpunit": "^7.5|^8.5",
+                "laravel/framework": "5.8.*|^6.0",
+                "orchestra/testbench": "3.8.*|3.9.*",
+                "phpstan/phpstan": "^0.11.6",
+                "phpunit/phpunit": "7.5.*",
                 "squizlabs/php_codesniffer": "^3.0"
             },
             "type": "library",
@@ -81,7 +81,7 @@
                 "package",
                 "validation"
             ],
-            "time": "2020-04-11T14:18:49+00:00"
+            "time": "2019-11-27T20:03:30+00:00"
         },
         {
             "name": "brick/math",
