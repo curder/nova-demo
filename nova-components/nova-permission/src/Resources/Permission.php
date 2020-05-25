@@ -2,7 +2,7 @@
 
 namespace Curder\NovaPermission\Resources;
 
-use Curder\NovaPermission\Actions\AttachToRole;
+use Curder\NovaPermission\Actions\PermissionsAttachToRole;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
@@ -61,7 +61,7 @@ class Permission extends Resource
     public function actions(Request $request) : array
     {
         return [
-            new AttachToRole,
+            new PermissionsAttachToRole,
         ];
     }
 

@@ -15,9 +15,11 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 
 /**
+ * 给角色赋予权限
+ *
  * Class AttachToRole.
  */
-class AttachToRole extends Action
+class PermissionsAttachToRole extends Action
 {
     use InteractsWithQueue;
     use Queueable;
