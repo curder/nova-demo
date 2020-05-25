@@ -7,7 +7,7 @@ use BenSampo\Enum\Enum;
 
 final class RolesEnum extends Enum implements LocalizedEnum
 {
-    public const SUPER_ADMIN_MANAGER = 'superAdminManager';
+    public const SUPER_ADMIN_MANAGER = 'super';
 
-    public const EDITOR_MANAGER = 'editorManager';
+    public const EDITOR_MANAGER = 'editor';
 }
