@@ -90,6 +90,20 @@ class Role extends Resource
 
         $userResource = Nova::resourceForModel(getModelForGuard($this->guard_name));
 
+        // 权限选项
+        $permission_options = PermissionModel::all()->map(function ($permission) {
+            return [
+                'group' => PermissionsEnum::getDescription($permission->group),
+                'option' => $permission->name,
+                'label' => sprintf(
+                    "%s - %s",
+                    PermissionsEnum::getDescription($permission->group),
+                    PermissionsEnum::getDescription($permission->name)
+                ),
+            ];
+        })->groupBy('group')
+          ->toArray();
+
         return [
             ID::make('ID', 'id')
               ->rules('required')
@@ -114,14 +128,7 @@ class Role extends Resource
 
             GroupCheckBoxListField::make(Permission::label(), 'prepared_permissions')
                                   ->withGroups()
-                                  ->options(PermissionModel::all()->map(function ($permission) {
-                                      return [
-                                        'group' => PermissionsEnum::getDescription($permission->group),
-                                        'option' => $permission->name,
-                                        'label' => PermissionsEnum::getDescription($permission->name),
-                                      ];
-                                  })->groupBy('group')
-                                    ->toArray())
+                                  ->options($permission_options)
                                   ->help(__('nova-permission::permissions.role_related_permissions_help')),
 
             Text::make(__('nova-permission::permissions.user_count'), function () {

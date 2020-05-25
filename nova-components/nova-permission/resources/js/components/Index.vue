@@ -4,7 +4,7 @@
                 v-for="(permission, option) in availableOptions"
                 :key="permission.option"
                 :class="optionClass(permission.option)"
-                :title="permission.label"
+                v-tooltip.click="permission.label"
                 class="inline-block rounded-full w-2 h-2 mr-1"
         />
     </span>
