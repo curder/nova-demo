@@ -39,7 +39,7 @@ class RoleAndPermissionSeeder extends Seeder
             collect($items)->each(function ($item) use ($role_name) {
                 $user = User::whereEmail($item['email'])->first();
                 if (!$user) {
-                    $user = factory(User::class)->create($item);
+                    $user = User::factory()->create($item);
                 }
 
                 $user->assignRole($role_name);

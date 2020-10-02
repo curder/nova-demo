@@ -24,7 +24,7 @@ class PermissionSeeder extends Seeder
         collect($this->getPermissions())->each(function ($item, $group) {
             // create permissions for each collection item
             collect($item)->each(function ($permission) use ($group) {
-                factory(Permission::class)->create(['group' => $group, 'name' => $permission]);
+                Permission::factory()->create(['group' => $group, 'name' => $permission]);
             });
         });
     }
