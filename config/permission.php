@@ -6,7 +6,6 @@ use App\Models\Auth\Role;
 return [
 
     'models' => [
-
         /*
          * When using the "HasPermissions" trait from this package, we need to know which
          * Eloquent model should be used to retrieve your permissions. Of course, it
@@ -15,7 +14,6 @@ return [
          * The model you want to use as a Permission model needs to implement the
          * `Spatie\Permission\Contracts\Permission` contract.
          */
-
         'permission' => \Curder\NovaPermission\Models\Permission::class,
 
         /*
@@ -26,9 +24,7 @@ return [
          * The model you want to use as a Role model needs to implement the
          * `Spatie\Permission\Contracts\Role` contract.
          */
-
         'role' => \Curder\NovaPermission\Models\Role::class,
-
     ],
 
     'table_names' => [
@@ -38,7 +34,6 @@ return [
          * table should be used to retrieve your roles. We have chosen a basic
          * default value but you may easily change it to any table you like.
          */
-
         'roles' => 'roles',
 
         /*
@@ -46,7 +41,6 @@ return [
          * table should be used to retrieve your permissions. We have chosen a basic
          * default value but you may easily change it to any table you like.
          */
-
         'permissions' => 'permissions',
 
         /*
@@ -54,7 +48,6 @@ return [
          * table should be used to retrieve your models permissions. We have chosen a
          * basic default value but you may easily change it to any table you like.
          */
-
         'model_has_permissions' => 'model_has_permissions',
 
         /*
@@ -62,7 +55,6 @@ return [
          * table should be used to retrieve your models roles. We have chosen a
          * basic default value but you may easily change it to any table you like.
          */
-
         'model_has_roles' => 'model_has_roles',
 
         /*
@@ -70,7 +62,6 @@ return [
          * table should be used to retrieve your roles permissions. We have chosen a
          * basic default value but you may easily change it to any table you like.
          */
-
         'role_has_permissions' => 'role_has_permissions',
     ],
 
@@ -83,7 +74,6 @@ return [
          * For example, this would be nice if your primary keys are all UUIDs. In
          * that case, name this `model_uuid`.
          */
-
         'model_morph_key' => 'model_id',
     ],
 
@@ -92,7 +82,6 @@ return [
      * message. This could be considered an information leak in some contexts, so
      * the default setting is false here for optimum safety.
      */
-
     'display_permission_in_exception' => false,
 
     'cache' => [
@@ -101,13 +90,11 @@ return [
          * By default all permissions are cached for 24 hours to speed up performance.
          * When permissions or roles are updated the cache is flushed automatically.
          */
-
         'expiration_time' => \DateInterval::createFromDateString('24 hours'),
 
         /*
          * The cache key used to store all permissions.
          */
-
         'key' => 'spatie.permission.cache',
 
         /*
@@ -118,7 +105,6 @@ return [
          * Ideally, this should match your preferred way of checking permissions, eg:
          * `$user->can('view-posts')` would be 'name'.
          */
-
         'model_key' => 'name',
 
         /*
@@ -126,7 +112,6 @@ return [
          * role caching using any of the `store` drivers listed in the cache.php config
          * file. Using 'default' here means to use the `default` set in cache.php.
          */
-
         'store' => 'default',
     ],
 ];

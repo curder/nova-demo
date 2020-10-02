@@ -17,7 +17,21 @@ return [
     |
     */
 
-    'name' => 'Nova Site',
+    'name' => env('NOVA_APP_NAME', env('APP_NAME')),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Nova Domain Name
+    |--------------------------------------------------------------------------
+    |
+    | This value is the "domain name" associated with your application. This
+    | can be used to prevent Nova's internal routes from being registered
+    | on subdomains which do not need access to your admin application.
+    |
+    */
+
+    'domain' => env('NOVA_DOMAIN_NAME', null),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -32,7 +46,6 @@ return [
 
     'url' => env('NOVA_URL', '/'),
 
-    'domain' => env('NOVA_URL', '/'),
     /*
     |--------------------------------------------------------------------------
     | Nova Path
@@ -44,7 +57,7 @@ return [
     |
     */
 
-    'path' => env('NOVA_PREFIX', '/nova'),
+    'path' => env('NOVA_PATH', '/'),
 
     /*
     |--------------------------------------------------------------------------
