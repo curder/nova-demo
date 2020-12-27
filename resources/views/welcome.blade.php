@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Nova Demo</title>
 
         <!-- Styles -->
         <style>
@@ -78,7 +78,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    HuiTou123.com
+                    Nova Demo
                 </div>
 
                 <div class="links">
