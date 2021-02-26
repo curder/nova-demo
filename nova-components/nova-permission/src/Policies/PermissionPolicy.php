@@ -23,7 +23,9 @@ class PermissionPolicy extends Policy
      * @return bool
      */
     public function before($user, $ability)
-    {}
+    {
+        //
+    }
 
     /**
      * @param User $user

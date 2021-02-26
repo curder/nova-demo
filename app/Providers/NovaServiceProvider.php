@@ -5,8 +5,8 @@ namespace App\Providers;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
+use Curder\NovaPermission\NovaPermissionTool;
 use Laravel\Nova\NovaApplicationServiceProvider;
-use Vyuldashev\NovaPermission\NovaPermissionTool;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -52,7 +52,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      *
      * @return array
      */
-    protected function cards()
+    protected function cards() : array
     {
         return [
             new Help,
@@ -64,7 +64,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      *
      * @return array
      */
-    protected function dashboards()
+    protected function dashboards() : array
     {
         return [];
     }
@@ -74,10 +74,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      *
      * @return array
      */
-    public function tools()
+    public function tools() : array
     {
         return [
-            \Curder\NovaPermission\NovaPermissionTool::make(),
+            NovaPermissionTool::make(),
         ];
     }
 

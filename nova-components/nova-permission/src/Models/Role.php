@@ -2,6 +2,7 @@
 
 namespace Curder\NovaPermission\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Models\Role as SpatieRole;
 
@@ -10,6 +11,7 @@ use Spatie\Permission\Models\Role as SpatieRole;
  *
  * @property string name
  * @property array prepared_permissions
+ * @property BelongsToMany permissions
  */
 class Role extends SpatieRole
 {
@@ -22,9 +24,9 @@ class Role extends SpatieRole
     protected $appends = ['prepared_permissions'];
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getPreparedPermissionsAttribute()
+    public function getPreparedPermissionsAttribute(): array
     {
         return $this->permissions->pluck('name')->toArray();
     }

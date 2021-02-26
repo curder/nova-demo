@@ -24,6 +24,7 @@ class RolePolicy extends Policy
      */
     public function before($user, $ability)
     {
+        //
     }
 
     /**

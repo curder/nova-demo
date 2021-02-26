@@ -3,7 +3,7 @@
 namespace Curder\NovaPermission\Http\Middleware;
 
 use Laravel\Nova\Nova;
-use Curder\NovaPermission\NovaPermission;
+use Curder\NovaPermission\NovaPermissionTool;
 
 class Authorize
 {
@@ -29,6 +29,6 @@ class Authorize
      */
     public function matchesTool($tool)
     {
-        return $tool instanceof NovaPermission;
+        return $tool instanceof NovaPermissionTool;
     }
 }
