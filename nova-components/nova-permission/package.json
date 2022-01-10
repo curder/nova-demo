@@ -17,6 +17,7 @@
     "dependencies": {
         "is-svg": "^4.2.2",
         "laravel-nova": "^1.0.9",
+        "postcss": "^8.4.5",
         "ssri": "^8.0.1",
         "vue": "^2.5.0",
         "vue-template-compiler": "^2.6.11"
