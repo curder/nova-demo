@@ -2,7 +2,7 @@
 
 -   添加授权用户名，密码
 
-```
+```bash
 composer config http-basic.nova.laravel.com ${NOVA_USERNAME} ${NOVA_PASSWORD}
 ```
 
@@ -10,13 +10,13 @@ composer config http-basic.nova.laravel.com ${NOVA_USERNAME} ${NOVA_PASSWORD}
 
 - 更新php依赖
 
-```
+```bash
 composer install -vvv
 ```
 
 - 修改配置
 
-```
+```bash
 cp .env.example .env
 ```
 
@@ -24,13 +24,13 @@ cp .env.example .env
 
 - 执行迁移
 
-```
+```bash
 php artisan migrate
 ```
 
 - 填充默认数据
 
-```
+```bash
 php artisan db:seed
 ```
 
@@ -40,8 +40,8 @@ php artisan db:seed
 http://nova-demo.test
 ```
 
-默认管理员用户名/密码：`superAdminManager@example.com` / `aaaaaa`
-编辑用户名/密码：`editorManager@example.com` / `aaaaaa`
+默认管理员用户名/密码：`super@example.com` / `aaaaaa`
+编辑用户名/密码：`editor@example.com` / `aaaaaa`
 
 
 ## 插件
