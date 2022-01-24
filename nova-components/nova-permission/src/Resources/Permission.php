@@ -3,6 +3,7 @@
 namespace Curder\NovaPermission\Resources;
 
 use Curder\NovaPermission\Actions\PermissionsAttachToRole;
+use Curder\NovaPermission\Actions\PermissionsAttachToUser;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
@@ -61,7 +62,34 @@ class Permission extends Resource
     public function actions(Request $request) : array
     {
         return [
-            new PermissionsAttachToRole,
+            PermissionsAttachToRole::make()
+                ->canSee(function ($request) {
+                    $user = $request->user();
+
+                    return $user->isSuperAdmin()
+                        || $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES)
+                        || $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ROLES);
+                })->canRun(function ($request, $model) {
+                    $user = $request->user();
+
+                    return $user->isSuperAdmin()
+                        || $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES)
+                        || $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ROLES);
+                }),
+            PermissionsAttachToUser::make()
+                ->canSee(function ($request) {
+                    $user = $request->user();
+
+                    return $user->isSuperAdmin()
+                        || $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS)
+                        || $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_USERS);
+                })->canRun(function ($request, $model) {
+                    $user = $request->user();
+
+                    return $user->isSuperAdmin()
+                        || $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS)
+                        || $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_USERS);
+                }),
         ];
     }
 

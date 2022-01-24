@@ -2,6 +2,7 @@
 
 namespace  Curder\NovaPermission\Actions;
 
+use App\Enums\RolesEnum;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
@@ -48,27 +49,16 @@ class PermissionsAttachToRole extends Action
      */
     public function fields(): array
     {
+        $roles = Role::getModel()
+                     ->where('name', '!=', RolesEnum::SUPER_ADMIN_MANAGER)
+                     ->get()
+                     ->pluck('name', 'id');
+
         return [
             Select::make(__('nova-permission::resources.Roles'), 'role')
-                  ->options(function () {
-                      return Role::getModel()->get()->pluck('name', 'id');
-                  })
+                  ->options($roles)
                   ->displayUsingLabels(),
         ];
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return bool
-     */
-    public function authorizedToSee(Request $request): bool
-    {
-        $user = $request->user();
-
-        return $user->isSuperAdmin()
-            || $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES)
-            || $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ROLES);
     }
 
     /**
@@ -78,7 +68,7 @@ class PermissionsAttachToRole extends Action
      */
     public function name()
     {
-        return __('nova-permission::actions.attach_to_role');
+        return __('nova-permission::actions.permissions_attach_to_role');
     }
 
     /**

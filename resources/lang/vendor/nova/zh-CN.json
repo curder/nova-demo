@@ -408,6 +408,7 @@
     "Year To Date": "今年迄今为止",
     "Customize": "定制",
     "Update :resource: :title": "更新:resource::title",
+    "Update :resource": "更新:resource",
     "Update attached :resource: :title": "更新附加:resource::title",
     ":resource Details: :title": ":resource详情: :title",
     "The HasOne relationship has already been filled.": "HasOne 关系已被填充。",
