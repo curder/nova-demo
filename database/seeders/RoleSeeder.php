@@ -49,7 +49,7 @@ class RoleSeeder extends Seeder
                 [
                     'name' => RolesEnum::SUPER_ADMIN_MANAGER,
                     'email' => RolesEnum::SUPER_ADMIN_MANAGER.'@example.com',
-                    'password' => Hash::make('JUX!BkfRjajhaCYK'),
+                    'password' => Hash::make('NHWmVFKsz!Yb-wu@'),
                     'email_verified_at' => now(),
                     'remember_token' => Str::random(10),
                 ],
