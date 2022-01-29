@@ -22,16 +22,10 @@ cp .env.example .env
 
 > 在拷贝的 `.env` 文件中修改数据库连接。
 
-- 执行迁移
+- 执行迁移和填充
 
 ```bash
-php artisan migrate
-```
-
-- 填充默认数据
-
-```bash
-php artisan db:seed
+php artisan migrate:refresh --seed
 ```
 
 - 登录
@@ -40,8 +34,9 @@ php artisan db:seed
 http://nova-demo.test
 ```
 
-默认管理员用户名/密码：`super@example.com` / `NHWmVFKsz!Yb-wu@`
-编辑用户名/密码：`editor@example.com` / `JUX!BkfRjajhaCYK`
+- 默认管理员用户名/密码：`super@example.com` / `NHWmVFKsz!Yb-wu@`
+
+- 默认编辑用户名/密码：`editor@example.com` / `JUX!BkfRjajhaCYK`
 
 
 ## 插件
