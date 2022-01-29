@@ -40,8 +40,8 @@ php artisan db:seed
 http://nova-demo.test
 ```
 
-默认管理员用户名/密码：`super@example.com` / `aaaaaa`
-编辑用户名/密码：`editor@example.com` / `aaaaaa`
+默认管理员用户名/密码：`super@example.com` / `NHWmVFKsz!Yb-wu@`
+编辑用户名/密码：`editor@example.com` / `JUX!BkfRjajhaCYK`
 
 
 ## 插件
