@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3",
+        "php": "^7.4|^8.0",
         "bensampo/laravel-enum": "^3.0",
         "curder/nova-permission": "*",
         "david-griffiths/nova-dark-theme": "^1.0",
@@ -19,7 +19,10 @@
         "laravel/legacy-factories": "^1.0",
         "laravel/nova": "~3.0",
         "laravel/tinker": "^2.0",
-        "spatie/laravel-permission": "^3.2"
+        "overtrue/laravel-filesystem-qiniu": "^1.0",
+        "spatie/laravel-backup": "^6.16",
+        "spatie/laravel-permission": "^3.2",
+        "spatie/nova-backup-tool": "^4.2"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

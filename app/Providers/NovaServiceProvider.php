@@ -7,6 +7,7 @@ use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
 use Curder\NovaPermission\NovaPermissionTool;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Spatie\BackupTool\BackupTool;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -78,6 +79,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             NovaPermissionTool::make(),
+            BackupTool::make()->canSee(fn ($request) => $request->user()->isSuperAdmin()),
         ];
     }
 
