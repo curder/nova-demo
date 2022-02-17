@@ -1,0 +1,15 @@
+hosts:
+  www.nova-demo.com:
+    hostname: www.nova-demo.com
+    stage: master
+    remote_user: root
+    port: 22
+    config_file: ~/.ssh/config
+    identity_file: ~/.ssh/deployerkey
+    forwardAgent: true
+    multiplexing: true
+    ssh_options:
+      user_known_hosts_file: /dev/null
+      strict_host_key_checking: no
+    deploy_path: /var/www/codes/nova-demo.com/{{hostname}}
+    branch: master
