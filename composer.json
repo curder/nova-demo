@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4|^8.0",
-        "bensampo/laravel-enum": "^3.0",
+        "bensampo/laravel-enum": "dev-adaptation-nova/4.2.0",
         "curder/nova-permission": "*",
         "david-griffiths/nova-dark-theme": "^1.0",
         "fideloper/proxy": "^4.2",
@@ -37,6 +37,10 @@
         {
             "type": "path",
             "url": "./nova-components/nova-permission"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/curder/laravel-enum"
         }
     ],
     "autoload": {
