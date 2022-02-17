@@ -1,52 +1,76 @@
 <?php
 namespace Database\Seeders;
 
+use App\Models\User;
+use App\Enums\RolesEnum;
 use App\Enums\PermissionsEnum;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Curder\NovaPermission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 use Curder\NovaPermission\Models\Permission;
 
-class PermissionSeeder extends Seeder
+class RolesAndPermissionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
-    public function run()
+    public function run() : void
     {
-        $this->refresh(); // 刷新权限
-        $this->freshCache(); // 清空缓存
-        $this->generatePermissions(); // 生成权限
+        // 1. refresh exists table
+        $this->refreshTables();
+
+        // 2. Reset cached roles and permissions
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+
+        // 3. create permissions for each collection item
+        $this->getPermissions()->each(
+            fn($item, $group) => collect($item)->each(
+                fn($permission) => Permission::create(['group' => $group, 'name' => $permission])
+            )
+        );
+
+        // 4. Create roles and assign permissions
+        collect(RolesEnum::getInstances())
+            ->each(fn(RolesEnum $item) => Role::create(['name' => $item->value]))
+            ->each(
+                fn(RolesEnum $item) =>
+                Role::findByName($item->value)->givePermissionTo(RolesEnum::permissions($item->value))
+            )->each(
+                fn(RolesEnum $role) => RolesEnum::users($role->value)->each(
+                    fn($email) => User::where('email', $email)->first()->assignRole($role->value)
+                )
+            );
     }
 
-    protected function generatePermissions()
+    /**
+     *
+     */
+    protected function refreshTables() : void
     {
-        collect($this->getPermissions())->each(function ($item, $group) {
-            // create permissions for each collection item
-            collect($item)->each(function ($permission) use ($group) {
-                Permission::factory()->create(['group' => $group, 'name' => $permission]);
-            });
-        });
-    }
+        DB::beginTransaction();
+        if (!app()->environment('testing')) {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        }
 
-    protected function refresh(): void
-    {
-        // refresh all prev permissions.
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Permission::truncate();
+        DB::table(config('permission.table_names.model_has_permissions'))->truncate();
         DB::table(config('permission.table_names.role_has_permissions'))->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::table(config('permission.table_names.model_has_roles'))->truncate();
+        DB::table(config('permission.table_names.permissions'))->truncate();
+        DB::table(config('permission.table_names.roles'))->truncate();
+        if (!app()->environment('testing')) {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        }
+        DB::commit();
     }
 
-    protected function freshCache(): void
-    {
-        // Reset cached roles and permissions
-        app(PermissionRegistrar::class)->forgetCachedPermissions();
-    }
 
-    protected function getPermissions()
+    protected function getPermissions(): Collection
     {
-        return [
+        return collect([
             PermissionsEnum::USERS => [
                 PermissionsEnum::MANAGER_USERS,
                 PermissionsEnum::VIEW_USERS,
@@ -74,8 +98,6 @@ class PermissionSeeder extends Seeder
             PermissionsEnum::PERMISSIONS => [
                 PermissionsEnum::MANAGER_PERMISSIONS,
                 PermissionsEnum::VIEW_PERMISSIONS,
-//                PermissionsEnum::CREATE_PERMISSIONS,
-//                PermissionsEnum::UPDATE_PERMISSIONS,
                 PermissionsEnum::DELETE_PERMISSIONS,
                 PermissionsEnum::RESTORE_PERMISSIONS,
                 PermissionsEnum::FORCE_DELETE_PERMISSIONS,
@@ -83,6 +105,6 @@ class PermissionSeeder extends Seeder
                 PermissionsEnum::PERMISSION_ATTACH_ROLES,
                 PermissionsEnum::PERMISSION_DETACH_ROLES,
             ],
-        ];
+        ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Enums;
 
+use App\Enums\PermissionsEnum as Permission;
 use BenSampo\Enum\Contracts\LocalizedEnum;
 use BenSampo\Enum\Enum;
 
@@ -45,14 +46,30 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
     public const PERMISSION_DETACH_ROLES = 'permissionDetachRoles'; // 取消赋予角色权限
 
     /**
+     * 所有可用权限
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public static function availablePermissions() : \Illuminate\Support\Collection
+    {
+        return collect(Permission::getInstances())
+            ->reject(fn (PermissionsEnum $item) => array_key_exists($item->value, Permission::groups()))
+            ->pluck('value');
+    }
+
+    /**
      * @return array
      */
-    public static function getGroups()
+    public static function groups() : array
     {
         return [
             self::USERS => self::getDescription(self::USERS),
             self::ROLES => self::getDescription(self::ROLES),
             self::PERMISSIONS => self::getDescription(self::PERMISSIONS),
         ];
+    }
+    public static function count(): int
+    {
+        return self::availablePermissions()->count();
     }
 }

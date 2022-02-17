@@ -39,7 +39,7 @@ class RolePolicy extends Policy
      */
     public function delete($user, $model)
     {
-        if (RolesEnum::SUPER_ADMIN_MANAGER === $model->name) {
+        if (RolesEnum::SUPER_ADMIN === $model->name) {
             return false;
         }
 
@@ -64,7 +64,7 @@ class RolePolicy extends Policy
     public function restore($user, $model)
     {
         /* @var User $user */
-        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN_MANAGER === $model->name) {
+        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
             return false;
         }
 
@@ -84,7 +84,7 @@ class RolePolicy extends Policy
     public function forceDelete($user, $model)
     {
         /* @var User $user */
-        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN_MANAGER === $model->name) {
+        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
             return false;
         }
 
@@ -104,7 +104,7 @@ class RolePolicy extends Policy
     public function update($user, $model)
     {
         /* @var User $user */
-        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN_MANAGER === $model->name) {
+        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
             return false;
         }
 
@@ -127,7 +127,7 @@ class RolePolicy extends Policy
             return true;
         }
 
-        if (!$user->isSuperAdmin() && RolesEnum::SUPER_ADMIN_MANAGER === $role->name) {
+        if (!$user->isSuperAdmin() && RolesEnum::SUPER_ADMIN === $role->name) {
             return false;
         }
 

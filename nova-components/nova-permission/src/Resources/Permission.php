@@ -139,7 +139,7 @@ class Permission extends Resource
             }),
 
             Select::make(__('nova-permission::permissions.group'), 'group')
-                  ->options(PermissionsEnum::getGroups()),
+                  ->options(PermissionsEnum::groups()),
 
             Select::make(__('nova-permission::permissions.guard_name'), 'guard_name')
                   ->options($guardOptions->toArray())

@@ -46,7 +46,7 @@ return [
     ],
 
     RolesEnum::class => [
-        RolesEnum::SUPER_ADMIN_MANAGER => '超级管理员',
-        RolesEnum::EDITOR_MANAGER => '编辑管理员',
+        RolesEnum::SUPER_ADMIN => '超级管理员',
+        RolesEnum::CONTENT => '编辑管理员',
     ],
 ];

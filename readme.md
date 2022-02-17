@@ -37,9 +37,9 @@ php artisan migrate:refresh --seed
 http://nova-demo.test
 ```
 
-- 默认管理员用户名/密码：`super@example.com` / `NHWmVFKsz!Yb-wu@`
+- 默认管理员用户名/密码：`curder@example.com` / `password`
 
-- 默认编辑用户名/密码：`editor@example.com` / `JUX!BkfRjajhaCYK`
+- 默认编辑用户名/密码：`example@example.com` / `password`
 
 
 ## 插件

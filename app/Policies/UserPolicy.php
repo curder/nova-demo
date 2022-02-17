@@ -132,7 +132,7 @@ class UserPolicy extends Policy
             return true;
         }
 
-        if (! $user->isSuperAdmin() && RolesEnum::SUPER_ADMIN_MANAGER === $role->name) {
+        if (! $user->isSuperAdmin() && RolesEnum::SUPER_ADMIN === $role->name) {
             return false;
         }
 

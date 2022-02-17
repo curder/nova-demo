@@ -4,10 +4,54 @@ namespace App\Enums;
 
 use BenSampo\Enum\Contracts\LocalizedEnum;
 use BenSampo\Enum\Enum;
+use App\Enums\PermissionsEnum as Permission;
+use Illuminate\Support\Collection;
 
-final class RolesEnum extends Enum implements LocalizedEnum
+/**
+ * @method static self superAdmin()
+ * @method static self content()
+ */
+class RolesEnum extends Enum implements LocalizedEnum
 {
-    public const SUPER_ADMIN_MANAGER = 'super';
+    public const SUPER_ADMIN = 'superAdmin'; // 超级管理员
+    public const CONTENT     = 'content'; // 内容管理员
 
-    public const EDITOR_MANAGER = 'editor';
+    public static function users($role)
+    {
+        return collect([
+            self::SUPER_ADMIN => collect([
+                UsersEnum::CURDER,
+            ]),
+            self::CONTENT => collect([
+                UsersEnum::LINDA,
+            ]),
+        ])->get($role, collect([]));
+    }
+
+    /**
+     * @return int
+     */
+    public static function count(): int
+    {
+        return count(self::getInstances());
+    }
+
+    /**
+     * @param $role
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public static function permissions($role): Collection
+    {
+        return collect([
+            self::SUPER_ADMIN => PermissionsEnum::availablePermissions(),
+            self::CONTENT => collect([
+                Permission::MANAGER_USERS,
+                Permission::VIEW_USERS,
+                Permission::UPDATE_USERS,
+                Permission::DELETE_USERS,
+                Permission::RESTORE_USERS,
+            ])
+        ])->get($role, collect([]));
+    }
 }

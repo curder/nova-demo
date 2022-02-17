@@ -46,7 +46,7 @@ return [
     ],
 
     RolesEnum::class => [
-        RolesEnum::SUPER_ADMIN_MANAGER => 'Super Admin',
-        RolesEnum::EDITOR_MANAGER => 'Editor',
+        RolesEnum::SUPER_ADMIN => 'Super Admin',
+        RolesEnum::CONTENT => 'Editor',
     ],
 ];
