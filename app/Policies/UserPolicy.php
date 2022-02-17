@@ -2,13 +2,13 @@
 
 namespace App\Policies;
 
-use App\Models\User;
-use App\Enums\RolesEnum;
-use Illuminate\Support\Str;
 use App\Enums\PermissionsEnum;
+use App\Enums\RolesEnum;
+use App\Models\User;
 use Curder\NovaPermission\Models\Role;
 use Curder\NovaPermission\Policies\Policy;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Str;
 
 /**
  * Class UserPolicy.
@@ -28,7 +28,6 @@ class UserPolicy extends Policy
         //
     }
 
-
     /**
      * Determine whether the user can delete the model.
      * 1. 不能删除其他超级管理员
@@ -45,12 +44,12 @@ class UserPolicy extends Policy
     {
         /* @var $user User */
         if ($user->isSuperAdmin()) {
-            return $user->id !== $model->id && !$model->isSuperAdmin();
+            return $user->id !== $model->id && ! $model->isSuperAdmin();
         }
         /* @var $model User */
         return $user->can(PermissionsEnum::DELETE_USERS) // 拥有删除用户权限
             && $user->id !== $model->id //
-            && !$model->isSuperAdmin();
+            && ! $model->isSuperAdmin();
     }
 
     /**
@@ -72,7 +71,7 @@ class UserPolicy extends Policy
         /* @var $model User */
         return $user->can(PermissionsEnum::RESTORE_USERS)
             && $user->id !== $model->id
-            && !$model->isSuperAdmin();
+            && ! $model->isSuperAdmin();
     }
 
     /**
@@ -114,7 +113,7 @@ class UserPolicy extends Policy
 
         return $user->can(PermissionsEnum::FORCE_DELETE_USERS)
             && $user->id !== $model->id
-            && !$model->isSuperAdmin();
+            && ! $model->isSuperAdmin();
     }
 
     /**
@@ -133,7 +132,7 @@ class UserPolicy extends Policy
             return true;
         }
 
-        if (!$user->isSuperAdmin() && RolesEnum::SUPER_ADMIN_MANAGER === $role->name) {
+        if (! $user->isSuperAdmin() && RolesEnum::SUPER_ADMIN_MANAGER === $role->name) {
             return false;
         }
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Integration\Console;
 
 use App\Console\Kernel;
@@ -12,7 +13,6 @@ use Tests\TestCase;
  */
 class KernelTest extends TestCase
 {
-
     /** @test */
     public function it_can_run_backup_db_command_is_scheduled_at_02am(): void
     {
@@ -21,7 +21,7 @@ class KernelTest extends TestCase
         /** @var Event $event */
         $event = collect($schedule->events())
             ->filter(
-                fn (Event $event) =>  Str::containsAll($event->command, ['backup:run --only-db']),
+                fn (Event $event) => Str::containsAll($event->command, ['backup:run --only-db']),
             )->first();
 
         $this->assertInstanceOf(Event::class, $event);
@@ -36,7 +36,7 @@ class KernelTest extends TestCase
         /** @var Event $event */
         $event = collect($schedule->events())
             ->filter(
-                fn (Event $event) =>  Str::containsAll($event->command, ['backup:clean']),
+                fn (Event $event) => Str::containsAll($event->command, ['backup:clean']),
             )->first();
 
         $this->assertInstanceOf(Event::class, $event);
@@ -51,11 +51,10 @@ class KernelTest extends TestCase
         /** @var Event $event */
         $event = collect($schedule->events())
             ->filter(
-                fn (Event $event) =>  Str::containsAll($event->command, ['backup:monitor']),
+                fn (Event $event) => Str::containsAll($event->command, ['backup:monitor']),
             )->first();
 
         $this->assertInstanceOf(Event::class, $event);
         $this->assertEquals('5 10 * * *', $event->expression);
     }
-
 }

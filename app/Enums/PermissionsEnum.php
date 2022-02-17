@@ -2,8 +2,8 @@
 
 namespace App\Enums;
 
-use BenSampo\Enum\Enum;
 use BenSampo\Enum\Contracts\LocalizedEnum;
+use BenSampo\Enum\Enum;
 
 final class PermissionsEnum extends Enum implements LocalizedEnum
 {
@@ -52,7 +52,7 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
         return [
             self::USERS => self::getDescription(self::USERS),
             self::ROLES => self::getDescription(self::ROLES),
-            self::PERMISSIONS => self::getDescription(self::PERMISSIONS)
+            self::PERMISSIONS => self::getDescription(self::PERMISSIONS),
         ];
     }
 }

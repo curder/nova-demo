@@ -2,18 +2,18 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Panel;
-use App\Enums\RolesEnum;
-use Laravel\Nova\Fields\ID;
-use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
 use App\Enums\PermissionsEnum;
-use Laravel\Nova\Fields\Gravatar;
-use Laravel\Nova\Fields\Password;
+use App\Enums\RolesEnum;
 use App\Models\User as UserModel;
-use Laravel\Nova\Fields\BooleanGroup;
-use Curder\NovaPermission\Models\Role;
 use Curder\NovaPermission\Models\Permission;
+use Curder\NovaPermission\Models\Role;
+use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BooleanGroup;
+use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Panel;
 
 /**
  * Class User
@@ -44,6 +44,7 @@ class User extends Resource
     public static $search = [
         'id', 'name', 'email',
     ];
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -156,6 +157,7 @@ class User extends Resource
                         }),
         ];
     }
+
     /**
      * Get the cards available for the request.
      *
@@ -167,6 +169,7 @@ class User extends Resource
     {
         return [];
     }
+
     /**
      * Get the filters available for the resource.
      *
@@ -178,6 +181,7 @@ class User extends Resource
     {
         return [];
     }
+
     /**
      * Get the lenses available for the resource.
      *
@@ -189,6 +193,7 @@ class User extends Resource
     {
         return [];
     }
+
     /**
      * Get the actions available for the resource.
      *
