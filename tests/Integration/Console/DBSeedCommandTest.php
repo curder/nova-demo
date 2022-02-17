@@ -7,8 +7,6 @@ use App\Enums\RolesEnum;
 use App\Models\User;
 use Curder\NovaPermission\Models\Permission;
 use Curder\NovaPermission\Models\Role;
-use Database\Seeders\UserHasPermissionsSeeder;
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

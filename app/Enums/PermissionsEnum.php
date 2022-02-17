@@ -50,7 +50,7 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function availablePermissions() : \Illuminate\Support\Collection
+    public static function availablePermissions(): \Illuminate\Support\Collection
     {
         return collect(Permission::getInstances())
             ->reject(fn (PermissionsEnum $item) => array_key_exists($item->value, Permission::groups()))
@@ -60,7 +60,7 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
     /**
      * @return array
      */
-    public static function groups() : array
+    public static function groups(): array
     {
         return [
             self::USERS => self::getDescription(self::USERS),
@@ -68,6 +68,7 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
             self::PERMISSIONS => self::getDescription(self::PERMISSIONS),
         ];
     }
+
     public static function count(): int
     {
         return self::availablePermissions()->count();

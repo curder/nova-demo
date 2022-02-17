@@ -2,9 +2,9 @@
 
 namespace App\Enums;
 
+use App\Enums\PermissionsEnum as Permission;
 use BenSampo\Enum\Contracts\LocalizedEnum;
 use BenSampo\Enum\Enum;
-use App\Enums\PermissionsEnum as Permission;
 use Illuminate\Support\Collection;
 
 /**
@@ -14,7 +14,7 @@ use Illuminate\Support\Collection;
 class RolesEnum extends Enum implements LocalizedEnum
 {
     public const SUPER_ADMIN = 'superAdmin'; // 超级管理员
-    public const CONTENT     = 'content'; // 内容管理员
+    public const CONTENT = 'content'; // 内容管理员
 
     public static function users($role)
     {
@@ -51,7 +51,7 @@ class RolesEnum extends Enum implements LocalizedEnum
                 Permission::UPDATE_USERS,
                 Permission::DELETE_USERS,
                 Permission::RESTORE_USERS,
-            ])
+            ]),
         ])->get($role, collect([]));
     }
 }

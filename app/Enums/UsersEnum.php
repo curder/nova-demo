@@ -35,4 +35,3 @@ final class UsersEnum extends Enum
         return collect($config)->filter();
     }
 }
-
