@@ -85,4 +85,4 @@ jobs:
         env:
           SESSION_DRIVER: array
 
-        run: vendor/bin/phpunit
+        run: php artisan test --parallel
