@@ -8,7 +8,7 @@ require 'contrib/php-fpm.php';
 require 'contrib/yarn.php';
 
 // Project name
-set('application', 'www.forexact.com');
+set('application', 'www.nova-demo.com');
 
 // Project repository
 set('repository', 'git@github.com:curder/nova-demo.git');
