@@ -14,7 +14,6 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0",
         "laravel/framework": "^8.75",
-        "laravel/legacy-factories": "^1.0",
         "laravel/nova": "~3.0",
         "laravel/tinker": "^2.5",
         "overtrue/laravel-filesystem-qiniu": "^1.0",
