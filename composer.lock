@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc5eba7549c9bdafc11b6b8bc596ec13",
+    "content-hash": "f94997b44228e07891eb09779b658adf",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8601,6 +8601,45 @@
                 }
             ],
             "time": "2021-12-02T09:12:23+00:00"
+        },
+        {
+            "name": "dillingham/nova-assertions",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dillingham/nova-assertions.git",
+                "reference": "0b9d76ee20b4c1f0d9f6892d382174bfee7961d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dillingham/nova-assertions/zipball/0b9d76ee20b4c1f0d9f6892d382174bfee7961d0",
+                "reference": "0b9d76ee20b4c1f0d9f6892d382174bfee7961d0",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NovaTesting\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Dillingham",
+                    "email": "bdillingham88@gmail.com"
+                }
+            ],
+            "description": "Nova api testing requests & assertions",
+            "time": "2020-11-24T01:14:30+00:00"
         },
         {
             "name": "doctrine/instantiator",

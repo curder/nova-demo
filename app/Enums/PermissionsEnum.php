@@ -2,9 +2,10 @@
 
 namespace App\Enums;
 
-use App\Enums\PermissionsEnum as Permission;
-use BenSampo\Enum\Contracts\LocalizedEnum;
 use BenSampo\Enum\Enum;
+use Illuminate\Support\Collection;
+use BenSampo\Enum\Contracts\LocalizedEnum;
+use App\Enums\PermissionsEnum as Permission;
 
 final class PermissionsEnum extends Enum implements LocalizedEnum
 {
@@ -48,9 +49,9 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
     /**
      * 所有可用权限
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
-    public static function availablePermissions(): \Illuminate\Support\Collection
+    public static function availablePermissions(): Collection
     {
         return collect(Permission::getInstances())
             ->reject(fn (PermissionsEnum $item) => array_key_exists($item->value, Permission::groups()))

@@ -24,6 +24,7 @@
     },
     "require-dev": {
         "brianium/paratest": "^6.4",
+        "dillingham/nova-assertions": "^1.2",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.4.4",
