@@ -59,7 +59,7 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function isSuperAdmin()
+    public function isSuperAdmin(): bool
     {
         return $this->hasRole(RolesEnum::SUPER_ADMIN);
     }
