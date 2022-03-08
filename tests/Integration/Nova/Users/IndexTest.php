@@ -1,9 +1,8 @@
 <?php
+
 namespace Tests\Integration\Nova\Users;
 
 use App\Models\User;
-use NovaTesting\NovaAssertions;
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\Integration\Nova\TestCase;
 
 class IndexTest extends TestCase

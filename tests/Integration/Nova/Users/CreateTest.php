@@ -3,10 +3,7 @@
 namespace Tests\Integration\Nova\Users;
 
 use App\Models\User;
-use App\Enums\RolesEnum;
-use NovaTesting\NovaAssertions;
 use Tests\Integration\Nova\TestCase;
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 /**
  * Class CreateTest
@@ -15,7 +12,6 @@ use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
  */
 class CreateTest extends TestCase
 {
-
     /** @test */
     public function it_has_some_fields_for_super_admin_user(): void
     {
@@ -51,5 +47,4 @@ class CreateTest extends TestCase
             return $fields->count() === 3;
         });
     }
-
 }

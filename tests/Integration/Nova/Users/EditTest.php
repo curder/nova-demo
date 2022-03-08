@@ -1,8 +1,7 @@
 <?php
+
 namespace Tests\Integration\Nova\Users;
 
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
-use NovaTesting\NovaAssertions;
 use Tests\Integration\Nova\TestCase;
 
 /**

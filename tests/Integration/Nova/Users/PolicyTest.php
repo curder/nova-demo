@@ -2,11 +2,8 @@
 
 namespace Tests\Integration\Nova\Users;
 
-use App\Models\User;
 use App\Enums\PermissionsEnum;
-use NovaTesting\NovaAssertions;
 use Tests\Integration\Nova\TestCase;
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 /**
  * Class PolicyTest
@@ -15,7 +12,6 @@ use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
  */
 class PolicyTest extends TestCase
 {
-
     /** @test */
     public function it_has_come_policy(): void
     {
@@ -39,6 +35,7 @@ class PolicyTest extends TestCase
         $response->assertCanNotForceDelete();
         $response->assertCanNotRestore();
     }
+
     /**
      * @test
      */

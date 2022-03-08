@@ -2,9 +2,7 @@
 
 namespace Tests\Integration\Nova\Users;
 
-use NovaTesting\NovaAssertions;
 use Tests\Integration\Nova\TestCase;
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 /**
  * Class DetailTest
@@ -13,7 +11,6 @@ use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
  */
 class DetailTest extends TestCase
 {
-
     /** @test */
     public function it_can_show_fields(): void
     {

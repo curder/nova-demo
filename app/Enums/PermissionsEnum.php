@@ -2,10 +2,10 @@
 
 namespace App\Enums;
 
+use App\Enums\PermissionsEnum as Permission;
+use BenSampo\Enum\Contracts\LocalizedEnum;
 use BenSampo\Enum\Enum;
 use Illuminate\Support\Collection;
-use BenSampo\Enum\Contracts\LocalizedEnum;
-use App\Enums\PermissionsEnum as Permission;
 
 final class PermissionsEnum extends Enum implements LocalizedEnum
 {

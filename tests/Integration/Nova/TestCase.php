@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Integration\Nova;
 
 use App\Models\User;
@@ -12,9 +13,10 @@ use NovaTesting\NovaAssertions;
  */
 class TestCase extends \Tests\TestCase
 {
-    use LazilyRefreshDatabase, NovaAssertions;
+    use LazilyRefreshDatabase;
+    use NovaAssertions;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->seed();
