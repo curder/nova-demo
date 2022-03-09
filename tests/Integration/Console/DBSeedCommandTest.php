@@ -1,29 +1,19 @@
 <?php
 
-namespace Tests\Integration\Console;
-
-use App\Enums\PermissionsEnum;
-use App\Enums\RolesEnum;
-use App\Models\User;
-use Curder\NovaPermission\Models\Permission;
-use Curder\NovaPermission\Models\Role;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\User;
+use App\Enums\RolesEnum;
+use App\Enums\PermissionsEnum;
+use Curder\NovaPermission\Models\Role;
+use Curder\NovaPermission\Models\Permission;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-/**
- * test db:seed command
- */
-class DBSeedCommandTest extends TestCase
-{
-    use RefreshDatabase;
+uses(TestCase::class, RefreshDatabase::class);
 
-    /** @test */
-    public function it_can_see_some_init_data_in_tables(): void
-    {
-        $this->seed();
+it('can see some init data in tables', function () {
+    $this->seed();
 
-        $this->assertSame(2, User::query()->count());
-        $this->assertSame(PermissionsEnum::count(), Permission::query()->count());
-        $this->assertSame(RolesEnum::count(), Role::query()->count());
-    }
-}
+    $this->assertSame(2, User::query()->count());
+    $this->assertSame(PermissionsEnum::count(), Permission::query()->count());
+    $this->assertSame(RolesEnum::count(), Role::query()->count());
+});

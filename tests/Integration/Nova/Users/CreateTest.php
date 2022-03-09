@@ -1,50 +1,34 @@
 <?php
 
-namespace Tests\Integration\Nova\Users;
+uses(\Tests\Integration\Nova\TestCase::class);
 
-use App\Models\User;
-use Tests\Integration\Nova\TestCase;
+it('has some fields for super admin user', function() {
+    $authed = $this->loginAdminUser();
 
-/**
- * Class CreateTest
- *
- * @package \Tests\Integration\Nova\Users
- */
-class CreateTest extends TestCase
-{
-    /** @test */
-    public function it_has_some_fields_for_super_admin_user(): void
-    {
-        $authed = $this->loginAdminUser();
+    $response = $this->novaCreate('users');
+    $response->assertFieldsInclude('email');
+    $response->assertFieldsInclude(['email', 'name', 'password', 'roles', 'permissions']);
 
-        $response = $this->novaCreate('users');
-        $response->assertFieldsInclude('email');
-        $response->assertFieldsInclude(['email', 'name', 'password', 'roles', 'permissions']);
+    $response->assertFieldsExclude('id');
+    $response->assertFieldsExclude(['remember_token', 'deleted_at', 'created_at', 'updated_at']);
 
-        $response->assertFieldsExclude('id');
-        $response->assertFieldsExclude(['remember_token', 'deleted_at', 'created_at', 'updated_at']);
+    $response->assertFields(function ($fields) {
+        return $fields->count() === 5;
+    });
+});
 
-        $response->assertFields(function ($fields) {
-            return $fields->count() === 5;
-        });
-    }
+it('has some fields for content manager user', function () {
+    $authed = $this->loginContentUser();
 
-    /** @test */
-    public function it_has_some_fields_for_content_manager_user(): void
-    {
-        // normal user
-        $authed = $this->loginContentUser();
+    $response = $this->novaCreate('users');
 
-        $response = $this->novaCreate('users');
+    $response->assertFieldsInclude('email');
+    $response->assertFieldsInclude(['email', 'name', 'password']);
 
-        $response->assertFieldsInclude('email');
-        $response->assertFieldsInclude(['email', 'name', 'password']);
+    $response->assertFieldsExclude('id');
+    $response->assertFieldsExclude(['remember_token', 'deleted_at', 'created_at', 'updated_at']);
 
-        $response->assertFieldsExclude('id');
-        $response->assertFieldsExclude(['remember_token', 'deleted_at', 'created_at', 'updated_at']);
-
-        $response->assertFields(function ($fields) {
-            return $fields->count() === 3;
-        });
-    }
-}
+    $response->assertFields(function ($fields) {
+        return $fields->count() === 3;
+    });
+});
