@@ -2,7 +2,7 @@
 
 uses(\Tests\Integration\Nova\TestCase::class);
 
-it('has some fields for super admin user', function() {
+it('has some fields for super admin user', function () {
     $authed = $this->loginAdminUser();
 
     $response = $this->novaCreate('users');

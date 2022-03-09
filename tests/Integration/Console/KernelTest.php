@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Str;
 use Illuminate\Console\Scheduling\Event;
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Str;
 
 uses(\Tests\TestCase::class);
 

@@ -1,12 +1,12 @@
 <?php
 
-use Tests\TestCase;
-use App\Models\User;
-use App\Enums\RolesEnum;
 use App\Enums\PermissionsEnum;
-use Curder\NovaPermission\Models\Role;
+use App\Enums\RolesEnum;
+use App\Models\User;
 use Curder\NovaPermission\Models\Permission;
+use Curder\NovaPermission\Models\Role;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 uses(TestCase::class, RefreshDatabase::class);
 
