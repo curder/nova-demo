@@ -1,10 +1,9 @@
 <?php
 
 it('welcome page has the correct index URL')
-    ->expect(fn () => route('welcome'))
+    ->expect(fn () => route('index'))
     ->toBe('http://localhost');
 
 it('has welcome page')
     ->get('/')
-    ->assertOk()
-    ->assertSee('Nova Demo');
+    ->assertRedirect('/dashboards/main');
