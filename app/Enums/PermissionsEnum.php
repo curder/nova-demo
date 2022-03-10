@@ -7,6 +7,10 @@ use BenSampo\Enum\Contracts\LocalizedEnum;
 use BenSampo\Enum\Enum;
 use Illuminate\Support\Collection;
 
+/**
+ * @method static self USERS()
+ * @method static self MANAGER_USERS()
+ */
 final class PermissionsEnum extends Enum implements LocalizedEnum
 {
     // 用户
