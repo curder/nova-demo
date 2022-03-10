@@ -2,8 +2,8 @@
 
 namespace App\Enums;
 
-use Illuminate\Support\Collection;
 use App\Enums\PermissionsEnum as Permission;
+use Illuminate\Support\Collection;
 
 enum PermissionsEnum: string
 {
@@ -46,7 +46,7 @@ enum PermissionsEnum: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::USERS => '用户',
             self::MANAGER_USERS, self::MANAGER_ROLES, self::MANAGER_PERMISSIONS => '列表',
             self::VIEW_USERS, self::VIEW_ROLES, self::VIEW_PERMISSIONS => '查看',

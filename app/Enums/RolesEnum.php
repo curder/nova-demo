@@ -2,8 +2,8 @@
 
 namespace App\Enums;
 
-use Illuminate\Support\Collection;
 use App\Enums\PermissionsEnum as Permission;
+use Illuminate\Support\Collection;
 
 enum RolesEnum: string
 {
@@ -12,15 +12,15 @@ enum RolesEnum: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::SuperAdmin => '超级管理员',
             self::Content => '内容管理员',
         };
     }
 
-    public function users() : Collection
+    public function users(): Collection
     {
-        return match($this) {
+        return match ($this) {
             self::SuperAdmin => collect([
                 UsersEnum::Super,
             ]),

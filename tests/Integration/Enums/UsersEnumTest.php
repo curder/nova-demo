@@ -12,4 +12,3 @@ it('has enum key value and label method for Super', fn () => expect(UsersEnum::S
 it('has enum key value and label method for Example', fn () => expect(UsersEnum::Example)
     ->toBeInstanceOf(UsersEnum::class)
     ->toBeEnum('Example', 'example@example.com', '内容管理员'));
-

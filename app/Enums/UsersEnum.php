@@ -2,7 +2,6 @@
 
 namespace App\Enums;
 
-use App\Enums\PermissionsEnum;
 use Illuminate\Support\Collection;
 
 enum UsersEnum: string
@@ -12,12 +11,11 @@ enum UsersEnum: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::Super => '超级管理员',
             self::Example => '内容管理员',
         };
     }
-
 
     public static function permissions(): Collection
     {
@@ -32,5 +30,4 @@ enum UsersEnum: string
 
         return collect($config)->filter();
     }
-
 }
