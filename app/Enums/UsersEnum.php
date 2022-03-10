@@ -2,35 +2,35 @@
 
 namespace App\Enums;
 
-use BenSampo\Enum\Enum;
+use App\Enums\PermissionsEnum;
 use Illuminate\Support\Collection;
 
-/**
- * @method static self SUPER()
- * @method static self EXAMPLE()
- */
-final class UsersEnum extends Enum
+enum UsersEnum: string
 {
-    public const SUPER = 'super@example.com';
+    case Super = 'super@example.com';
+    case Example = 'example@example.com';
 
-    public const EXAMPLE = 'example@example.com';
+    public function label(): string
+    {
+        return match($this) {
+            self::Super => '超级管理员',
+            self::Example => '内容管理员',
+        };
+    }
 
-    /**
-     * 用户额外的权限
-     *
-     * @return Collection
-     */
+
     public static function permissions(): Collection
     {
         $config = [
-            self::SUPER => [
+            self::Super->value => [
                 //
             ],
-            self::EXAMPLE => [
+            self::Example->value => [
                 PermissionsEnum::CREATE_USERS,
             ],
         ];
 
         return collect($config)->filter();
     }
+
 }

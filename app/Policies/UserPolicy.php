@@ -47,7 +47,7 @@ class UserPolicy extends Policy
             return $user->id !== $model->id && ! $model->isSuperAdmin();
         }
         /* @var $model User */
-        return $user->can(PermissionsEnum::DELETE_USERS) // 拥有删除用户权限
+        return $user->can(PermissionsEnum::DELETE_USERS->value) // 拥有删除用户权限
             && $user->id !== $model->id //
             && ! $model->isSuperAdmin();
     }
@@ -69,7 +69,7 @@ class UserPolicy extends Policy
             return $user->id !== $model->id;
         }
         /* @var $model User */
-        return $user->can(PermissionsEnum::RESTORE_USERS)
+        return $user->can(PermissionsEnum::RESTORE_USERS->value)
             && $user->id !== $model->id
             && ! $model->isSuperAdmin();
     }
@@ -92,7 +92,7 @@ class UserPolicy extends Policy
             }
         }
 
-        return $user->can(PermissionsEnum::UPDATE_USERS);
+        return $user->can(PermissionsEnum::UPDATE_USERS->value);
     }
 
     /**
@@ -111,7 +111,7 @@ class UserPolicy extends Policy
             return $user->id !== $model->id;
         }
 
-        return $user->can(PermissionsEnum::FORCE_DELETE_USERS)
+        return $user->can(PermissionsEnum::FORCE_DELETE_USERS->value)
             && $user->id !== $model->id
             && ! $model->isSuperAdmin();
     }
@@ -132,11 +132,11 @@ class UserPolicy extends Policy
             return true;
         }
 
-        if (! $user->isSuperAdmin() && RolesEnum::SUPER_ADMIN === $role->name) {
+        if (! $user->isSuperAdmin() && RolesEnum::SuperAdmin->value === $role->name) {
             return false;
         }
 
-        return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_ANY_USERS)
+        return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_ANY_USERS->value)
             // && !$user->roles->contains($role)
             ;
     }
@@ -152,7 +152,7 @@ class UserPolicy extends Policy
     public function attachRole($user, $role): bool
     {
         /* @var User $user */
-        return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_USERS);
+        return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_USERS->value);
     }
 
     /**
@@ -166,7 +166,7 @@ class UserPolicy extends Policy
     public function detachRole($user, $model): bool
     {
         /* @var $user User */
-        return $user->hasPermissionTo(PermissionsEnum::ROLE_DETACH_USERS);
+        return $user->hasPermissionTo(PermissionsEnum::ROLE_DETACH_USERS->value);
     }
 
     /**
@@ -187,7 +187,7 @@ class UserPolicy extends Policy
             }
         }
 
-        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS)
+        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS->value)
             // && !$user->roles->contains($role)
             ;
     }
@@ -203,7 +203,7 @@ class UserPolicy extends Policy
     public function attachPermission($user, $permission): bool
     {
         /* @var $user User */
-        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_USERS);
+        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_USERS->value);
     }
 
     /**
@@ -217,7 +217,7 @@ class UserPolicy extends Policy
     public function detachPermission($user, $permission): bool
     {
         /* @var $user User */
-        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_DETACH_USERS);
+        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_DETACH_USERS->value);
     }
 
     /**
@@ -250,6 +250,6 @@ class UserPolicy extends Policy
      */
     public static function getKey(): string
     {
-        return Str::studly(PermissionsEnum::USERS);
+        return Str::studly(PermissionsEnum::USERS->value);
     }
 }

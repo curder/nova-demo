@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\RolesEnum;
+use App\Enums\UsersEnum;
 use App\Models\User;
 use Curder\NovaPermission\Models\Role;
 use Illuminate\Database\Seeder;
@@ -20,15 +21,15 @@ class UserSeeder extends Seeder
     {
         $default_password = Hash::make('password');
 
-        collect(RolesEnum::getValues())->map(fn($role) => RolesEnum::users($role))
+        collect(RolesEnum::cases())->map(fn(RolesEnum $role) => $role->users())
                                        ->flatten()
                                        ->unique()
                                        ->values()
-                                       ->reject(fn($email) => User::query()->where('email', $email)->exists())
+                                       ->reject(fn(UsersEnum $email) => User::query()->where('email', $email->value)->exists())
                                        ->each(
-                                           fn($email) => User::factory()->create([
-                                               'name' => Str::ucfirst(explode('@', $email)[0]),
-                                               'email' => $email,
+                                           fn(UsersEnum $email) => User::factory()->create([
+                                               'name' => $email->name,
+                                               'email' => $email->value,
                                                'password' => $default_password
                                            ])
             );

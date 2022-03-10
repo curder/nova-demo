@@ -2,30 +2,33 @@
 
 namespace App\Enums;
 
-use App\Enums\PermissionsEnum as Permission;
-use BenSampo\Enum\Contracts\LocalizedEnum;
-use BenSampo\Enum\Enum;
 use Illuminate\Support\Collection;
+use App\Enums\PermissionsEnum as Permission;
 
-/**
- * @method static self SUPER_ADMIN()
- * @method static self CONTENT()
- */
-class RolesEnum extends Enum implements LocalizedEnum
+enum RolesEnum: string
 {
-    public const SUPER_ADMIN = 'superAdmin'; // 超级管理员
-    public const CONTENT = 'content'; // 内容管理员
+    case SuperAdmin = 'superAdmin'; // 超级管理员
+    case Content = 'content'; // 内容管理员
 
-    public static function users($role)
+    public function label(): string
     {
-        return collect([
-            self::SUPER_ADMIN => collect([
-                UsersEnum::SUPER,
+        return match($this) {
+            self::SuperAdmin => '超级管理员',
+            self::Content => '内容管理员',
+        };
+    }
+
+    public function users() : Collection
+    {
+        return match($this) {
+            self::SuperAdmin => collect([
+                UsersEnum::Super,
             ]),
-            self::CONTENT => collect([
-                UsersEnum::EXAMPLE,
+            self::Content => collect([
+                UsersEnum::Example,
             ]),
-        ])->get($role, collect([]));
+            default => collect([]),
+        };
     }
 
     /**
@@ -33,7 +36,7 @@ class RolesEnum extends Enum implements LocalizedEnum
      */
     public static function count(): int
     {
-        return count(self::getInstances());
+        return count(self::cases());
     }
 
     /**
@@ -44,8 +47,8 @@ class RolesEnum extends Enum implements LocalizedEnum
     public static function permissions($role): Collection
     {
         return collect([
-            self::SUPER_ADMIN => PermissionsEnum::availablePermissions(),
-            self::CONTENT => collect([
+            self::SuperAdmin->value => PermissionsEnum::availablePermissions(),
+            self::Content->value => collect([
                 Permission::MANAGER_USERS,
                 Permission::VIEW_USERS,
                 Permission::UPDATE_USERS,

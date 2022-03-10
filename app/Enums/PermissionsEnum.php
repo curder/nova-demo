@@ -2,53 +2,74 @@
 
 namespace App\Enums;
 
-use App\Enums\PermissionsEnum as Permission;
-use BenSampo\Enum\Contracts\LocalizedEnum;
-use BenSampo\Enum\Enum;
 use Illuminate\Support\Collection;
+use App\Enums\PermissionsEnum as Permission;
 
-/**
- * @method static self USERS()
- * @method static self MANAGER_USERS()
- */
-final class PermissionsEnum extends Enum implements LocalizedEnum
+enum PermissionsEnum: string
 {
     // 用户
-    public const USERS = 'users'; // 分组标示
-    public const MANAGER_USERS = 'managerUsers'; // 列表
-    public const VIEW_USERS = 'viewUsers'; // 查看
-    public const CREATE_USERS = 'createUsers'; // 新建
-    public const UPDATE_USERS = 'updateUsers'; // 编辑
-    public const DELETE_USERS = 'deleteUsers'; // 删除
-    public const RESTORE_USERS = 'restoreUsers'; // 恢复删除
-    public const FORCE_DELETE_USERS = 'forceDeleteUsers'; // 强制删除
-    public const PERMISSION_ATTACH_ANY_USERS = 'attachAnyUsers'; // 赋予用户权限
-    public const PERMISSION_ATTACH_USERS = 'attachUsers'; // 更新用户权限
-    public const PERMISSION_DETACH_USERS = 'detachUsers';    // 取消用户授权
+    case USERS = 'users'; // 分组标示
+    case MANAGER_USERS = 'managerUsers'; // 列表
+    case VIEW_USERS = 'viewUsers'; // 查看
+    case CREATE_USERS = 'createUsers'; // 新建
+    case UPDATE_USERS = 'updateUsers'; // 编辑
+    case DELETE_USERS = 'deleteUsers'; // 删除
+    case RESTORE_USERS = 'restoreUsers'; // 恢复删除
+    case FORCE_DELETE_USERS = 'forceDeleteUsers'; // 强制删除
+    case PERMISSION_ATTACH_ANY_USERS = 'attachAnyUsers'; // 赋予用户权限
+    case PERMISSION_ATTACH_USERS = 'attachUsers'; // 更新用户权限
+    case PERMISSION_DETACH_USERS = 'detachUsers';    // 取消用户授权
     // 角色
-    public const ROLES = 'roles'; // 分组标示
-    public const MANAGER_ROLES = 'managerRoles'; // 列表
-    public const VIEW_ROLES = 'viewRoles'; // 查看
-    public const CREATE_ROLES = 'createRoles'; // 新建
-    public const UPDATE_ROLES = 'updateRoles'; // 编辑
-    public const DELETE_ROLES = 'deleteRoles'; // 删除
-    public const RESTORE_ROLES = 'restoreRoles'; // 恢复删除
-    public const FORCE_DELETE_ROLES = 'forceDeleteRoles'; // 强制删除
-    public const ROLE_ATTACH_ANY_USERS = 'roleAttachAnyUsers'; // 赋予用户角色
-    public const ROLE_ATTACH_USERS = 'roleAttachUsers'; // 更新用户角色
-    public const ROLE_DETACH_USERS = 'roleDetachUsers'; // 取消用户角色
+    case ROLES = 'roles'; // 分组标示
+    case MANAGER_ROLES = 'managerRoles'; // 列表
+    case VIEW_ROLES = 'viewRoles'; // 查看
+    case CREATE_ROLES = 'createRoles'; // 新建
+    case UPDATE_ROLES = 'updateRoles'; // 编辑
+    case DELETE_ROLES = 'deleteRoles'; // 删除
+    case RESTORE_ROLES = 'restoreRoles'; // 恢复删除
+    case FORCE_DELETE_ROLES = 'forceDeleteRoles'; // 强制删除
+    case ROLE_ATTACH_ANY_USERS = 'roleAttachAnyUsers'; // 赋予用户角色
+    case ROLE_ATTACH_USERS = 'roleAttachUsers'; // 更新用户角色
+    case ROLE_DETACH_USERS = 'roleDetachUsers'; // 取消用户角色
     // 权限
-    public const PERMISSIONS = 'permissions'; // 分组标示
-    public const MANAGER_PERMISSIONS = 'managerPermissions'; // 列表
-    public const VIEW_PERMISSIONS = 'viewPermissions'; // 查看
-    //    public const CREATE_PERMISSIONS = 'createPermissions'; // 新建
-    //    public const UPDATE_PERMISSIONS = 'updatePermissions'; // 编辑
-    public const DELETE_PERMISSIONS = 'deletePermissions'; // 删除
-    public const RESTORE_PERMISSIONS = 'restorePermissions'; // 恢复删除
-    public const FORCE_DELETE_PERMISSIONS = 'forceDeletePermissions'; // 强制删除
-    public const PERMISSION_ATTACH_ANY_ROLES = 'permissionAttachAnyRoles'; // 赋予角色权限
-    public const PERMISSION_ATTACH_ROLES = 'permissionAttachRoles'; // 更新角色权限
-    public const PERMISSION_DETACH_ROLES = 'permissionDetachRoles'; // 取消赋予角色权限
+    case PERMISSIONS = 'permissions'; // 分组标示
+    case MANAGER_PERMISSIONS = 'managerPermissions'; // 列表
+    case VIEW_PERMISSIONS = 'viewPermissions'; // 查看
+    //    case CREATE_PERMISSIONS = 'createPermissions'; // 新建
+    //    case UPDATE_PERMISSIONS = 'updatePermissions'; // 编辑
+    case DELETE_PERMISSIONS = 'deletePermissions'; // 删除
+    case RESTORE_PERMISSIONS = 'restorePermissions'; // 恢复删除
+    case FORCE_DELETE_PERMISSIONS = 'forceDeletePermissions'; // 强制删除
+    case PERMISSION_ATTACH_ANY_ROLES = 'permissionAttachAnyRoles'; // 赋予角色权限
+    case PERMISSION_ATTACH_ROLES = 'permissionAttachRoles'; // 更新角色权限
+    case PERMISSION_DETACH_ROLES = 'permissionDetachRoles'; // 取消赋予角色权限
+
+    public function label(): string
+    {
+        return match($this) {
+            self::USERS => '用户',
+            self::MANAGER_USERS, self::MANAGER_ROLES, self::MANAGER_PERMISSIONS => '列表',
+            self::VIEW_USERS, self::VIEW_ROLES, self::VIEW_PERMISSIONS => '查看',
+            self::CREATE_USERS, self::CREATE_ROLES => '新建',
+            self::UPDATE_USERS, self::UPDATE_ROLES => '编辑',
+            self::DELETE_USERS, self::DELETE_ROLES, self::DELETE_PERMISSIONS => '删除',
+            self::RESTORE_USERS, self::RESTORE_ROLES, self::RESTORE_PERMISSIONS => '恢复删除',
+            self::FORCE_DELETE_USERS, self::FORCE_DELETE_ROLES, self::FORCE_DELETE_PERMISSIONS => '强制删除',
+            self::PERMISSION_ATTACH_ANY_USERS => '赋予用户权限',
+            self::PERMISSION_ATTACH_USERS => '更新用户权限',
+            self::PERMISSION_DETACH_USERS => '取消用户授权',
+
+            self::ROLES => '角色',
+            self::ROLE_ATTACH_ANY_USERS => '赋予用户角色',
+            self::ROLE_ATTACH_USERS => '更新用户角色',
+            self::ROLE_DETACH_USERS => '取消用户角色',
+
+            self::PERMISSIONS => '权限',
+            self::PERMISSION_ATTACH_ANY_ROLES => '赋予角色权限',
+            self::PERMISSION_ATTACH_ROLES => '更新角色权限',
+            self::PERMISSION_DETACH_ROLES => '取消赋予角色权限',
+        };
+    }
 
     /**
      * 所有可用权限
@@ -57,8 +78,8 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
      */
     public static function availablePermissions(): Collection
     {
-        return collect(Permission::getInstances())
-            ->reject(fn (PermissionsEnum $item) => array_key_exists($item->value, Permission::groups()))
+        return collect(Permission::cases())
+            ->reject(fn (Permission $item) => array_key_exists($item->value, Permission::groups()))
             ->pluck('value');
     }
 
@@ -68,9 +89,9 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
     public static function groups(): array
     {
         return [
-            self::USERS => self::getDescription(self::USERS),
-            self::ROLES => self::getDescription(self::ROLES),
-            self::PERMISSIONS => self::getDescription(self::PERMISSIONS),
+            self::USERS->value => self::USERS->label(),
+            self::ROLES->value => self::ROLES->label(),
+            self::PERMISSIONS->value => self::PERMISSIONS->label(),
         ];
     }
 

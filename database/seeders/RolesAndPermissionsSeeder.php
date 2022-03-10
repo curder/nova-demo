@@ -34,13 +34,13 @@ class RolesAndPermissionsSeeder extends Seeder
         );
 
         // 4. Create roles and assign permissions
-        collect(RolesEnum::getInstances())
+        collect(RolesEnum::cases())
             ->each(fn(RolesEnum $item) => Role::create(['name' => $item->value]))
             ->each(
                 fn(RolesEnum $item) =>
                 Role::findByName($item->value)->givePermissionTo(RolesEnum::permissions($item->value))
             )->each(
-                fn(RolesEnum $role) => RolesEnum::users($role->value)->each(
+                fn(RolesEnum $role) => $role->users()->each(
                     fn($email) => User::where('email', $email)->first()->assignRole($role->value)
                 )
             );
@@ -71,39 +71,39 @@ class RolesAndPermissionsSeeder extends Seeder
     protected function getPermissions(): Collection
     {
         return collect([
-            PermissionsEnum::USERS => [
-                PermissionsEnum::MANAGER_USERS,
-                PermissionsEnum::VIEW_USERS,
-                PermissionsEnum::CREATE_USERS,
-                PermissionsEnum::UPDATE_USERS,
-                PermissionsEnum::DELETE_USERS,
-                PermissionsEnum::RESTORE_USERS,
-                PermissionsEnum::FORCE_DELETE_USERS,
-                PermissionsEnum::PERMISSION_ATTACH_ANY_USERS,
-                PermissionsEnum::PERMISSION_ATTACH_USERS,
-                PermissionsEnum::PERMISSION_DETACH_USERS,
+            PermissionsEnum::USERS->value => [
+                PermissionsEnum::MANAGER_USERS->value,
+                PermissionsEnum::VIEW_USERS->value,
+                PermissionsEnum::CREATE_USERS->value,
+                PermissionsEnum::UPDATE_USERS->value,
+                PermissionsEnum::DELETE_USERS->value,
+                PermissionsEnum::RESTORE_USERS->value,
+                PermissionsEnum::FORCE_DELETE_USERS->value,
+                PermissionsEnum::PERMISSION_ATTACH_ANY_USERS->value,
+                PermissionsEnum::PERMISSION_ATTACH_USERS->value,
+                PermissionsEnum::PERMISSION_DETACH_USERS->value,
             ],
-            PermissionsEnum::ROLES => [
-                PermissionsEnum::MANAGER_ROLES,
-                PermissionsEnum::VIEW_ROLES,
-                PermissionsEnum::CREATE_ROLES,
-                PermissionsEnum::UPDATE_ROLES,
-                PermissionsEnum::DELETE_ROLES,
-                PermissionsEnum::RESTORE_ROLES,
-                PermissionsEnum::FORCE_DELETE_ROLES,
-                PermissionsEnum::ROLE_ATTACH_ANY_USERS,
-                PermissionsEnum::ROLE_ATTACH_USERS,
-                PermissionsEnum::ROLE_DETACH_USERS,
+            PermissionsEnum::ROLES->value => [
+                PermissionsEnum::MANAGER_ROLES->value,
+                PermissionsEnum::VIEW_ROLES->value,
+                PermissionsEnum::CREATE_ROLES->value,
+                PermissionsEnum::UPDATE_ROLES->value,
+                PermissionsEnum::DELETE_ROLES->value,
+                PermissionsEnum::RESTORE_ROLES->value,
+                PermissionsEnum::FORCE_DELETE_ROLES->value,
+                PermissionsEnum::ROLE_ATTACH_ANY_USERS->value,
+                PermissionsEnum::ROLE_ATTACH_USERS->value,
+                PermissionsEnum::ROLE_DETACH_USERS->value,
             ],
-            PermissionsEnum::PERMISSIONS => [
-                PermissionsEnum::MANAGER_PERMISSIONS,
-                PermissionsEnum::VIEW_PERMISSIONS,
-                PermissionsEnum::DELETE_PERMISSIONS,
-                PermissionsEnum::RESTORE_PERMISSIONS,
-                PermissionsEnum::FORCE_DELETE_PERMISSIONS,
-                PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES,
-                PermissionsEnum::PERMISSION_ATTACH_ROLES,
-                PermissionsEnum::PERMISSION_DETACH_ROLES,
+            PermissionsEnum::PERMISSIONS->value => [
+                PermissionsEnum::MANAGER_PERMISSIONS->value,
+                PermissionsEnum::VIEW_PERMISSIONS->value,
+                PermissionsEnum::DELETE_PERMISSIONS->value,
+                PermissionsEnum::RESTORE_PERMISSIONS->value,
+                PermissionsEnum::FORCE_DELETE_PERMISSIONS->value,
+                PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES->value,
+                PermissionsEnum::PERMISSION_ATTACH_ROLES->value,
+                PermissionsEnum::PERMISSION_DETACH_ROLES->value,
             ],
         ]);
     }

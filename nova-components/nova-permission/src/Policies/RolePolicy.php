@@ -39,7 +39,7 @@ class RolePolicy extends Policy
      */
     public function delete($user, $model)
     {
-        if (RolesEnum::SUPER_ADMIN === $model->name) {
+        if (RolesEnum::SuperAdmin->value === $model->name) {
             return false;
         }
 
@@ -64,7 +64,7 @@ class RolePolicy extends Policy
     public function restore($user, $model)
     {
         /* @var User $user */
-        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
+        if ($user->hasRole($model->name) || RolesEnum::SuperAdmin->value === $model->name) {
             return false;
         }
 
@@ -84,7 +84,7 @@ class RolePolicy extends Policy
     public function forceDelete($user, $model)
     {
         /* @var User $user */
-        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
+        if ($user->hasRole($model->name) || RolesEnum::SuperAdmin->value === $model->name) {
             return false;
         }
 
@@ -104,7 +104,7 @@ class RolePolicy extends Policy
     public function update($user, $model)
     {
         /* @var User $user */
-        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
+        if ($user->hasRole($model->name) || RolesEnum::SuperAdmin->value === $model->name) {
             return false;
         }
 
@@ -127,11 +127,11 @@ class RolePolicy extends Policy
             return true;
         }
 
-        if (!$user->isSuperAdmin() && RolesEnum::SUPER_ADMIN === $role->name) {
+        if (!$user->isSuperAdmin() && RolesEnum::SuperAdmin->value === $role->name) {
             return false;
         }
 
-        return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_ANY_USERS)
+        return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_ANY_USERS->value)
             // && !$user->roles->contains($role)
             ;
     }
@@ -146,7 +146,7 @@ class RolePolicy extends Policy
      */
     public function attachUser(User $user, Role $role)
     {
-        return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_USERS);
+        return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_USERS->value);
     }
 
     /**
@@ -159,7 +159,7 @@ class RolePolicy extends Policy
      */
     public function detachUser($user, $role)
     {
-        return $user->hasPermissionTo(PermissionsEnum::ROLE_DETACH_USERS);
+        return $user->hasPermissionTo(PermissionsEnum::ROLE_DETACH_USERS->value);
     }
 
     /**
@@ -167,6 +167,6 @@ class RolePolicy extends Policy
      */
     public static function getKey()
     {
-        return Str::studly(PermissionsEnum::ROLES);
+        return Str::studly(PermissionsEnum::ROLES->name);
     }
 }

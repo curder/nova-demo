@@ -93,7 +93,7 @@ class User extends Resource
             BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
                         ->options(function () use ($roles) {
                             return $roles->mapWithKeys(function ($role) {
-                                return [$role->id => RolesEnum::getDescription($role->name)];
+                                return [$role->id => RolesEnum::from($role->name)->label()];
                             });
                         })->resolveUsing(function () use ($roles) {
                             return $roles->mapWithKeys(function ($role) {
@@ -104,7 +104,7 @@ class User extends Resource
             BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
                         ->options(function () use ($roles) {
                             return $roles->mapWithKeys(function ($role) {
-                                return [$role->id => RolesEnum::getDescription($role->name)];
+                                return [$role->id => RolesEnum::tryFrom($role->name)];
                             });
                         })->resolveUsing(function () use ($roles) {
                             return $roles->mapWithKeys(function ($role) {
@@ -115,15 +115,15 @@ class User extends Resource
                             $user = request()->user();
 
                             return $user->isSuperAdmin()
-                                || $user->can(PermissionsEnum::ROLE_ATTACH_ANY_USERS)
-                                || $user->can(PermissionsEnum::ROLE_ATTACH_USERS);
+                                || $user->can(PermissionsEnum::ROLE_ATTACH_ANY_USERS->value)
+                                || $user->can(PermissionsEnum::ROLE_ATTACH_USERS->value);
                         }),
 
             BooleanGroup::make(__('nova-permission::resources.Permissions'), 'permissions')
                         ->options(function () use ($permissions) {
                             return $permissions->mapWithKeys(function ($permission) {
-                                $group_name = PermissionsEnum::getDescription($permission->group);
-                                $permission_name = PermissionsEnum::getDescription($permission->name);
+                                $group_name = PermissionsEnum::from($permission->group)->label();
+                                $permission_name = PermissionsEnum::from($permission->name)->label();
 
                                 return [
                                     $permission->id => sprintf('%s-%s', $permission_name, $group_name),
@@ -138,8 +138,8 @@ class User extends Resource
             BooleanGroup::make(__('nova-permission::resources.Permissions'), 'permissions')
                         ->options(function () use ($permissions) {
                             return $permissions->mapWithKeys(function ($permission) {
-                                $group_name = PermissionsEnum::getDescription($permission->group);
-                                $permission_name = PermissionsEnum::getDescription($permission->name);
+                                $group_name = PermissionsEnum::from($permission->group)->label();
+                                $permission_name = PermissionsEnum::from($permission->name)->label();
 
                                 return [
                                     $permission->id => sprintf('%s-%s', $permission_name, $group_name),
@@ -154,8 +154,8 @@ class User extends Resource
                             $user = request()->user();
 
                             return $user->isSuperAdmin()
-                                || $user->can(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS)
-                                || $user->can(PermissionsEnum::PERMISSION_ATTACH_USERS);
+                                || $user->can(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS->value)
+                                || $user->can(PermissionsEnum::PERMISSION_ATTACH_USERS->value);
                         }),
         ];
     }

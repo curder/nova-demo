@@ -2,24 +2,23 @@
 
 use App\Enums\RolesEnum;
 
-it('has users static method on RolesEnum class', fn () => expect(RolesEnum::users(RolesEnum::getRandomValue()))
-    ->toBeCollection());
+it('has users static method on RolesEnum class', fn () => expect(array_rand(RolesEnum::cases())->users())->toBeCollection());
 
-it('will return empty collection when use faker value for users static method', fn () => expect(RolesEnum::users('faker-value'))
+it('will return empty collection when use faker value for users static method', fn () => expect(RolesEnum::tryFrom('faker-value')?->users())
     ->toBeCollection()
     ->toBeEmpty());
 
-it('has permissions static method', fn () => expect(RolesEnum::permissions(RolesEnum::getRandomValue()))
+it('has permissions static method', fn () => expect(RolesEnum::permissions(array_rand(RolesEnum::cases())))
     ->toBeCollection());
 
 it('will return empty collection when use faker value for permissions static method', fn () => expect(RolesEnum::permissions('faker-value'))
     ->toBeCollection()
     ->toBeEmpty());
 
-it('has some dynamic static method #SUPERADMIN', fn () => expect(RolesEnum::SUPER_ADMIN())
+it('has enum key value and label method for SuperAdmin', fn () => expect(RolesEnum::SuperAdmin)
     ->toBeInstanceOf(RolesEnum::class)
-    ->toBeEnum('SUPER_ADMIN', 'superAdmin', __('enums.App\Enums\RolesEnum.superAdmin')));
+    ->toBeEnum('SuperAdmin', 'superAdmin', '超级管理员'));
 
-it('has some dynamic static method #CONTENT', fn () => expect(RolesEnum::CONTENT())
+it('has enum key value and label method for Content', fn () => expect(RolesEnum::Content)
     ->toBeInstanceOf(RolesEnum::class)
-    ->toBeEnum('CONTENT', 'content', __('enums.App\Enums\RolesEnum.content')));
+    ->toBeEnum('Content', 'content', '内容管理员'));

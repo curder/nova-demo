@@ -16,7 +16,7 @@ trait CreatesUsers
         return $authed;
     }
 
-    protected function loginAsAdmin(array $attributes = []): User
+    protected function loginAsAdmin(): User
     {
         $users = User::query()->first();
         $authed = $users->first();
@@ -26,7 +26,7 @@ trait CreatesUsers
         return $authed;
     }
 
-    protected function loginAs(User $user)
+    protected function loginAs(User $user): void
     {
         $this->be($user);
     }

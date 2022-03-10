@@ -5,10 +5,11 @@ use App\Enums\UsersEnum;
 it('has groups static method on permissionsEnum class', fn () => expect(UsersEnum::permissions())
     ->toBeCollection()->toHaveCount(1));
 
-it('has some dynamic static method #CURDER', fn () => expect(UsersEnum::SUPER())
+it('has enum key value and label method for Super', fn () => expect(UsersEnum::Super)
     ->toBeInstanceOf(UsersEnum::class)
-    ->toBeEnum('SUPER', 'super@example.com', 'Super'));
+    ->toBeEnum('Super', 'super@example.com', '超级管理员'));
 
-it('has some dynamic static method #EXAMPLE()', fn () => expect(UsersEnum::EXAMPLE())
+it('has enum key value and label method for Example', fn () => expect(UsersEnum::Example)
     ->toBeInstanceOf(UsersEnum::class)
-    ->toBeEnum('EXAMPLE', 'example@example.com', 'Example'));
+    ->toBeEnum('Example', 'example@example.com', '内容管理员'));
+

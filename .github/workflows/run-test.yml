@@ -4,11 +4,11 @@ name: Test Laravel Github action
 on:
   push:
     branches:
-      - master
+      - 9.x
 
   pull_request:
     branches:
-      - master
+      - 9.x
 
 jobs:
   laravel-tests:
@@ -20,10 +20,10 @@ jobs:
         php-versions: [ '8.1', '8.0', '7.4' ]
         dependency-stability: [ prefer-stable ]
 
-        laravel: [ '8.*' ]
+        laravel: [ '9.*' ]
         include:
-          - laravel:  8.*
-            testbench: 6.*
+          - laravel:  9.*
+            testbench: 7.*
 
     name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
 
@@ -80,7 +80,7 @@ jobs:
       - name: Show Laravel versions
         run: php artisan --version
 
-      - name: Execute tests (Unit and Feature tests) via PHPUint
+      - name: Execute tests (Unit and Feature tests) via Pest
         # Set environment
         env:
           SESSION_DRIVER: array

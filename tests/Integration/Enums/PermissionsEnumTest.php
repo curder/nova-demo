@@ -11,10 +11,14 @@ it('has groups static method on permissionsEnum class', fn () => expect(Permissi
 it('has count static method on permissionsEnum class', fn () => expect(PermissionsEnum::count())
     ->toBeInt()->toBe(28));
 
-it('has some dynamic static method #USERS', fn () => expect(PermissionsEnum::USERS())
+it('has enum key value and label method for Users', fn () => expect(PermissionsEnum::USERS)
     ->toBeInstanceOf(PermissionsEnum::class)
-    ->toBeEnum('USERS', 'users', __('enums.App\Enums\PermissionsEnum.users')));
+    ->toBeEnum('USERS', 'users', '用户'));
 
-it('has some dynamic static method #MANAGER_USERS', fn () => expect(PermissionsEnum::MANAGER_USERS())
+it('has enum key value and label method for Roles', fn () => expect(PermissionsEnum::ROLES)
     ->toBeInstanceOf(PermissionsEnum::class)
-    ->toBeEnum('MANAGER_USERS', 'managerUsers', __('enums.App\Enums\PermissionsEnum.managerUsers')));
+    ->toBeEnum('ROLES', 'roles', '角色'));
+
+it('has enum key value and label method for Permissions', fn () => expect(PermissionsEnum::PERMISSIONS)
+    ->toBeInstanceOf(PermissionsEnum::class)
+    ->toBeEnum('PERMISSIONS', 'permissions', '权限'));
