@@ -20,10 +20,10 @@ class RolesEnum extends Enum implements LocalizedEnum
     {
         return collect([
             self::SUPER_ADMIN => collect([
-                UsersEnum::CURDER,
+                UsersEnum::SUPER,
             ]),
             self::CONTENT => collect([
-                UsersEnum::LINDA,
+                UsersEnum::EXAMPLE,
             ]),
         ])->get($role, collect([]));
     }

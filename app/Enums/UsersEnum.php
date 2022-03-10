@@ -6,14 +6,14 @@ use BenSampo\Enum\Enum;
 use Illuminate\Support\Collection;
 
 /**
- * @method static self CURDER()
- * @method static self LINDA()
+ * @method static self SUPER()
+ * @method static self EXAMPLE()
  */
 final class UsersEnum extends Enum
 {
-    public const CURDER = 'curder@example.com';
+    public const SUPER = 'super@example.com';
 
-    public const LINDA = 'example@example.com';
+    public const EXAMPLE = 'example@example.com';
 
     /**
      * 用户额外的权限
@@ -23,10 +23,10 @@ final class UsersEnum extends Enum
     public static function permissions(): Collection
     {
         $config = [
-            self::CURDER => [
+            self::SUPER => [
                 //
             ],
-            self::LINDA => [
+            self::EXAMPLE => [
                 PermissionsEnum::CREATE_USERS,
             ],
         ];

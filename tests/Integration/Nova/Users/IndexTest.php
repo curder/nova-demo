@@ -17,5 +17,5 @@ it('can render users index resources fields', function () {
          ->assertFieldsInclude(['id' => $this->authed->id, 'email' => $this->authed->email])
          ->assertFieldsInclude('id', User::query()->get()->pluck('id'))
          // collection of field arrays
-         ->assertFields(fn ($fields) => $fields->count() === 2 && count($fields->first()) === 6);
+         ->assertFields(fn ($fields) => $fields->count() === 2 && count($fields->first()) === 7);
 });
