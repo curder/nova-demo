@@ -63,4 +63,13 @@ class User extends Authenticatable
     {
         return $this->hasRole(RolesEnum::SUPER_ADMIN);
     }
+    /**
+     * @param  null  $impersonated
+     *
+     * @return bool
+     */
+    public function canImpersonate($impersonated = null): bool
+    {
+        return in_array($this->email, ['super@example.com'], true);
+    }
 }

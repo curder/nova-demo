@@ -13,6 +13,7 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0",
+        "kabbouchi/nova-impersonate": "^1.11",
         "laravel/framework": "^8.75",
         "laravel/nova": "~3.0",
         "laravel/tinker": "^2.5",

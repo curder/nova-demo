@@ -8,6 +8,7 @@ use App\Models\User as UserModel;
 use Curder\NovaPermission\Models\Permission;
 use Curder\NovaPermission\Models\Role;
 use Illuminate\Http\Request;
+use KABBOUCHI\NovaImpersonate\Impersonate;
 use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
@@ -76,6 +77,7 @@ class User extends Resource
 
             new Panel(__('nova-permission::navigations.Role & Permission'), $this->getRoleAndPermissionFields()),
 
+            Impersonate::make($this),
 //            BooleanGroup::make('Permissions')->options(
 //                Permission::get()->pluck('name', 'id')->toArray()
 //            ),
