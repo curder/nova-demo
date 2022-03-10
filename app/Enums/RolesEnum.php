@@ -8,8 +8,8 @@ use BenSampo\Enum\Enum;
 use Illuminate\Support\Collection;
 
 /**
- * @method static self superAdmin()
- * @method static self content()
+ * @method static self SUPER_ADMIN()
+ * @method static self CONTENT()
  */
 class RolesEnum extends Enum implements LocalizedEnum
 {

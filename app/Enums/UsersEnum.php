@@ -5,11 +5,6 @@ namespace App\Enums;
 use BenSampo\Enum\Enum;
 use Illuminate\Support\Collection;
 
-/**
- * @method static static OptionOne()
- * @method static static OptionTwo()
- * @method static static OptionThree()
- */
 final class UsersEnum extends Enum
 {
     public const CURDER = 'curder@example.com';
