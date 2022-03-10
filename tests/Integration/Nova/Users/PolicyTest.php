@@ -2,12 +2,9 @@
 
 use App\Enums\PermissionsEnum;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\Integration\Nova\TestCase;
-
-uses(TestCase::class);
 
 it('has users come policy', function () {
-    $user = $this->loginAdminUser();
+    $user = $this->loginAsAdmin();
     $response = $this->novaIndex('users');
     $response->assertOk();
     $response->assertCanView();
@@ -17,7 +14,7 @@ it('has users come policy', function () {
     $response->assertCanForceDelete();
     $response->assertCanRestore();
 
-    $user = $this->loginContentUser();
+    $user = $this->loginAsEditor();
     $response = $this->novaIndex('users');
     $response->assertOk();
     $response->assertCanView();
@@ -29,18 +26,17 @@ it('has users come policy', function () {
 });
 
 it('has user can not view any', function () {
-    $user = $this->loginContentUser();
+    $user = $this->loginAsEditor();
     $role = $user->roles()->first();
 
     $role->revokePermissionTo(PermissionsEnum::MANAGER_USERS);
 
-    $response = $this->novaIndex('users');
-
-    $response->assertStatus(Response::HTTP_FORBIDDEN);
+     $this->novaIndex('users')
+          ->assertStatus(Response::HTTP_FORBIDDEN);
 });
 
 it('has user policy can not asserts', function () {
-    $user = $this->loginContentUser();
+    $user = $this->loginAsEditor();
 
     $revoke_permissions = [
         PermissionsEnum::CREATE_USERS,
@@ -60,3 +56,4 @@ it('has user policy can not asserts', function () {
     $response->assertCannotForceDelete();
     $response->assertCannotRestore();
 });
+

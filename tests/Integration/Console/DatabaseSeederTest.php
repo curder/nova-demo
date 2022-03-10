@@ -8,12 +8,11 @@ use Curder\NovaPermission\Models\Role;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-uses(TestCase::class, RefreshDatabase::class);
+uses(RefreshDatabase::class)
+    ->beforeEach(fn () => $this->seed());
 
 it('can see some init data in tables', function () {
-    $this->seed();
-
-    $this->assertSame(2, User::query()->count());
-    $this->assertSame(PermissionsEnum::count(), Permission::query()->count());
-    $this->assertSame(RolesEnum::count(), Role::query()->count());
+    expect(User::query()->get())->toHaveCount(2);
+    expect(PermissionsEnum::count())->toEqual(Permission::query()->count());
+    expect(Role::query()->get())->toHaveCount(RolesEnum::count());
 });

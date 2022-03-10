@@ -1,3 +1,10 @@
 <?php
 
-it('has welcome page')->get('/')->assertStatus(200);
+it('welcome page has the correct index URL')
+    ->expect(fn() => route('welcome'))
+    ->toBe('http://localhost');
+
+it('has welcome page')
+    ->get('/')
+    ->assertOk()
+    ->assertSee('Nova Demo');

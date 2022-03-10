@@ -1,38 +1,27 @@
 <?php
 
-use Tests\Integration\Nova\TestCase;
-
-uses(TestCase::class);
-
 it('has users fields for super admin user', function () {
     // superUser
-    $authed = $this->loginAdminUser();
+    $authed = $this->loginAsAdmin();
 
-    $response = $this->novaEdit('users', $authed->id);
-    $response->assertFieldsInclude('email');
-    $response->assertFieldsInclude(['email', 'name', 'password', 'roles', 'permissions']);
-    $response->assertFieldsInclude(['email' => $authed->email, 'name' => $authed->name]);
-
-    $response->assertFieldsExclude('id');
-    $response->assertFieldsExclude(['remember_token', 'deleted_at', 'created_at', 'updated_at']);
-
-    $response->assertFields(function ($fields) {
-        return $fields->count() === 5;
-    });
+    $this->novaEdit('users', $authed->id)
+         ->assertFieldsInclude('email')
+         ->assertFieldsInclude(['email', 'name', 'password', 'roles', 'permissions'])
+         ->assertFieldsInclude(['email' => $authed->email, 'name' => $authed->name])
+         ->assertFieldsExclude('id')
+         ->assertFieldsExclude(['remember_token', 'deleted_at', 'created_at', 'updated_at'])
+         ->assertFields(fn($fields) => $fields->count() === 5);
 });
+
 it('has some users fields for content manager user', function () {
     // normal user
-    $authed = $this->loginContentUser();
+    $authed = $this->loginAsEditor();
 
-    $response = $this->novaEdit('users', $authed->id);
-    $response->assertFieldsInclude('email');
-    $response->assertFieldsInclude(['email', 'name', 'password']);
-    $response->assertFieldsInclude(['email' => $authed->email, 'name' => $authed->name]);
-
-    $response->assertFieldsExclude('id');
-    $response->assertFieldsExclude(['remember_token', 'deleted_at', 'created_at', 'updated_at']);
-
-    $response->assertFields(function ($fields) {
-        return $fields->count() === 3;
-    });
+    $this->novaEdit('users', $authed->id)
+         ->assertFieldsInclude('email')
+         ->assertFieldsInclude(['email', 'name', 'password'])
+         ->assertFieldsInclude(['email' => $authed->email, 'name' => $authed->name])
+         ->assertFieldsExclude('id')
+         ->assertFieldsExclude(['remember_token', 'deleted_at', 'created_at', 'updated_at'])
+         ->assertFields(fn($fields) => $fields->count() === 3);
 });
