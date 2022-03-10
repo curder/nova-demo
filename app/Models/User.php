@@ -63,6 +63,7 @@ class User extends Authenticatable
     {
         return $this->hasRole(RolesEnum::SUPER_ADMIN);
     }
+
     /**
      * @param  null  $impersonated
      *
