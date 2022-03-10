@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Str;
 use Illuminate\Console\Scheduling\Event;
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Str;
 
-it('has some schedules', function(string $command, $expression) {
+it('has some schedules', function (string $command, $expression) {
     $schedule = app(Schedule::class);
 
     /** @var Event $event */

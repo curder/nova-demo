@@ -10,7 +10,7 @@ it('has users fields for super admin user', function () {
          ->assertFieldsInclude(['email' => $authed->email, 'name' => $authed->name])
          ->assertFieldsExclude('id')
          ->assertFieldsExclude(['remember_token', 'deleted_at', 'created_at', 'updated_at'])
-         ->assertFields(fn($fields) => $fields->count() === 5);
+         ->assertFields(fn ($fields) => $fields->count() === 5);
 });
 
 it('has some users fields for content manager user', function () {
@@ -23,5 +23,5 @@ it('has some users fields for content manager user', function () {
          ->assertFieldsInclude(['email' => $authed->email, 'name' => $authed->name])
          ->assertFieldsExclude('id')
          ->assertFieldsExclude(['remember_token', 'deleted_at', 'created_at', 'updated_at'])
-         ->assertFields(fn($fields) => $fields->count() === 3);
+         ->assertFields(fn ($fields) => $fields->count() === 3);
 });

@@ -31,7 +31,7 @@ it('has user can not view any', function () {
 
     $role->revokePermissionTo(PermissionsEnum::MANAGER_USERS);
 
-     $this->novaIndex('users')
+    $this->novaIndex('users')
           ->assertStatus(Response::HTTP_FORBIDDEN);
 });
 
@@ -56,4 +56,3 @@ it('has user policy can not asserts', function () {
     $response->assertCannotForceDelete();
     $response->assertCannotRestore();
 });
-

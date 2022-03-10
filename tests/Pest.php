@@ -1,8 +1,8 @@
 <?php
 
-use Tests\CreatesUsers;
-use NovaTesting\NovaAssertions;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use NovaTesting\NovaAssertions;
+use Tests\CreatesUsers;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +17,7 @@ use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 uses(Tests\TestCase::class)->in('Feature', 'Integration');
 uses(LazilyRefreshDatabase::class, NovaAssertions::class, CreatesUsers::class)
-    ->beforeEach(function() {
+    ->beforeEach(function () {
         $this->seed();
     })
     ->in('Integration/Nova');
