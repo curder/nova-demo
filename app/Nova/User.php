@@ -104,7 +104,7 @@ class User extends Resource
             BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
                         ->options(function () use ($roles) {
                             return $roles->mapWithKeys(function ($role) {
-                                return [$role->id => RolesEnum::tryFrom($role->name)];
+                                return [$role->id => RolesEnum::tryFrom($role->name)->label()];
                             });
                         })->resolveUsing(function () use ($roles) {
                             return $roles->mapWithKeys(function ($role) {
