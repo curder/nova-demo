@@ -80,7 +80,7 @@ jobs:
       - name: Show Laravel versions
         run: php artisan --version
 
-      - name: Execute tests (Unit and Feature tests) via PHPUint
+      - name: Execute tests (Unit and Feature tests) via Pest
         # Set environment
         env:
           SESSION_DRIVER: array
