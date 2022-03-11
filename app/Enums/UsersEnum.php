@@ -28,6 +28,6 @@ enum UsersEnum: string
             ]),
         ];
 
-        return collect($config)->filter(fn(Collection $permissions) => $permissions->isNotEmpty());
+        return collect($config)->filter(fn (Collection $permissions) => $permissions->isNotEmpty());
     }
 }
