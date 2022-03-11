@@ -39,7 +39,8 @@ class RolesAndPermissionsSeeder extends Seeder
             ->each(
                 fn(RolesEnum $item) =>
                 Role::findByName($item->value)->givePermissionTo(RolesEnum::permissions($item->value))
-            )->each(
+            )
+            ->each(
                 fn(RolesEnum $role) => $role->users()->each(
                     fn($email) => User::where('email', $email)->first()->assignRole($role->value)
                 )
@@ -51,8 +52,9 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     protected function refreshTables() : void
     {
-        DB::beginTransaction();
-        if (!app()->environment('testing')) {
+//        DB::beginTransaction();
+
+        if (config('database.default') !== 'sqlite') {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         }
 
@@ -61,10 +63,12 @@ class RolesAndPermissionsSeeder extends Seeder
         DB::table(config('permission.table_names.model_has_roles'))->truncate();
         DB::table(config('permission.table_names.permissions'))->truncate();
         DB::table(config('permission.table_names.roles'))->truncate();
-        if (!app()->environment('testing')) {
+
+        if (config('database.default') !== 'sqlite') {
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         }
-        DB::commit();
+
+//        DB::commit();
     }
 
 

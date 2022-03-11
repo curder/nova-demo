@@ -16,7 +16,7 @@ trait CreatesUsers
         return $authed;
     }
 
-    protected function loginAsAdmin(): User
+    protected function loginAsAdmin()
     {
         $users = User::query()->first();
         $authed = $users->first();

@@ -5,7 +5,7 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.1",
+        "php": "^7.4|^8.0",
         "curder/nova-permission": "*",
         "david-griffiths/nova-dark-theme": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
@@ -19,7 +19,7 @@
     },
     "require-dev": {
         "brianium/paratest": "^6.4",
-        "deployer/deployer": "^7.0",
+        "deployer/deployer": "dev-l9",
         "dillingham/nova-assertions": "^1.2",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
@@ -38,6 +38,10 @@
         {
             "type": "path",
             "url": "./nova-components/nova-permission"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/curder/deployer"
         }
     ],
     "autoload": {

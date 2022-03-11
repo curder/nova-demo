@@ -49,11 +49,11 @@ enum RolesEnum: string
         return collect([
             self::SuperAdmin->value => PermissionsEnum::availablePermissions(),
             self::Content->value => collect([
-                Permission::MANAGER_USERS,
-                Permission::VIEW_USERS,
-                Permission::UPDATE_USERS,
-                Permission::DELETE_USERS,
-                Permission::RESTORE_USERS,
+                Permission::MANAGER_USERS->value,
+                Permission::VIEW_USERS->value,
+                Permission::UPDATE_USERS->value,
+                Permission::DELETE_USERS->value,
+                Permission::RESTORE_USERS->value,
             ]),
         ])->get($role, collect([]));
     }

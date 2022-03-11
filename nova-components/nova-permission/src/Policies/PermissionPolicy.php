@@ -8,6 +8,7 @@ use App\Enums\PermissionsEnum;
 use App\Models\User;
 use Curder\NovaPermission\Models\Permission;
 use Curder\NovaPermission\Models\Role;
+use Illuminate\Support\Str;
 
 /**
  * Class PermissionPolicy.
@@ -47,15 +48,15 @@ class PermissionPolicy extends Policy
     {
         return false;
     }
-
     /**
      * Determine whether the user can delete the model.
      *
      * @param  $user
+     * @param $model
      *
-     * @return mixed
+     * @return bool
      */
-    public function delete($user, $model)
+    public function delete($user, $model): bool
     {
         /* @var User $user */
         if ($user->isSuperAdmin()) {
@@ -76,7 +77,9 @@ class PermissionPolicy extends Policy
      */
     public function attachAnyUser(User $user, Permission $permission)
     {
-        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS);
+        return $user->hasPermissionTo(
+            PermissionsEnum::PERMISSION_ATTACH_ANY_USERS->value
+        );
     }
 
     /**
@@ -87,9 +90,11 @@ class PermissionPolicy extends Policy
      *
      * @return bool
      */
-    public function attachUser(User $user, Permission $permission)
+    public function attachUser(User $user, Permission $permission): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_USERS);
+        return $user->hasPermissionTo(
+            PermissionsEnum::PERMISSION_ATTACH_USERS->value
+        );
     }
 
     /**
@@ -100,9 +105,11 @@ class PermissionPolicy extends Policy
      *
      * @return bool
      */
-    public function detachUser($user, $permission)
+    public function detachUser($user, $permission): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_DETACH_USERS);
+        return $user->hasPermissionTo(
+            PermissionsEnum::PERMISSION_DETACH_USERS->value
+        );
     }
 
     /**
@@ -114,7 +121,7 @@ class PermissionPolicy extends Policy
      *
      * @return bool
      */
-    public function attachAnyRole($user, $role)
+    public function attachAnyRole($user, $role): bool
     {
         return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES);
     }
@@ -127,9 +134,11 @@ class PermissionPolicy extends Policy
      *
      * @return bool
      */
-    public function attachRole($user, $role)
+    public function attachRole($user, $role): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ROLES);
+        return $user->hasPermissionTo(
+            PermissionsEnum::PERMISSION_ATTACH_ROLES->value
+        );
     }
 
     /**
@@ -140,9 +149,11 @@ class PermissionPolicy extends Policy
      *
      * @return bool
      */
-    public function detachRole($user, $role)
+    public function detachRole($user, $role): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_DETACH_ROLES);
+        return $user->hasPermissionTo(
+            PermissionsEnum::PERMISSION_DETACH_ROLES->value
+        );
     }
 
     /**
@@ -150,15 +161,18 @@ class PermissionPolicy extends Policy
      */
     protected function disabledGroup()
     {
-        return [PermissionsEnum::USERS, PermissionsEnum::ROLES, PermissionsEnum::PERMISSIONS];
+        return [
+            PermissionsEnum::USERS->value,
+            PermissionsEnum::ROLES->value,
+            PermissionsEnum::PERMISSIONS->value
+        ];
     }
 
-
     /**
-     * @return mixed
+     * @return string
      */
-    public static function getKey()
+    public static function getKey(): string
     {
-        return 'Permissions';
+        return Str::studly(PermissionsEnum::PERMISSIONS->value);
     }
 }

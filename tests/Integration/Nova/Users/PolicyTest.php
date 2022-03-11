@@ -29,7 +29,7 @@ it('has user can not view any', function () {
     $user = $this->loginAsEditor();
     $role = $user->roles()->first();
 
-    $role->revokePermissionTo(PermissionsEnum::MANAGER_USERS);
+    $role->revokePermissionTo([PermissionsEnum::MANAGER_USERS]);
 
     $this->novaIndex('users')
           ->assertStatus(Response::HTTP_FORBIDDEN);

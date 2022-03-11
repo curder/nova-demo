@@ -167,6 +167,6 @@ class RolePolicy extends Policy
      */
     public static function getKey()
     {
-        return Str::studly(PermissionsEnum::ROLES->name);
+        return Str::studly(PermissionsEnum::ROLES->value);
     }
 }

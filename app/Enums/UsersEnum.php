@@ -20,14 +20,14 @@ enum UsersEnum: string
     public static function permissions(): Collection
     {
         $config = [
-            self::Super->value => [
+            self::Super->value => collect([
                 //
-            ],
-            self::Example->value => [
+            ]),
+            self::Example->value => collect([
                 PermissionsEnum::CREATE_USERS,
-            ],
+            ]),
         ];
 
-        return collect($config)->filter();
+        return collect($config)->filter(fn(Collection $permissions) => $permissions->isNotEmpty());
     }
 }
