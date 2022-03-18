@@ -3,7 +3,7 @@ name: PHPStan
 on:
   push:
     paths:
-      - '**.php'
+#      - '**.php'
       - 'phpstan.neon.dist'
 
 jobs:
@@ -21,6 +21,8 @@ jobs:
 
       - name: Install composer dependencies
         uses: ramsey/composer-install@v1
+        run: |
+          composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
 
       - name: Run PHPStan
         run: ./vendor/bin/phpstan --error-format=github
