@@ -1,4 +1,5 @@
 [![Check & fix styling](https://github.com/curder/nova-demo/actions/workflows/php-cs-fixer.yml/badge.svg?branch=8.x)](https://github.com/curder/nova-demo/actions/workflows/php-cs-fixer.yml)
+[![PHPStan](https://github.com/curder/nova-demo/actions/workflows/phpstan.yml/badge.svg?branch=8.x)](https://github.com/curder/nova-demo/actions/workflows/phpstan.yml)
 [![Test Laravel Github action](https://github.com/curder/nova-demo/actions/workflows/run-test.yml/badge.svg?branch=8.x)](https://github.com/curder/nova-demo/actions/workflows/run-test.yml)
 
 ## 初始化
