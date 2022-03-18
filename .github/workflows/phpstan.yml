@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - 9.x
-#    paths:
-#      - '**.php'
-#      - 'phpstan.neon.dist'
+    paths:
+      - '**.php'
+      - 'phpstan.neon.dist'
 
 jobs:
   phpstan:
