@@ -40,6 +40,8 @@ enum RolesEnum: string
     }
 
     /**
+     * 角色对应的权限关联关系
+     *
      * @param string $role
      *
      * @return \Illuminate\Support\Collection
