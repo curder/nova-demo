@@ -2,19 +2,19 @@
 
 namespace Curder\NovaPermission\Resources;
 
-use Laravel\Nova\Nova;
-use App\Enums\RolesEnum;
-use Laravel\Nova\Resource;
-use Laravel\Nova\Fields\ID;
-use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
 use App\Enums\PermissionsEnum;
-use Illuminate\Validation\Rule;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\MorphToMany;
-use Curder\NovaPermission\Models\Role as RoleModel;
+use App\Enums\RolesEnum;
 use Curder\NovaPermission\Fields\GroupCheckBoxListField;
 use Curder\NovaPermission\Models\Permission as PermissionModel;
+use Curder\NovaPermission\Models\Role as RoleModel;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MorphToMany;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Nova;
+use Laravel\Nova\Resource;
 
 /**
  * @property string $guard_name

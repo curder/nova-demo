@@ -2,20 +2,20 @@
 
 namespace Curder\NovaPermission\Resources;
 
+use App\Enums\PermissionsEnum;
 use Curder\NovaPermission\Actions\PermissionsAttachToRole;
 use Curder\NovaPermission\Actions\PermissionsAttachToUser;
+use Curder\NovaPermission\Models\Permission as PermissionModel;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MorphToMany;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Resource;
-use Laravel\Nova\Fields\ID;
-use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
-use Illuminate\Validation\Rule;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\MorphToMany;
-use Laravel\Nova\Fields\BelongsToMany;
-use Curder\NovaPermission\Models\Permission as PermissionModel;
-use App\Enums\PermissionsEnum;
 
 /**
  * Class Permission
@@ -62,7 +62,7 @@ class Permission extends Resource
      *
      * @return array
      */
-    public function actions(Request $request) : array
+    public function actions(Request $request): array
     {
         return [
             PermissionsAttachToRole::make()

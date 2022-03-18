@@ -2,14 +2,14 @@
 
 namespace Curder\NovaPermission;
 
+use Curder\NovaPermission\Http\Middleware\Authorize;
 use Curder\NovaPermission\Policies\PermissionPolicy;
 use Curder\NovaPermission\Policies\RolePolicy;
 use Illuminate\Support\Facades\Gate;
-use Laravel\Nova\Nova;
-use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Curder\NovaPermission\Http\Middleware\Authorize;
+use Laravel\Nova\Events\ServingNova;
+use Laravel\Nova\Nova;
 
 /**
  * Class ToolServiceProvider
@@ -24,6 +24,7 @@ class ToolServiceProvider extends ServiceProvider
      * @var string
      */
     public static $name = 'nova-permission';
+
     /**
      * Bootstrap any application services.
      *
@@ -80,12 +81,13 @@ class ToolServiceProvider extends ServiceProvider
     private static function getTranslations(): array
     {
         $translationFile = resource_path('lang/vendor/'.static::$name.'/'.app()->getLocale().'.json');
-        if (!is_readable($translationFile)) {
+        if (! is_readable($translationFile)) {
             $translationFile = __DIR__.'/../resources/lang/'.app()->getLocale().'.json';
-            if (!is_readable($translationFile)) {
+            if (! is_readable($translationFile)) {
                 return [];
             }
         }
+
         return json_decode(file_get_contents($translationFile), true);
     }
 }

@@ -2,9 +2,9 @@
 
 namespace Curder\NovaPermission\Policies;
 
-use App\Models\User;
-use App\Enums\RolesEnum;
 use App\Enums\PermissionsEnum;
+use App\Enums\RolesEnum;
+use App\Models\User;
 use Curder\NovaPermission\Models\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Str;

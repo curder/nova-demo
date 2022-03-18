@@ -1,4 +1,5 @@
 <?php
+
 namespace Curder\NovaPermission\Fields;
 
 use Laravel\Nova\Fields\Field;
@@ -48,13 +49,12 @@ class GroupCheckBoxListField extends Field
              * When editing entries, they are returned as comma seperated string (unsure why).
              * As a result we need to include this check and explode the values if required.
              */
-            if (!is_array($choices = $request[$requestAttribute])) {
+            if (! is_array($choices = $request[$requestAttribute])) {
                 $permissions = collect(explode(',', $choices))->reject(function ($name) {
                     return empty($name);
                 })->all();
                 $model->syncPermissions($permissions);
             }
-
         }
     }
 }

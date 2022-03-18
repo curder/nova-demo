@@ -3,17 +3,15 @@
 namespace  Curder\NovaPermission\Actions;
 
 use App\Enums\RolesEnum;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Bus\Queueable;
-use App\Enums\PermissionsEnum;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Actions\Action;
-use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\ActionFields;
 use Curder\NovaPermission\Models\Role;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Fields\Select;
 
 /**
  * 给角色赋予权限

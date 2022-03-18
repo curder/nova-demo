@@ -2,21 +2,21 @@
 
 namespace Curder\NovaPermission\Actions;
 
-use App\Models\User;
-use Curder\NovaPermission\Models\Role;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Bus\Queueable;
 use App\Enums\PermissionsEnum;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Actions\Action;
-use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\ActionFields;
+use App\Models\User;
+use Illuminate\Bus\Queueable;
+use Illuminate\Http\Request;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Fields\Select;
 
 class PermissionsAttachToUser extends Action
 {
-    use InteractsWithQueue, Queueable;
+    use InteractsWithQueue;
+    use Queueable;
 
     /**
      * Perform the action on the given models.
@@ -42,7 +42,7 @@ class PermissionsAttachToUser extends Action
      */
     public function fields()
     {
-        $users = User::get()->reject(function($user) {
+        $users = User::get()->reject(function ($user) {
             return $user->isSuperAdmin();
         })->pluck('name', 'id')
           ->toArray();

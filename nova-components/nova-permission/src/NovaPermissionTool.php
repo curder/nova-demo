@@ -2,10 +2,10 @@
 
 namespace Curder\NovaPermission;
 
+use Curder\NovaPermission\Resources\Permission;
+use Curder\NovaPermission\Resources\Role;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
-use Curder\NovaPermission\Resources\Role;
-use Curder\NovaPermission\Resources\Permission;
 
 class NovaPermissionTool extends Tool
 {

@@ -48,6 +48,7 @@ class PermissionPolicy extends Policy
     {
         return false;
     }
+
     /**
      * Determine whether the user can delete the model.
      *
@@ -63,7 +64,7 @@ class PermissionPolicy extends Policy
         }
 
         return $user->hasPermissionTo('delete'.static::getKey())
-            && !in_array($model->group, $this->disabledGroup(), true);
+            && ! in_array($model->group, $this->disabledGroup(), true);
     }
 
     /**
@@ -164,7 +165,7 @@ class PermissionPolicy extends Policy
         return [
             PermissionsEnum::USERS->value,
             PermissionsEnum::ROLES->value,
-            PermissionsEnum::PERMISSIONS->value
+            PermissionsEnum::PERMISSIONS->value,
         ];
     }
 

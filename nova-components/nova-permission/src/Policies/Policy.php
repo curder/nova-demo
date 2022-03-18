@@ -3,9 +3,8 @@
 namespace Curder\NovaPermission\Policies;
 
 use App\Models\User;
-use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Policy.
@@ -42,6 +41,7 @@ class Policy
     {
         return $user->hasPermissionTo('create'.static::getKey());
     }
+
     /**
      * Determine whether the user can delete the model.
      *
@@ -54,6 +54,7 @@ class Policy
     {
         return $user->hasPermissionTo('delete'.static::getKey());
     }
+
     /**
      * Determine whether the user can permanently delete the model.
      *
@@ -66,6 +67,7 @@ class Policy
     {
         return $user->hasPermissionTo('forceDelete'.static::getKey());
     }
+
     /**
      * Determine whether the user can restore the model.
      *

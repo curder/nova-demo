@@ -2,8 +2,8 @@
 
 namespace Curder\NovaPermission\Http\Middleware;
 
-use Laravel\Nova\Nova;
 use Curder\NovaPermission\NovaPermissionTool;
+use Laravel\Nova\Nova;
 
 class Authorize
 {

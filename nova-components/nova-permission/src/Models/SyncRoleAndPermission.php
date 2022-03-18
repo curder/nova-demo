@@ -7,7 +7,6 @@ namespace Curder\NovaPermission\Models;
  */
 trait SyncRoleAndPermission
 {
-
     public static function bootSyncRoleAndPermission(): void
     {
         static::saving(function ($model) {
