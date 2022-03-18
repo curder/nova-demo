@@ -59,12 +59,7 @@ class PermissionPolicy extends Policy
      */
     public function delete($user, $model): bool
     {
-        if ($user->isSuperAdmin()) {
-            return true;
-        }
-
-        return $user->hasPermissionTo('delete'.static::getKey())
-            && ! in_array($model->group, $this->disabledGroup(), true);
+        return false;
     }
 
     /**
