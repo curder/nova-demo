@@ -52,9 +52,9 @@ class GroupCheckBoxListField extends Field
                 $permissions = collect(explode(',', $choices))->reject(function ($name) {
                     return empty($name);
                 })->all();
+                $model->syncPermissions($permissions);
             }
 
-            $model->syncPermissions($permissions);
         }
     }
 }

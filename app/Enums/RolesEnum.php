@@ -37,7 +37,7 @@ class RolesEnum extends Enum implements LocalizedEnum
     }
 
     /**
-     * @param $role
+     * @param string $role
      *
      * @return \Illuminate\Support\Collection
      */

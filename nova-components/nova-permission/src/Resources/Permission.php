@@ -20,12 +20,14 @@ use App\Enums\PermissionsEnum;
 /**
  * Class Permission
  *
+ * @property PermissionModel $resource
+ *
  * @package Curder\NovaPermission\Nova
  */
 class Permission extends Resource
 {
     /**
-     * @var mixed
+     * @var bool
      */
     public static $displayInNavigation = true;
 
@@ -120,7 +122,7 @@ class Permission extends Resource
 
         $permission_table = config('permission.table_names.permissions');
 
-        $userResource = Nova::resourceForModel(getModelForGuard($this->guard_name));
+        $userResource = Nova::resourceForModel(getModelForGuard($this->resource->guard_name));
 
         return [
             ID::make('Id', 'id')
@@ -135,7 +137,7 @@ class Permission extends Resource
                 ->onlyOnForms(),
 
             Text::make(__('nova-permission::permissions.display_name'), function () {
-                return PermissionsEnum::getDescription($this->name);
+                return PermissionsEnum::getDescription($this->resource->name);
             }),
 
             Select::make(__('nova-permission::permissions.group'), 'group')

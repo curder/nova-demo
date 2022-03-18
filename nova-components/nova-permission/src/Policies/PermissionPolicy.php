@@ -14,13 +14,13 @@ use Curder\NovaPermission\Models\Role;
  */
 class PermissionPolicy extends Policy
 {
-    protected static $key = 'Permissions';
+    protected static string $key = 'Permissions';
 
     /**
-     * @param $user
-     * @param $ability
+     * @param User $user
+     * @param string $ability
      *
-     * @return bool
+     * @return null|bool
      */
     public function before($user, $ability)
     {
@@ -38,8 +38,8 @@ class PermissionPolicy extends Policy
     }
 
     /**
-     * @param $user
-     * @param $model
+     * @param User $user
+     * @param Permission $model
      *
      * @return bool
      */
@@ -51,17 +51,16 @@ class PermissionPolicy extends Policy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  $user
+     * @param User $user
+     * @param Permission $model
      *
-     * @return mixed
+     * @return bool
      */
     public function delete($user, $model)
     {
-        /* @var User $user */
         if ($user->isSuperAdmin()) {
             return true;
         }
-        /* @var User $user */
         return $user->hasPermissionTo('delete'.static::getKey()) && !in_array($model->group, $this->disabledGroup(), true);
     }
 
@@ -70,7 +69,7 @@ class PermissionPolicy extends Policy
      * 1. 当用户拥有添加用户权限.
      *
      * @param User $user
-     * @param      $permission
+     * @param Permission $permission
      *
      * @return bool
      */
@@ -109,8 +108,8 @@ class PermissionPolicy extends Policy
      * 权限详情页面中的用户列表新增角色按钮操作权限控制
      * 1. 当用户拥有添加用户权限.
      *
-     * @param $user
-     * @param $role
+     * @param User $user
+     * @param Role $role
      *
      * @return bool
      */
@@ -122,8 +121,8 @@ class PermissionPolicy extends Policy
     /**
      * 权限详情页面中的用户列表更新角色按钮操作权限控制.
      *
-     * @param $user
-     * @param  $role
+     * @param User $user
+     * @param Role $role
      *
      * @return bool
      */
@@ -155,7 +154,7 @@ class PermissionPolicy extends Policy
 
 
     /**
-     * @return mixed
+     * @return string
      */
     public static function getKey()
     {

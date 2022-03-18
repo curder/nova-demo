@@ -19,6 +19,8 @@ use Laravel\Nova\Panel;
 /**
  * Class User
  *
+ * @property UserModel $resource
+ *
  * @package App\Nova
  */
 class User extends Resource
@@ -97,7 +99,7 @@ class User extends Resource
                             });
                         })->resolveUsing(function () use ($roles) {
                             return $roles->mapWithKeys(function ($role) {
-                                return [$role->id => $this->hasRole($role->name)];
+                                return [$role->id => $this->resource->hasRole($role->name)];
                             });
                         })->exceptOnForms(),
 
@@ -108,7 +110,7 @@ class User extends Resource
                             });
                         })->resolveUsing(function () use ($roles) {
                             return $roles->mapWithKeys(function ($role) {
-                                return [$role->id => $this->hasRole($role->name)];
+                                return [$role->id => $this->resource->hasRole($role->name)];
                             });
                         })->onlyOnForms()->canSee(function () {
                             /* @var \App\Models\User $user */
@@ -131,7 +133,7 @@ class User extends Resource
                             });
                         })->resolveUsing(function () use ($permissions) {
                             return $permissions->mapWithKeys(function ($permission) {
-                                return [$permission->id => $this->hasPermissionTo($permission->name)];
+                                return [$permission->id => $this->resource->hasPermissionTo($permission->name)];
                             });
                         })->exceptOnForms(),
 
@@ -147,7 +149,7 @@ class User extends Resource
                             });
                         })->resolveUsing(function () use ($permissions) {
                             return $permissions->mapWithKeys(function ($permission) {
-                                return [$permission->id => $this->hasPermissionTo($permission->name)];
+                                return [$permission->id => $this->resource->hasPermissionTo($permission->name)];
                             });
                         })->onlyOnForms()->canSee(function () {
                             /* @var \App\Models\User $user */

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\RolesEnum;
+use App\Enums\UsersEnum;
 use Curder\NovaPermission\Models\SyncRoleAndPermission;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,10 +14,11 @@ use Spatie\Permission\Traits\HasRoles;
 /**
  * Class User
  *
- * @property int id
- * @property string name
- * @property string email
- * @property string password
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ *
  * @package App\Models
  */
 class User extends Authenticatable
@@ -30,7 +32,7 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = [
         'name', 'email', 'password',
@@ -39,7 +41,7 @@ class User extends Authenticatable
     /**
      * The attributes that should be hidden for arrays.
      *
-     * @var array
+     * @var array<string>
      */
     protected $hidden = [
         'password', 'remember_token',
@@ -48,7 +50,7 @@ class User extends Authenticatable
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array
+     * @var array<string>
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
@@ -65,12 +67,12 @@ class User extends Authenticatable
     }
 
     /**
-     * @param  null  $impersonated
+     * @param ?string $impersonated
      *
      * @return bool
      */
     public function canImpersonate($impersonated = null): bool
     {
-        return in_array($this->email, ['super@example.com'], true);
+        return in_array($this->email, [UsersEnum::SUPER], true);
     }
 }

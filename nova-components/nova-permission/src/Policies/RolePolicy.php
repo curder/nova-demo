@@ -17,10 +17,10 @@ class RolePolicy extends Policy
     use HandlesAuthorization;
 
     /**
-     * @param $user
-     * @param $ability
+     * @param User $user
+     * @param string $ability
      *
-     * @return bool
+     * @return bool|null
      */
     public function before($user, $ability)
     {
@@ -32,10 +32,10 @@ class RolePolicy extends Policy
      * 1. 自己不能删除自己所在的角色组
      * 2. 超级管理员角色不允许被删除.
      *
-     * @param $user
-     * @param $model
+     * @param User $user
+     * @param Role $model
      *
-     * @return mixed
+     * @return bool
      */
     public function delete($user, $model)
     {
@@ -43,7 +43,6 @@ class RolePolicy extends Policy
             return false;
         }
 
-        /* @var $user User */
         if ($user->hasRole($model->name)) {
             return false;
         }
@@ -56,14 +55,13 @@ class RolePolicy extends Policy
      * 1. 自己不能删除自己所在的角色组
      * 2. 超级管理员角色不允许被恢复.
      *
-     * @param  $user
-     * @param  $model
+     * @param User $user
+     * @param Role $model
      *
-     * @return mixed
+     * @return bool
      */
     public function restore($user, $model)
     {
-        /* @var User $user */
         if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
             return false;
         }
@@ -76,15 +74,14 @@ class RolePolicy extends Policy
      * 1. 自己不能强制删除自己所在的角色组
      * 2. 超级管理员角色不允许被强制删除.
      *
-     * @param  $user
-     * @param  $model
+     * @param User $user
+     * @param Role $model
      *
-     * @return mixed
+     * @return bool
      */
     public function forceDelete($user, $model)
     {
-        /* @var User $user */
-        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
+        if ($user->hasRole($model->name)) {
             return false;
         }
 
@@ -96,15 +93,14 @@ class RolePolicy extends Policy
      * 1. 自己不能编辑自己所在的角色组
      * 2. 超级管理员角色不允许被编辑.
      *
-     * @param  $user
-     * @param $model
+     * @param User $user
+     * @param Role $model
      *
-     * @return mixed
+     * @return bool
      */
     public function update($user, $model)
     {
-        /* @var User $user */
-        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
+        if ($user->hasRole($model->name)) {
             return false;
         }
 
@@ -125,10 +121,6 @@ class RolePolicy extends Policy
     {
         if ($user->isSuperAdmin()) {
             return true;
-        }
-
-        if (!$user->isSuperAdmin() && RolesEnum::SUPER_ADMIN === $role->name) {
-            return false;
         }
 
         return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_ANY_USERS)
@@ -163,7 +155,7 @@ class RolePolicy extends Policy
     }
 
     /**
-     * @return mixed|string
+     * @return string
      */
     public static function getKey()
     {

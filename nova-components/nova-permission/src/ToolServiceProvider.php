@@ -42,8 +42,7 @@ class ToolServiceProvider extends ServiceProvider
         Gate::policy(config('permission.models.role'), RolePolicy::class);
 
         Nova::serving(function (ServingNova $event) {
-            //
-            Nova::translations(static::getTranslations());
+            Nova::translations(self::getTranslations());
         });
     }
 

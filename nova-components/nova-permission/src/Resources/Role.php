@@ -18,11 +18,13 @@ use Curder\NovaPermission\Models\Permission as PermissionModel;
 
 /**
  * Class Role.
+ *
+ * @property \Curder\NovaPermission\Models\Role $resource
  */
 class Role extends Resource
 {
     /**
-     * @var mixed
+     * @var bool
      */
     public static $displayInNavigation = true;
 
@@ -36,7 +38,7 @@ class Role extends Resource
     /**
      * The columns that should be searched.
      *
-     * @var array
+     * @var array<string>
      */
     public static $search = [
         'name',
@@ -88,7 +90,7 @@ class Role extends Resource
             });
         $role_table = config('permission.table_names.roles');
 
-        $userResource = Nova::resourceForModel(getModelForGuard($this->guard_name));
+        $userResource = Nova::resourceForModel(getModelForGuard($this->resource->guard_name));
 
         // 权限选项
         $permission_options = PermissionModel::all()->map(function ($permission) {
@@ -116,7 +118,7 @@ class Role extends Resource
                 ->onlyOnForms(),
 
             Text::make(__('nova-permission::roles.display_name'), function () {
-                return RolesEnum::getDescription($this->name);
+                return RolesEnum::getDescription($this->resource->name);
             }),
 
             Select::make(__('nova-permission::roles.guard_name'), 'guard_name')
@@ -132,7 +134,7 @@ class Role extends Resource
                                   ->help(__('nova-permission::permissions.role_related_permissions_help')),
 
             Text::make(__('nova-permission::permissions.user_count'), function () {
-                return count($this->users);
+                return count($this->resource->users);
             })->exceptOnForms(),
 
             MorphToMany::make($userResource::singularLabel(), 'users', $userResource),
