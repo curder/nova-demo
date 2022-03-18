@@ -18,10 +18,10 @@ class UserPolicy extends Policy
     use HandlesAuthorization;
 
     /**
-     * @param $user
-     * @param $ability
+     * @param User $user
+     * @param string $ability
      *
-     * @return bool
+     * @return bool|null
      */
     public function before($user, $ability)
     {
@@ -35,18 +35,16 @@ class UserPolicy extends Policy
      * 3. 超级管理员不允许被删除.
      *
      *
-     * @param $user
-     * @param $model
+     * @param User $user
+     * @param User $model
      *
      * @return bool
      */
     public function delete($user, $model): bool
     {
-        /* @var $user User */
         if ($user->isSuperAdmin()) {
             return $user->id !== $model->id && ! $model->isSuperAdmin();
         }
-        /* @var $model User */
         return $user->can(PermissionsEnum::DELETE_USERS->value) // 拥有删除用户权限
             && $user->id !== $model->id //
             && ! $model->isSuperAdmin();
@@ -57,18 +55,16 @@ class UserPolicy extends Policy
      * 1. 自己不能恢复自己
      * 2. 被恢复的用户不是超级管理员.
      *
-     * @param $user
-     * @param $model
+     * @param User $user
+     * @param User $model
      *
      * @return bool
      */
     public function restore($user, $model): bool
     {
-        /* @var $user User */
         if ($user->isSuperAdmin()) {
             return $user->id !== $model->id;
         }
-        /* @var $model User */
         return $user->can(PermissionsEnum::RESTORE_USERS->value)
             && $user->id !== $model->id
             && ! $model->isSuperAdmin();
@@ -132,7 +128,7 @@ class UserPolicy extends Policy
             return true;
         }
 
-        if (! $user->isSuperAdmin() && RolesEnum::SuperAdmin->value === $role->name) {
+        if (RolesEnum::SuperAdmin->value === $role->name) {
             return false;
         }
 
@@ -144,14 +140,13 @@ class UserPolicy extends Policy
     /**
      * 用户详情页面中的角色列表更新按钮操作权限控制.
      *
-     * @param $user
-     * @param  $role
+     * @param User $user
+     * @param Role $role
      *
      * @return bool
      */
     public function attachRole($user, $role): bool
     {
-        /* @var User $user */
         return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_USERS->value);
     }
 
@@ -165,7 +160,6 @@ class UserPolicy extends Policy
      */
     public function detachRole($user, $model): bool
     {
-        /* @var $user User */
         return $user->hasPermissionTo(PermissionsEnum::ROLE_DETACH_USERS->value);
     }
 
@@ -195,36 +189,34 @@ class UserPolicy extends Policy
     /**
      * 用户详情页面中的权限列表更新按钮操作权限控制.
      *
-     * @param $user
-     * @param  $permission
+     * @param User $user
+     * @param \Curder\NovaPermission\Models\Permission $permission
      *
      * @return bool
      */
     public function attachPermission($user, $permission): bool
     {
-        /* @var $user User */
         return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_USERS->value);
     }
 
     /**
      * 用户详情页面中的权限列表删除按钮操作权限控制.
      *
-     * @param $user
-     * @param $permission
+     * @param User $user
+     * @param \Curder\NovaPermission\Models\Permission $permission
      *
      * @return bool
      */
     public function detachPermission($user, $permission): bool
     {
-        /* @var $user User */
         return $user->hasPermissionTo(PermissionsEnum::PERMISSION_DETACH_USERS->value);
     }
 
     /**
      * Determine whether the user can view the model.
      *
-     * @param  $user
-     * @param $model
+     * @param User $user
+     * @param User $model
      *
      * @return bool
      */
@@ -235,13 +227,12 @@ class UserPolicy extends Policy
     }
 
     /**
-     * @param $user
+     * @param User $user
      *
      * @return bool
      */
     public function viewAny($user): bool
     {
-        /* @var User $user */
         return $user->hasPermissionTo('manager'.static::getKey());
     }
 

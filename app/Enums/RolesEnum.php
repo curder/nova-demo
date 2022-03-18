@@ -40,11 +40,11 @@ enum RolesEnum: string
     }
 
     /**
-     * @param $role
+     * @param string $role
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function permissions($role): Collection
+    public static function permissions(string $role): Collection
     {
         return collect([
             self::SuperAdmin->value => PermissionsEnum::availablePermissions(),

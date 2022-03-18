@@ -61,11 +61,12 @@ class PermissionsAttachToUser extends Action
      */
     public function authorizedToSee(Request $request): bool
     {
+        /** @var User $user */
         $user = $request->user();
 
         return $user->isSuperAdmin()
-            || $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS)
-            || $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_USERS);
+            || $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS->value)
+            || $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_USERS->value);
     }
 
     /**

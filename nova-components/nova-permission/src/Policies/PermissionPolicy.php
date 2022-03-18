@@ -15,13 +15,13 @@ use Illuminate\Support\Str;
  */
 class PermissionPolicy extends Policy
 {
-    protected static $key = 'Permissions';
+    protected static string $key = 'Permissions';
 
     /**
-     * @param $user
-     * @param $ability
+     * @param User $user
+     * @param string $ability
      *
-     * @return bool
+     * @return null|bool
      */
     public function before($user, $ability)
     {
@@ -33,14 +33,14 @@ class PermissionPolicy extends Policy
      *
      * @return bool
      */
-    public function create(User $user): bool
+    public function create($user): bool
     {
         return false;
     }
 
     /**
-     * @param $user
-     * @param $model
+     * @param User $user
+     * @param Permission $model
      *
      * @return bool
      */
@@ -51,19 +51,19 @@ class PermissionPolicy extends Policy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  $user
-     * @param $model
+     * @param User $user
+     * @param Permission $model
      *
      * @return bool
      */
     public function delete($user, $model): bool
     {
-        /* @var User $user */
         if ($user->isSuperAdmin()) {
             return true;
         }
-        /* @var User $user */
-        return $user->hasPermissionTo('delete'.static::getKey()) && !in_array($model->group, $this->disabledGroup(), true);
+
+        return $user->hasPermissionTo('delete'.static::getKey())
+            && !in_array($model->group, $this->disabledGroup(), true);
     }
 
     /**
@@ -71,11 +71,11 @@ class PermissionPolicy extends Policy
      * 1. 当用户拥有添加用户权限.
      *
      * @param User $user
-     * @param      $permission
+     * @param Permission $permission
      *
      * @return bool
      */
-    public function attachAnyUser(User $user, Permission $permission)
+    public function attachAnyUser($user, Permission $permission): bool
     {
         return $user->hasPermissionTo(
             PermissionsEnum::PERMISSION_ATTACH_ANY_USERS->value
@@ -90,7 +90,7 @@ class PermissionPolicy extends Policy
      *
      * @return bool
      */
-    public function attachUser(User $user, Permission $permission): bool
+    public function attachUser($user, Permission $permission): bool
     {
         return $user->hasPermissionTo(
             PermissionsEnum::PERMISSION_ATTACH_USERS->value
@@ -105,7 +105,7 @@ class PermissionPolicy extends Policy
      *
      * @return bool
      */
-    public function detachUser($user, $permission): bool
+    public function detachUser($user, Permission $permission): bool
     {
         return $user->hasPermissionTo(
             PermissionsEnum::PERMISSION_DETACH_USERS->value
@@ -116,21 +116,21 @@ class PermissionPolicy extends Policy
      * 权限详情页面中的用户列表新增角色按钮操作权限控制
      * 1. 当用户拥有添加用户权限.
      *
-     * @param $user
-     * @param $role
+     * @param User $user
+     * @param Role $role
      *
      * @return bool
      */
     public function attachAnyRole($user, $role): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES);
+        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES->value);
     }
 
     /**
      * 权限详情页面中的用户列表更新角色按钮操作权限控制.
      *
-     * @param $user
-     * @param  $role
+     * @param User $user
+     * @param Role $role
      *
      * @return bool
      */
@@ -159,7 +159,7 @@ class PermissionPolicy extends Policy
     /**
      * @return array
      */
-    protected function disabledGroup()
+    protected function disabledGroup(): array
     {
         return [
             PermissionsEnum::USERS->value,

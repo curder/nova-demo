@@ -50,7 +50,7 @@ class PermissionsAttachToRole extends Action
     public function fields(): array
     {
         $roles = Role::getModel()
-                     ->where('name', '!=', RolesEnum::SUPER_ADMIN)
+                     ->where('name', '!=', RolesEnum::SuperAdmin)
                      ->get()
                      ->pluck('name', 'id');
 

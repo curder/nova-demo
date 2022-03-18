@@ -17,10 +17,10 @@ class RolePolicy extends Policy
     use HandlesAuthorization;
 
     /**
-     * @param $user
-     * @param $ability
+     * @param User $user
+     * @param string $ability
      *
-     * @return bool
+     * @return null|bool
      */
     public function before($user, $ability)
     {
@@ -32,10 +32,10 @@ class RolePolicy extends Policy
      * 1. 自己不能删除自己所在的角色组
      * 2. 超级管理员角色不允许被删除.
      *
-     * @param $user
-     * @param $model
+     * @param User $user
+     * @param Role $model
      *
-     * @return mixed
+     * @return bool
      */
     public function delete($user, $model)
     {
@@ -56,14 +56,13 @@ class RolePolicy extends Policy
      * 1. 自己不能删除自己所在的角色组
      * 2. 超级管理员角色不允许被恢复.
      *
-     * @param  $user
-     * @param  $model
+     * @param User $user
+     * @param Role $model
      *
      * @return mixed
      */
     public function restore($user, $model)
     {
-        /* @var User $user */
         if ($user->hasRole($model->name) || RolesEnum::SuperAdmin->value === $model->name) {
             return false;
         }
@@ -76,14 +75,13 @@ class RolePolicy extends Policy
      * 1. 自己不能强制删除自己所在的角色组
      * 2. 超级管理员角色不允许被强制删除.
      *
-     * @param  $user
-     * @param  $model
+     * @param User $user
+     * @param Role $model
      *
      * @return mixed
      */
     public function forceDelete($user, $model)
     {
-        /* @var User $user */
         if ($user->hasRole($model->name) || RolesEnum::SuperAdmin->value === $model->name) {
             return false;
         }
@@ -96,8 +94,8 @@ class RolePolicy extends Policy
      * 1. 自己不能编辑自己所在的角色组
      * 2. 超级管理员角色不允许被编辑.
      *
-     * @param  $user
-     * @param $model
+     * @param User $user
+     * @param Role $model
      *
      * @return mixed
      */
@@ -121,13 +119,13 @@ class RolePolicy extends Policy
      *
      * @return bool
      */
-    public function attachAnyUser(User $user, Role $role)
+    public function attachAnyUser($user, $role)
     {
         if ($user->isSuperAdmin()) {
             return true;
         }
 
-        if (!$user->isSuperAdmin() && RolesEnum::SuperAdmin->value === $role->name) {
+        if (RolesEnum::SuperAdmin->value === $role->name) {
             return false;
         }
 
@@ -144,7 +142,7 @@ class RolePolicy extends Policy
      *
      * @return bool
      */
-    public function attachUser(User $user, Role $role)
+    public function attachUser($user, $role)
     {
         return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_USERS->value);
     }
@@ -163,9 +161,9 @@ class RolePolicy extends Policy
     }
 
     /**
-     * @return mixed|string
+     * @return string
      */
-    public static function getKey()
+    public static function getKey(): string
     {
         return Str::studly(PermissionsEnum::ROLES->value);
     }

@@ -4,6 +4,7 @@ namespace Curder\NovaPermission\Policies;
 
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 /**
@@ -13,15 +14,16 @@ class Policy
 {
     use HandlesAuthorization;
 
+    protected static string $key = '';
+
     /**
-     * @param $user
-     * @param $ability
+     * @param User $user
+     * @param string $ability
      *
-     * @return bool
+     * @return null|bool
      */
     public function before($user, $ability)
     {
-        /* @var \App\Models\User $user */
         if ($user->isSuperAdmin()) {
             return true;
         }
@@ -36,93 +38,87 @@ class Policy
      *
      * @throws \Exception
      */
-    public function create(User $user)
+    public function create($user)
     {
         return $user->hasPermissionTo('create'.static::getKey());
     }
-
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  $user
+     * @param  User  $user
+     * @param Model $model
      *
-     * @return mixed
+     * @return bool
      */
     public function delete($user, $model)
     {
-        /* @var \App\Models\User $user */
         return $user->hasPermissionTo('delete'.static::getKey());
     }
-
     /**
      * Determine whether the user can permanently delete the model.
      *
-     * @param  $user
+     * @param User  $user
+     * @param Model $model
      *
-     * @return mixed
+     * @return bool
      */
     public function forceDelete($user, $model)
     {
-        /* @var \App\Models\User $user */
         return $user->hasPermissionTo('forceDelete'.static::getKey());
     }
-
     /**
      * Determine whether the user can restore the model.
      *
-     * @param  $user
+     * @param User $user
+     * @param Model $model
      *
      * @return mixed
      */
     public function restore($user, $model)
     {
-        /* @var \App\Models\User $user */
         return $user->hasPermissionTo('restore'.static::getKey());
     }
 
     /**
      * Determine whether the user can update the model.
      *
-     * @param  $user
-     * @param $model
+     * @param User $user
+     * @param Model $model
      *
-     * @return mixed
+     * @return bool
      */
     public function update($user, $model)
     {
-        /* @var \App\Models\User $user */
         return $user->hasPermissionTo('update'.static::getKey());
     }
 
     /**
      * Determine whether the user can view the model.
      *
-     * @param  $user
-     * @param $model
+     * @param User $user
+     * @param Model $model
      *
-     * @return mixed
+     * @return bool
      */
     public function view($user, $model)
     {
-        /* @var \App\Models\User $user */
         return $user->hasPermissionTo('view'.static::getKey());
     }
 
     /**
-     * @param $user
+     * @param User $user
      *
      * @return bool
      */
     public function viewAny($user)
     {
-        /* @var \App\Models\User $user */
         return $user->hasPermissionTo('manager'.static::getKey());
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public static function getKey()
+    public static function getKey(): string
     {
         return static::$key;
     }

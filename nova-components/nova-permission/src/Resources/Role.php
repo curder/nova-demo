@@ -17,12 +17,14 @@ use Curder\NovaPermission\Fields\GroupCheckBoxListField;
 use Curder\NovaPermission\Models\Permission as PermissionModel;
 
 /**
- * Class Role.
+ * @property string $guard_name
+ * @property string $name
+ * @property \Illuminate\Database\Eloquent\Collection $users
  */
 class Role extends Resource
 {
     /**
-     * @var mixed
+     * @var bool
      */
     public static $displayInNavigation = true;
 
@@ -36,7 +38,7 @@ class Role extends Resource
     /**
      * The columns that should be searched.
      *
-     * @var array
+     * @var array<string>
      */
     public static $search = [
         'name',
@@ -93,12 +95,12 @@ class Role extends Resource
         // 权限选项
         $permission_options = PermissionModel::all()->map(function ($permission) {
             return [
-                'group' => PermissionsEnum::getDescription($permission->group),
+                'group' => PermissionsEnum::from($permission->group)->label(),
                 'option' => $permission->name,
                 'label' => sprintf(
                     "%s - %s",
-                    PermissionsEnum::getDescription($permission->group),
-                    PermissionsEnum::getDescription($permission->name)
+                    PermissionsEnum::from($permission->group)->label(),
+                    PermissionsEnum::from($permission->name)->label()
                 ),
             ];
         })->groupBy('group')
@@ -116,7 +118,7 @@ class Role extends Resource
                 ->onlyOnForms(),
 
             Text::make(__('nova-permission::roles.display_name'), function () {
-                return RolesEnum::getDescription($this->name);
+                return RolesEnum::from($this->name)->label();
             }),
 
             Select::make(__('nova-permission::roles.guard_name'), 'guard_name')

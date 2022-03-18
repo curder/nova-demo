@@ -13,10 +13,10 @@ use Spatie\Permission\Traits\HasRoles;
 /**
  * Class User
  *
- * @property int id
- * @property string name
- * @property string email
- * @property string password
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
  * @package App\Models
  */
 class User extends Authenticatable
@@ -30,7 +30,7 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = [
         'name', 'email', 'password',

@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Models\Permission as SpatiePermission;
 
+/**
+ * @property string $name
+ * @property string $group
+ */
 class Permission extends SpatiePermission
 {
     use HasFactory, SoftDeletes;

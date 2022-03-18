@@ -20,12 +20,15 @@ use App\Enums\PermissionsEnum;
 /**
  * Class Permission
  *
+ * @property string $name
+ * @property string $guard_name
+ *
  * @package Curder\NovaPermission\Nova
  */
 class Permission extends Resource
 {
     /**
-     * @var mixed
+     * @var bool
      */
     public static $displayInNavigation = true;
 
@@ -39,7 +42,7 @@ class Permission extends Resource
     /**
      * The columns that should be searched.
      *
-     * @var array
+     * @var array<string>
      */
     public static $search = [
         'name',
@@ -135,7 +138,7 @@ class Permission extends Resource
                 ->onlyOnForms(),
 
             Text::make(__('nova-permission::permissions.display_name'), function () {
-                return PermissionsEnum::getDescription($this->name);
+                return PermissionsEnum::from($this->name)->label();
             }),
 
             Select::make(__('nova-permission::permissions.group'), 'group')

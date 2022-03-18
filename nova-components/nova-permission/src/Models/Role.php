@@ -9,9 +9,9 @@ use Spatie\Permission\Models\Role as SpatieRole;
 /**
  * Class Role.
  *
- * @property string name
- * @property array prepared_permissions
- * @property BelongsToMany permissions
+ * @property string $name
+ * @property array $prepared_permissions
+ * @property BelongsToMany $permissions
  */
 class Role extends SpatieRole
 {
