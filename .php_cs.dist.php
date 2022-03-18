@@ -4,6 +4,7 @@ $finder = Symfony\Component\Finder\Finder::create()
     ->in([
         __DIR__ . '/app',
         __DIR__ . '/tests',
+        __DIR__ . '/nova-components/nova-permission/src',
     ])
     ->name('*.php')
     ->notName('*.blade.php')
