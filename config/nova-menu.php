@@ -95,7 +95,7 @@ return [
     |
     */
 
-    'menu_model' => OptimistDigital\MenuBuilder\Models\Menu::class,
+    'menu_model' => App\Models\Menu::class,
 
 
     /*
@@ -107,7 +107,7 @@ return [
     |
     */
 
-    'menu_item_model' => OptimistDigital\MenuBuilder\Models\MenuItem::class,
+    'menu_item_model' => App\Models\MenuItem::class,
 
 
     /*
