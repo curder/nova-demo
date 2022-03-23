@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Menu;
-use App\Enums\PermissionsEnum;
 use Symfony\Component\HttpFoundation\Response;
 
 beforeEach(function () {

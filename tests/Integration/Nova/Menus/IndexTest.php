@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Menu;
-use App\Models\User;
 
 beforeEach(function () {
     $this->menu = Menu::factory()->create();
