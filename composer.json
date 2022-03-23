@@ -17,6 +17,7 @@
         "laravel/framework": "^8.75",
         "laravel/nova": "~3.0",
         "laravel/tinker": "^2.5",
+        "optimistdigital/nova-menu-builder": "^6.1",
         "overtrue/laravel-filesystem-qiniu": "^1.0",
         "spatie/laravel-backup": "^6.16",
         "spatie/laravel-permission": "^3.2",

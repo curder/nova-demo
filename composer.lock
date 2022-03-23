@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2852f9242abeaf642bbe203f6c40b879",
+    "content-hash": "392eda6cbff941a658cb38e1ec7dc0ff",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3670,6 +3670,197 @@
                 "serialize"
             ],
             "time": "2022-01-27T09:35:39+00:00"
+        },
+        {
+            "name": "optimistdigital/nova-menu-builder",
+            "version": "6.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/optimistdigital/nova-menu-builder.git",
+                "reference": "499fb2eda15cec2eb8ef8a41db9dd39fbbb2d006"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/optimistdigital/nova-menu-builder/zipball/499fb2eda15cec2eb8ef8a41db9dd39fbbb2d006",
+                "reference": "499fb2eda15cec2eb8ef8a41db9dd39fbbb2d006",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "doctrine/dbal": ">=2.0.0",
+                "laravel/nova": "^3.0",
+                "optimistdigital/nova-tailwind": "^1.0.2",
+                "optimistdigital/nova-translations-loader": "^3.0",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "OptimistDigital\\MenuBuilder\\MenuBuilderServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "OptimistDigital\\MenuBuilder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tarvo Reinpalu",
+                    "email": "tarvoreinpalu@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Optimist Digital",
+                    "email": "info@optimistdigital.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "This Laravel Nova package allows you to create and manage menus and menu items.",
+            "keywords": [
+                "builder",
+                "laravel",
+                "menu",
+                "nova",
+                "optimistdigital"
+            ],
+            "funding": [
+                {
+                    "url": "https://github.com/optimistdigital",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-03-07T10:43:33+00:00"
+        },
+        {
+            "name": "optimistdigital/nova-tailwind",
+            "version": "1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/optimistdigital/nova-tailwind.git",
+                "reference": "55ac313fdc7c135a2177f2f007db152da1c54c48"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/optimistdigital/nova-tailwind/zipball/55ac313fdc7c135a2177f2f007db152da1c54c48",
+                "reference": "55ac313fdc7c135a2177f2f007db152da1c54c48",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "laravel/nova": "^1.0 || ^2.0 || ^3.0",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "OptimistDigital\\Tailwind\\TailwindServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "OptimistDigital\\Tailwind\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tarvo Reinpalu",
+                    "email": "tarvoreinpalu@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Optimist Digital",
+                    "email": "info@optimistdigital.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Tailwind loader for Laravel Nova.",
+            "keywords": [
+                "css",
+                "laravel",
+                "nova",
+                "tailwind"
+            ],
+            "time": "2021-11-12T14:18:29+00:00"
+        },
+        {
+            "name": "optimistdigital/nova-translations-loader",
+            "version": "3.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/optimistdigital/nova-translations-loader.git",
+                "reference": "444cc68fa1667247bf0c6d1f87761f4d3d5835a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/optimistdigital/nova-translations-loader/zipball/444cc68fa1667247bf0c6d1f87761f4d3d5835a9",
+                "reference": "444cc68fa1667247bf0c6d1f87761f4d3d5835a9",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "laravel/framework": "^7.21 || ^8.0 || ^9.0",
+                "laravel/nova": "^3.0",
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [],
+                    "aliases": []
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "OptimistDigital\\NovaTranslationsLoader\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This Laravel Nova package helps developers load translations into their packages.",
+            "keywords": [
+                "laravel",
+                "nova",
+                "optimistdigital",
+                "translations"
+            ],
+            "time": "2022-01-21T14:28:05+00:00"
         },
         {
             "name": "overtrue/flysystem-qiniu",
