@@ -2,14 +2,19 @@
 
 use App\Enums\PermissionsEnum;
 
+beforeEach(function () {
+    $this->group_count = 4;
+    $this->available_count = 33;
+});
+
 it('has availablePermissions static method on permissionsEnum class', fn () => expect(PermissionsEnum::availablePermissions())
-    ->toBeCollection()->toHaveCount(28));
+    ->toBeCollection()->toHaveCount($this->available_count));
 
 it('has groups static method on permissionsEnum class', fn () => expect(PermissionsEnum::groups())
-    ->toBeArray()->toHaveCount(3));
+    ->toBeArray()->toHaveCount($this->group_count));
 
 it('has count static method on permissionsEnum class', fn () => expect(PermissionsEnum::count())
-    ->toBeInt()->toBe(28));
+    ->toBeInt()->toBe($this->available_count));
 
 it('has enum key value and label method for Users', fn () => expect(PermissionsEnum::USERS)
     ->toBeInstanceOf(PermissionsEnum::class)

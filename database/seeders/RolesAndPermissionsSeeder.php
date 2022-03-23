@@ -109,6 +109,14 @@ class RolesAndPermissionsSeeder extends Seeder
                 PermissionsEnum::PERMISSION_ATTACH_ROLES->value,
                 PermissionsEnum::PERMISSION_DETACH_ROLES->value,
             ],
+
+            PermissionsEnum::MENUS->value => [
+                PermissionsEnum::MANAGER_MENUS->value,
+                PermissionsEnum::VIEW_MENUS->value,
+                PermissionsEnum::CREATE_MENUS->value,
+                PermissionsEnum::UPDATE_MENUS->value,
+                PermissionsEnum::DELETE_MENUS->value,
+            ],
         ]);
     }
 }

@@ -44,20 +44,29 @@ enum PermissionsEnum: string
     case PERMISSION_ATTACH_ROLES = 'permissionAttachRoles'; // 更新角色权限
     case PERMISSION_DETACH_ROLES = 'permissionDetachRoles'; // 取消赋予角色权限
 
+    // 菜单
+    case MENUS = 'menus'; // 菜单
+    case MANAGER_MENUS = 'managerMenus'; // 列表
+    case VIEW_MENUS = 'viewMenus'; // 查看
+    case CREATE_MENUS = 'createMenus'; // 新建
+    case UPDATE_MENUS = 'updateMenus'; // 编辑
+    case DELETE_MENUS = 'deleteMenus'; // 删除
+
     public function label(): string
     {
         return match ($this) {
-            self::USERS => '用户',
-            self::MANAGER_USERS, self::MANAGER_ROLES, self::MANAGER_PERMISSIONS => '列表',
-            self::VIEW_USERS, self::VIEW_ROLES, self::VIEW_PERMISSIONS => '查看',
-            self::CREATE_USERS, self::CREATE_ROLES => '新建',
-            self::UPDATE_USERS, self::UPDATE_ROLES => '编辑',
-            self::DELETE_USERS, self::DELETE_ROLES, self::DELETE_PERMISSIONS => '删除',
+            self::MANAGER_USERS, self::MANAGER_ROLES, self::MANAGER_PERMISSIONS, self::MANAGER_MENUS => '列表',
+            self::VIEW_USERS, self::VIEW_ROLES, self::VIEW_PERMISSIONS, self::VIEW_MENUS => '查看',
+            self::CREATE_USERS, self::CREATE_ROLES, self::CREATE_MENUS => '新建',
+            self::UPDATE_USERS, self::UPDATE_ROLES, self::UPDATE_MENUS => '编辑',
+            self::DELETE_USERS, self::DELETE_ROLES, self::DELETE_PERMISSIONS, self::DELETE_MENUS => '删除',
             self::RESTORE_USERS, self::RESTORE_ROLES, self::RESTORE_PERMISSIONS => '恢复删除',
             self::FORCE_DELETE_USERS, self::FORCE_DELETE_ROLES, self::FORCE_DELETE_PERMISSIONS => '强制删除',
             self::PERMISSION_ATTACH_ANY_USERS => '赋予用户权限',
             self::PERMISSION_ATTACH_USERS => '更新用户权限',
             self::PERMISSION_DETACH_USERS => '取消用户授权',
+
+            self::USERS => '用户',
 
             self::ROLES => '角色',
             self::ROLE_ATTACH_ANY_USERS => '赋予用户角色',
@@ -68,6 +77,8 @@ enum PermissionsEnum: string
             self::PERMISSION_ATTACH_ANY_ROLES => '赋予角色权限',
             self::PERMISSION_ATTACH_ROLES => '更新角色权限',
             self::PERMISSION_DETACH_ROLES => '取消赋予角色权限',
+
+            self::MENUS => '菜单',
         };
     }
 
@@ -92,6 +103,7 @@ enum PermissionsEnum: string
             self::USERS->value => self::USERS->label(),
             self::ROLES->value => self::ROLES->label(),
             self::PERMISSIONS->value => self::PERMISSIONS->label(),
+            self::MENUS->value => self::MENUS->label(),
         ];
     }
 
