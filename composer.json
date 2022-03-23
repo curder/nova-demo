@@ -11,9 +11,10 @@
         "guzzlehttp/guzzle": "^7.2",
         "kabbouchi/nova-impersonate": "^1.11",
         "laravel/framework": "^9.2",
-        "laravel/sanctum": "^2.14.1",
         "laravel/nova": "~3.0",
+        "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "optimistdigital/nova-menu-builder": "^6.1",
         "overtrue/laravel-filesystem-qiniu": "^2.0",
         "spatie/nova-backup-tool": "^4.2"
     },
