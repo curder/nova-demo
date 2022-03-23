@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'resource' => OptimistDigital\MenuBuilder\Nova\Resources\MenuResource::class,
+    'resource' => App\Nova\Menu::class,
 
 
     /*
