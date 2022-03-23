@@ -13,9 +13,9 @@ class MenuPolicy
 
     /**
      * @param UserModel $user
-     * @param $ability
+     * @param string $ability
      *
-     * @return bool|null|void
+     * @return bool|null
      */
     public function before(UserModel $user, $ability)
     {
