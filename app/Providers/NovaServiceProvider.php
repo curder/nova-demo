@@ -6,6 +6,7 @@ use Curder\NovaPermission\NovaPermissionTool;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use OptimistDigital\MenuBuilder\MenuBuilder;
 use Spatie\BackupTool\BackupTool;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -76,6 +77,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             NovaPermissionTool::make(),
+            MenuBuilder::make()->canSee(fn ($request) => $request->user()->isSuperAdmin()),
             BackupTool::make()->canSee(fn ($request) => $request->user()->isSuperAdmin()),
         ];
     }
