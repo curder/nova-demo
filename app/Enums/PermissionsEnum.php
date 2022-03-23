@@ -50,6 +50,14 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
     public const PERMISSION_ATTACH_ROLES = 'permissionAttachRoles'; // 更新角色权限
     public const PERMISSION_DETACH_ROLES = 'permissionDetachRoles'; // 取消赋予角色权限
 
+    // 菜单
+    public const MENUS = 'menus'; // 菜单
+    public const MANAGER_MENUS = 'managerMenus'; // 列表
+    public const VIEW_MENUS = 'viewMenus'; // 查看
+    public const CREATE_MENUS = 'createMenus'; // 新建
+    public const UPDATE_MENUS = 'updateMenus'; // 编辑
+    public const DELETE_MENUS = 'deleteMenus'; // 删除
+
     /**
      * 所有可用权限
      *
@@ -71,6 +79,7 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
             self::USERS => self::getDescription(self::USERS),
             self::ROLES => self::getDescription(self::ROLES),
             self::PERMISSIONS => self::getDescription(self::PERMISSIONS),
+            self::MENUS => self::getDescription(self::MENUS),
         ];
     }
 

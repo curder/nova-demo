@@ -43,6 +43,14 @@ return [
         PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES  => '赋予角色权限',
         PermissionsEnum::PERMISSION_ATTACH_ROLES      => '更新角色权限',
         PermissionsEnum::PERMISSION_DETACH_ROLES      => '取消角色权限',
+
+        // 菜单
+        PermissionsEnum::MENUS => '菜单',
+        PermissionsEnum::MANAGER_MENUS => '列表',
+        PermissionsEnum::VIEW_MENUS => '查看',
+        PermissionsEnum::CREATE_MENUS => '新建',
+        PermissionsEnum::UPDATE_MENUS => '编辑',
+        PermissionsEnum::DELETE_MENUS => '删除',
     ],
 
     RolesEnum::class => [
