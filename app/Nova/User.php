@@ -95,22 +95,22 @@ class User extends Resource
             BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
                         ->options(function () use ($roles) {
                             return $roles->mapWithKeys(
-                                fn($role) => [$role->id => RolesEnum::getDescription($role->name)]
+                                fn ($role) => [$role->id => RolesEnum::getDescription($role->name)]
                             );
                         })->resolveUsing(function () use ($roles) {
                             return $roles->mapWithKeys(
-                                fn($role) => [$role->id => $this->resource->hasRole($role->name)]
+                                fn ($role) => [$role->id => $this->resource->hasRole($role->name)]
                             );
                         })->exceptOnForms(),
 
             BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
                         ->options(function () use ($roles) {
                             return $roles->mapWithKeys(
-                                fn($role) => [$role->id => RolesEnum::getDescription($role->name)]
+                                fn ($role) => [$role->id => RolesEnum::getDescription($role->name)]
                             );
                         })->resolveUsing(function () use ($roles) {
                             return $roles->mapWithKeys(
-                                fn($role) => [$role->id => $this->resource->hasRole($role->name)]
+                                fn ($role) => [$role->id => $this->resource->hasRole($role->name)]
                             );
                         })->onlyOnForms()->canSee(function () {
                             /* @var \App\Models\User $user */
@@ -133,7 +133,7 @@ class User extends Resource
                             });
                         })->resolveUsing(function () use ($permissions) {
                             return $permissions->mapWithKeys(
-                                fn($permission) => [$permission->id => $this->resource->hasPermissionTo($permission->name)]
+                                fn ($permission) => [$permission->id => $this->resource->hasPermissionTo($permission->name)]
                             );
                         })->exceptOnForms(),
 
@@ -149,7 +149,7 @@ class User extends Resource
                             });
                         })->resolveUsing(function () use ($permissions) {
                             return $permissions->mapWithKeys(
-                                fn($permission) => [$permission->id => $this->resource->hasPermissionTo($permission->name)]
+                                fn ($permission) => [$permission->id => $this->resource->hasPermissionTo($permission->name)]
                             );
                         })->onlyOnForms()->canSee(function () {
                             /* @var \App\Models\User $user */
