@@ -88,30 +88,30 @@ class User extends Resource
 
     public function getRoleAndPermissionFields(): array
     {
-        $roles = Role::get();
-        $permissions = Permission::get();
+        $roles = Role::query()->get();
+        $permissions = Permission::query()->get();
 
         return [
             BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
                         ->options(function () use ($roles) {
-                            return $roles->mapWithKeys(function ($role) {
-                                return [$role->id => RolesEnum::getDescription($role->name)];
-                            });
+                            return $roles->mapWithKeys(
+                                fn($role) => [$role->id => RolesEnum::getDescription($role->name)]
+                            );
                         })->resolveUsing(function () use ($roles) {
-                            return $roles->mapWithKeys(function ($role) {
-                                return [$role->id => $this->resource->hasRole($role->name)];
-                            });
+                            return $roles->mapWithKeys(
+                                fn($role) => [$role->id => $this->resource->hasRole($role->name)]
+                            );
                         })->exceptOnForms(),
 
             BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
                         ->options(function () use ($roles) {
-                            return $roles->mapWithKeys(function ($role) {
-                                return [$role->id => RolesEnum::getDescription($role->name)];
-                            });
+                            return $roles->mapWithKeys(
+                                fn($role) => [$role->id => RolesEnum::getDescription($role->name)]
+                            );
                         })->resolveUsing(function () use ($roles) {
-                            return $roles->mapWithKeys(function ($role) {
-                                return [$role->id => $this->resource->hasRole($role->name)];
-                            });
+                            return $roles->mapWithKeys(
+                                fn($role) => [$role->id => $this->resource->hasRole($role->name)]
+                            );
                         })->onlyOnForms()->canSee(function () {
                             /* @var \App\Models\User $user */
                             $user = request()->user();
@@ -132,9 +132,9 @@ class User extends Resource
                                 ];
                             });
                         })->resolveUsing(function () use ($permissions) {
-                            return $permissions->mapWithKeys(function ($permission) {
-                                return [$permission->id => $this->resource->hasPermissionTo($permission->name)];
-                            });
+                            return $permissions->mapWithKeys(
+                                fn($permission) => [$permission->id => $this->resource->hasPermissionTo($permission->name)]
+                            );
                         })->exceptOnForms(),
 
             BooleanGroup::make(__('nova-permission::resources.Permissions'), 'permissions')
@@ -148,9 +148,9 @@ class User extends Resource
                                 ];
                             });
                         })->resolveUsing(function () use ($permissions) {
-                            return $permissions->mapWithKeys(function ($permission) {
-                                return [$permission->id => $this->resource->hasPermissionTo($permission->name)];
-                            });
+                            return $permissions->mapWithKeys(
+                                fn($permission) => [$permission->id => $this->resource->hasPermissionTo($permission->name)]
+                            );
                         })->onlyOnForms()->canSee(function () {
                             /* @var \App\Models\User $user */
                             $user = request()->user();
