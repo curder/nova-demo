@@ -21,6 +21,7 @@
         "overtrue/laravel-filesystem-qiniu": "^1.0",
         "spatie/laravel-backup": "^6.16",
         "spatie/laravel-permission": "^3.2",
+        "spatie/laravel-ray": "^1.29",
         "spatie/nova-backup-tool": "^4.2"
     },
     "require-dev": {
