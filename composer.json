@@ -24,6 +24,7 @@
         "spatie/nova-backup-tool": "^4.2"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.6",
         "brianium/paratest": "^6.4",
         "dillingham/nova-assertions": "^1.2",
         "facade/ignition": "^2.5",
