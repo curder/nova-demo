@@ -44,7 +44,13 @@ http://nova-demo.test
 
 
 ## 插件
-
--   [Laravel 权限管理 spatie/laravel-permission](https://github.com/spatie/laravel-permission)
--   [权限管理 vyuldashev/nova-permission](https://github.com/vyuldashev/nova-permission)
--   [枚举管理 bensampo/laravel-enum](https://github.com/BenSampo/laravel-enum)
+  
+- [Laravel Nova](https://nova.laravel.com)
+- [Laravel 权限管理 spatie/laravel-permission](https://github.com/spatie/laravel-permission)
+- [权限管理 vyuldashev/nova-permission](https://github.com/vyuldashev/nova-permission)
+- [枚举管理 bensampo/laravel-enum](https://github.com/BenSampo/laravel-enum)
+- [Deployer 自动部署](https://github.com/deployphp/deployer)
+- [切换用户](https://github.com/kabbouchi/nova-impersonate)
+- [optimistdigital/nova-menu-builder 菜单分类构建](https://github.com/optimistdigital/nova-menu-builder)
+- [overtrue/laravel-filesystem-qiniu 七牛云驱动](https://github.com/overtrue/laravel-filesystem-qiniu)
+- [spatie/laravel-backup 数据备份](https://github.com/spatie/laravel-backup)
