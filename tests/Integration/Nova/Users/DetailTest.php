@@ -1,7 +1,7 @@
 <?php
+
 namespace Tests\Integration\Nova\Users;
 
-use Database\Seeders\CategorySeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\UserSeeder;
 

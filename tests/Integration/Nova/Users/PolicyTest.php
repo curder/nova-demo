@@ -1,9 +1,8 @@
 <?php
+
 namespace Tests\Integration\Nova\Users;
 
 use App\Enums\PermissionsEnum;
-use App\Models\User;
-use Database\Seeders\CategorySeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\UserHasPermissionsSeeder;
 use Database\Seeders\UserSeeder;

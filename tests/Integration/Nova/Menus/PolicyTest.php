@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\Menu;
-use Database\Seeders\UserSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
+use Database\Seeders\UserSeeder;
 use Symfony\Component\HttpFoundation\Response;
 
 beforeEach(function () {

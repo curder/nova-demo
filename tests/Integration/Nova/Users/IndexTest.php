@@ -1,13 +1,13 @@
 <?php
+
 namespace Tests\Integration\Nova\Users;
 
 use App\Enums\UsersEnum;
 use App\Models\User;
-use Database\Seeders\CategorySeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\UserSeeder;
 
-beforeEach(closure: function () : void {
+beforeEach(closure: function (): void {
     $this->seed([UserSeeder::class, RolesAndPermissionsSeeder::class]);
     $this->authed = $this->loginAsAdmin();
 });

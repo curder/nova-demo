@@ -3,7 +3,7 @@
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\UserSeeder;
 
-beforeEach(function() {
+beforeEach(function () {
     $this->seed([UserSeeder::class, RolesAndPermissionsSeeder::class]);
 });
 

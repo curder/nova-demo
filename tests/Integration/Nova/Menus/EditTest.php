@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\Menu;
-use Database\Seeders\UserSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
+use Database\Seeders\UserSeeder;
 
 beforeEach(function () {
     $this->seed([UserSeeder::class, RolesAndPermissionsSeeder::class]);

@@ -3,7 +3,6 @@
 namespace Tests\Integration\Nova\Users;
 
 use App\Enums\PermissionsEnum;
-use Database\Seeders\CategorySeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\UserSeeder;
 

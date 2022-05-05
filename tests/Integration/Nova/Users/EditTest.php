@@ -1,11 +1,11 @@
 <?php
+
 namespace Tests\Integration\Nova\Users;
 
-use Database\Seeders\CategorySeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\UserSeeder;
 
-beforeEach(closure: function() {
+beforeEach(closure: function () {
     $this->seed([UserSeeder::class, RolesAndPermissionsSeeder::class]);
 });
 
