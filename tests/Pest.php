@@ -16,11 +16,7 @@ use Tests\CreatesUsers;
 */
 
 uses(Tests\TestCase::class)->in('Feature', 'Integration');
-uses(LazilyRefreshDatabase::class, NovaAssertions::class, CreatesUsers::class)
-    ->beforeEach(function () {
-        $this->seed();
-    })
-    ->in('Integration/Nova');
+uses(LazilyRefreshDatabase::class, NovaAssertions::class, CreatesUsers::class)->in('Integration/Nova');
 
 /*
 |--------------------------------------------------------------------------

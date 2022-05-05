@@ -1,5 +1,11 @@
 <?php
 
+use Database\Seeders\RolesAndPermissionsSeeder;
+use Database\Seeders\UserSeeder;
+
+beforeEach(function() {
+    $this->seed([UserSeeder::class, RolesAndPermissionsSeeder::class]);
+});
 
 it('has some fields for super admin user', function () {
     $authed = $this->loginAsAdmin();

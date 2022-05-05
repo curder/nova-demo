@@ -1,6 +1,12 @@
 <?php
 
 use App\Models\Menu;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\RolesAndPermissionsSeeder;
+
+beforeEach(function () {
+    $this->seed([UserSeeder::class, RolesAndPermissionsSeeder::class]);
+});
 
 it('has menus fields', function () {
     // superUser

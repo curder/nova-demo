@@ -1,4 +1,13 @@
 <?php
+namespace Tests\Integration\Nova\Users;
+
+use Database\Seeders\CategorySeeder;
+use Database\Seeders\RolesAndPermissionsSeeder;
+use Database\Seeders\UserSeeder;
+
+beforeEach(closure: function() {
+    $this->seed([UserSeeder::class, RolesAndPermissionsSeeder::class]);
+});
 
 it('has users fields for super admin user', function () {
     // superUser
@@ -17,11 +26,9 @@ it('has some users fields for content manager user', function () {
     // normal user
     $authed = $this->loginAsEditor();
 
-    // dd($authed->syncPermissions(\App\Enums\PermissionsEnum::UPDATE_USERS), $authed->can(\App\Enums\PermissionsEnum::UPDATE_USERS));
-
     $this->novaEdit('users', $authed->id)
          ->assertFieldsInclude('email')
-         ->assertFieldsInclude(['name', 'email', 'password'])
+         ->assertFieldsInclude(['email', 'name', 'password'])
          ->assertFieldsInclude(['email' => $authed->email, 'name' => $authed->name])
          ->assertFieldsExclude('id')
          ->assertFieldsExclude(['remember_token', 'deleted_at', 'created_at', 'updated_at'])

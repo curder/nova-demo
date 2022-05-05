@@ -56,6 +56,9 @@ enum RolesEnum: string
                 Permission::UPDATE_USERS->value,
                 Permission::DELETE_USERS->value,
                 Permission::RESTORE_USERS->value,
+
+                Permission::MANAGER_MENUS->value,
+                Permission::VIEW_MENUS->value,
             ]),
         ])->get($role, collect([]));
     }

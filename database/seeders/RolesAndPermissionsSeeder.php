@@ -20,11 +20,12 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     public function run() : void
     {
-        // 1. refresh exists table
-        $this->refreshTables();
-
-        // 2. Reset cached roles and permissions
-        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+        if(!app()->environment('testing')) {
+            // 1. refresh exists table
+            $this->refreshTables();
+            // 2. Reset cached roles and permissions
+            app()[ PermissionRegistrar::class ]->forgetCachedPermissions();
+        }
 
         // 3. create permissions for each collection item
         $this->getPermissions()->each(
@@ -52,7 +53,7 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     protected function refreshTables() : void
     {
-//        DB::beginTransaction();
+        DB::beginTransaction();
 
         if (config('database.default') !== 'sqlite') {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
@@ -68,7 +69,7 @@ class RolesAndPermissionsSeeder extends Seeder
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         }
 
-//        DB::commit();
+        DB::commit();
     }
 
 

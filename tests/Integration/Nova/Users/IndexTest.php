@@ -1,13 +1,21 @@
 <?php
+namespace Tests\Integration\Nova\Users;
 
+use App\Enums\UsersEnum;
 use App\Models\User;
+use Database\Seeders\CategorySeeder;
+use Database\Seeders\RolesAndPermissionsSeeder;
+use Database\Seeders\UserSeeder;
 
-beforeEach(fn () => $this->authed = $this->loginAsAdmin());
+beforeEach(closure: function () : void {
+    $this->seed([UserSeeder::class, RolesAndPermissionsSeeder::class]);
+    $this->authed = $this->loginAsAdmin();
+});
 
 it('can render users index resources page', function () {
     $this->novaIndex('users')
-         ->assertResourceCount(2)
-         ->assertResources(fn ($resources) => $resources->count() === 2);
+         ->assertResourceCount(UsersEnum::count())
+         ->assertResources(fn ($resources) => $resources->count() === UsersEnum::count());
 });
 
 it('can render users index resources fields', function () {
@@ -16,6 +24,6 @@ it('can render users index resources fields', function () {
          ->assertFieldsInclude(['id', 'email', 'name', 'roles', 'permissions'])
          ->assertFieldsInclude(['id' => $this->authed->id, 'email' => $this->authed->email])
          ->assertFieldsInclude('id', User::query()->get()->pluck('id'))
-         // collection of field arrays
-         ->assertFields(fn ($fields) => $fields->count() === 2 && count($fields->first()) === 7);
+        // collection of field arrays
+         ->assertFields(fn ($fields) => $fields->count() === UsersEnum::count() && count($fields->first()) === 7);
 });

@@ -1,4 +1,13 @@
 <?php
+namespace Tests\Integration\Nova\Users;
+
+use Database\Seeders\CategorySeeder;
+use Database\Seeders\RolesAndPermissionsSeeder;
+use Database\Seeders\UserSeeder;
+
+beforeEach(closure: function () {
+    $this->seed([UserSeeder::class, RolesAndPermissionsSeeder::class]);
+});
 
 it('can show users fields', function () {
     // superUser

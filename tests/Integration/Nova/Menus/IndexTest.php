@@ -1,8 +1,11 @@
 <?php
 
 use App\Models\Menu;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\RolesAndPermissionsSeeder;
 
 beforeEach(function () {
+    $this->seed([UserSeeder::class, RolesAndPermissionsSeeder::class]);
     $this->menu = Menu::factory()->create();
     $this->authed = $this->loginAsAdmin();
 });
