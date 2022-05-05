@@ -2,7 +2,7 @@
 
 namespace App\Nova;
 
-use OptimistDigital\MenuBuilder\Nova\Resources\MenuResource;
+use Outl1ne\MenuBuilder\Nova\Resources\MenuResource;
 
 class Menu extends MenuResource
 {

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use OptimistDigital\MenuBuilder\Models\Menu as BaseMenu;
+use Outl1ne\MenuBuilder\Models\Menu as BaseMenu;
 
 class Menu extends BaseMenu
 {

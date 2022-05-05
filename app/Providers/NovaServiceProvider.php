@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
-use Curder\NovaPermission\NovaPermissionTool;
+use App\Policies\PermissionPolicy;
+use App\Policies\RolePolicy;
+use Vyuldashev\NovaPermission\NovaPermissionTool;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
-use OptimistDigital\MenuBuilder\MenuBuilder;
+use Outl1ne\MenuBuilder\MenuBuilder;
 use Spatie\BackupTool\BackupTool;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -89,6 +91,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function register()
     {
-        //
+        Nova::initialPath('/resources/users'); // https://nova.laravel.com/docs/4.0/installation.html#brand-logo
     }
 }

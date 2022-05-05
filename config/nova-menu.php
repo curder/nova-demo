@@ -63,8 +63,8 @@ return [
     */
 
     'menu_item_types' => [
-        \OptimistDigital\MenuBuilder\MenuItemTypes\MenuItemTextType::class,
-        \OptimistDigital\MenuBuilder\MenuItemTypes\MenuItemStaticURLType::class,
+        \Outl1ne\MenuBuilder\MenuItemTypes\MenuItemTextType::class,
+        \Outl1ne\MenuBuilder\MenuItemTypes\MenuItemStaticURLType::class,
     ],
 
     /*

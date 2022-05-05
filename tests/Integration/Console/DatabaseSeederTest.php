@@ -1,10 +1,10 @@
 <?php
 
-use App\Enums\PermissionsEnum;
-use App\Enums\RolesEnum;
 use App\Models\User;
-use Curder\NovaPermission\Models\Permission;
-use Curder\NovaPermission\Models\Role;
+use App\Models\Role;
+use App\Enums\RolesEnum;
+use App\Models\Permission;
+use App\Enums\PermissionsEnum;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class)

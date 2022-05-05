@@ -2,14 +2,14 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Role;
 use App\Enums\RolesEnum;
+use App\Models\Permission;
 use App\Enums\PermissionsEnum;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Curder\NovaPermission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
-use Curder\NovaPermission\Models\Permission;
 
 class RolesAndPermissionsSeeder extends Seeder
 {
@@ -24,13 +24,13 @@ class RolesAndPermissionsSeeder extends Seeder
             // 1. refresh exists table
             $this->refreshTables();
             // 2. Reset cached roles and permissions
-            app()[ PermissionRegistrar::class ]->forgetCachedPermissions();
+            app()[PermissionRegistrar::class]->forgetCachedPermissions();
         }
 
         // 3. create permissions for each collection item
         $this->getPermissions()->each(
             fn($item, $group) => collect($item)->each(
-                fn($permission) => Permission::create(['group' => $group, 'name' => $permission])
+                fn($permission) => Permission::create(['name' => $permission])
             )
         );
 
@@ -43,7 +43,7 @@ class RolesAndPermissionsSeeder extends Seeder
             )
             ->each(
                 fn(RolesEnum $role) => $role->users()->each(
-                    fn($email) => User::where('email', $email)->first()->assignRole($role->value)
+                    fn($email) => User::query()->where('email', $email)->first()->assignRole($role->value)
                 )
             );
     }
@@ -53,7 +53,7 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     protected function refreshTables() : void
     {
-        DB::beginTransaction();
+        // DB::beginTransaction();
 
         if (config('database.default') !== 'sqlite') {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
@@ -69,7 +69,7 @@ class RolesAndPermissionsSeeder extends Seeder
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         }
 
-        DB::commit();
+        // DB::commit();
     }
 
 

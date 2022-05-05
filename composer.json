@@ -6,17 +6,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "curder/nova-permission": "*",
-        "david-griffiths/nova-dark-theme": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
-        "kabbouchi/nova-impersonate": "^1.11",
-        "laravel/framework": "^9.2",
-        "laravel/nova": "~3.0",
-        "laravel/sanctum": "^2.14.1",
+        "kiritokatklian/nova-permission": "^4.0",
+        "laravel/framework": "^9.11",
+        "laravel/nova": "~4.0",
+        "laravel/sanctum": "^2.15.1",
         "laravel/tinker": "^2.7",
-        "optimistdigital/nova-menu-builder": "^6.1",
+        "outl1ne/nova-menu-builder": "^7.0",
         "overtrue/laravel-filesystem-qiniu": "^2.0",
-        "spatie/nova-backup-tool": "^4.2"
+        "spatie/nova-backup-tool": "^5.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
@@ -38,10 +36,6 @@
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/nova-permission"
         },
         {
             "type": "vcs",

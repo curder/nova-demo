@@ -19,6 +19,7 @@ enum PermissionsEnum: string
     case PERMISSION_ATTACH_ANY_USERS = 'attachAnyUsers'; // 赋予用户权限
     case PERMISSION_ATTACH_USERS = 'attachUsers'; // 更新用户权限
     case PERMISSION_DETACH_USERS = 'detachUsers';    // 取消用户授权
+
     // 角色
     case ROLES = 'roles'; // 分组标示
     case MANAGER_ROLES = 'managerRoles'; // 列表
@@ -31,6 +32,7 @@ enum PermissionsEnum: string
     case ROLE_ATTACH_ANY_USERS = 'roleAttachAnyUsers'; // 赋予用户角色
     case ROLE_ATTACH_USERS = 'roleAttachUsers'; // 更新用户角色
     case ROLE_DETACH_USERS = 'roleDetachUsers'; // 取消用户角色
+
     // 权限
     case PERMISSIONS = 'permissions'; // 分组标示
     case MANAGER_PERMISSIONS = 'managerPermissions'; // 列表

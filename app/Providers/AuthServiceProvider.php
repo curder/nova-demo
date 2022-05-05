@@ -3,8 +3,12 @@
 namespace App\Providers;
 
 use App\Models\Menu;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 use App\Policies\MenuPolicy;
+use App\Policies\PermissionPolicy;
+use App\Policies\RolePolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 

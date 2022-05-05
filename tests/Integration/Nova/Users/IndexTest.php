@@ -21,9 +21,9 @@ it('can render users index resources page', function () {
 it('can render users index resources fields', function () {
     $this->novaIndex('users')
          ->assertFieldsInclude('id')
-         ->assertFieldsInclude(['id', 'email', 'name', 'roles', 'permissions'])
+         ->assertFieldsInclude(['id', 'email', 'name'])
          ->assertFieldsInclude(['id' => $this->authed->id, 'email' => $this->authed->email])
          ->assertFieldsInclude('id', User::query()->get()->pluck('id'))
         // collection of field arrays
-         ->assertFields(fn ($fields) => $fields->count() === UsersEnum::count() && count($fields->first()) === 7);
+         ->assertFields(fn ($fields) => $fields->count() === UsersEnum::count() && count($fields->first()) === 4);
 });

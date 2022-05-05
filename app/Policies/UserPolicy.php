@@ -4,16 +4,18 @@ namespace App\Policies;
 
 use App\Enums\PermissionsEnum;
 use App\Enums\RolesEnum;
+use App\Models\Permission;
 use App\Models\User;
-use Curder\NovaPermission\Models\Role;
-use Curder\NovaPermission\Policies\Policy;
+use App\Models\Role;
+use App\Policies\Policy;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 /**
  * Class UserPolicy.
  */
-class UserPolicy extends Policy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -27,6 +29,21 @@ class UserPolicy extends Policy
     {
         //
     }
+
+    /**
+     * Determine whether the user can create models.
+     *
+     * @param User $user
+     *
+     * @return bool
+     *
+     * @throws \Exception
+     */
+    public function create(User $user): bool
+    {
+        return $user->hasPermissionTo(PermissionsEnum::CREATE_USERS->value);
+    }
+
 
     /**
      * Determine whether the user can delete the model.
@@ -192,7 +209,7 @@ class UserPolicy extends Policy
      * 用户详情页面中的权限列表更新按钮操作权限控制.
      *
      * @param User $user
-     * @param \Curder\NovaPermission\Models\Permission $permission
+     * @param Permission $permission
      *
      * @return bool
      */
@@ -205,7 +222,7 @@ class UserPolicy extends Policy
      * 用户详情页面中的权限列表删除按钮操作权限控制.
      *
      * @param User $user
-     * @param \Curder\NovaPermission\Models\Permission $permission
+     * @param Permission $permission
      *
      * @return bool
      */
@@ -224,8 +241,7 @@ class UserPolicy extends Policy
      */
     public function view($user, $model): bool
     {
-        /* @var User $user */
-        return $user->hasPermissionTo('view'.static::getKey());
+        return $user->hasPermissionTo(PermissionsEnum::VIEW_USERS->value);
     }
 
     /**
@@ -233,16 +249,8 @@ class UserPolicy extends Policy
      *
      * @return bool
      */
-    public function viewAny($user): bool
+    public function viewAny(User $user): bool
     {
-        return $user->hasPermissionTo('manager'.static::getKey());
-    }
-
-    /**
-     * @return string
-     */
-    public static function getKey(): string
-    {
-        return Str::studly(PermissionsEnum::USERS->value);
+        return $user->hasPermissionTo(PermissionsEnum::MANAGER_USERS->value);
     }
 }

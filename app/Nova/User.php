@@ -2,19 +2,15 @@
 
 namespace App\Nova;
 
-use App\Enums\PermissionsEnum;
-use App\Enums\RolesEnum;
 use App\Models\User as UserModel;
-use Curder\NovaPermission\Models\Permission;
-use Curder\NovaPermission\Models\Role;
 use Illuminate\Http\Request;
-use KABBOUCHI\NovaImpersonate\Impersonate;
-use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Panel;
+use Vyuldashev\NovaPermission\Permission;
+use Vyuldashev\NovaPermission\Role;
 
 /**
  * Class User
@@ -77,97 +73,14 @@ class User extends Resource
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
 
-            new Panel(__('nova-permission::navigations.Role & Permission'), $this->getRoleAndPermissionFields()),
+            MorphToMany::make(__('users.roles'), 'roles', Role::class),
+            MorphToMany::make(__('users.permissions'), 'permissions', Permission::class),
 
-            Impersonate::make($this),
+            // new Panel(__('users.groupLabel'), $this->getRoleAndPermissionFields()),
+
 //            BooleanGroup::make('Permissions')->options(
 //                Permission::get()->pluck('name', 'id')->toArray()
 //            ),
-        ];
-    }
-
-    public function getRoleAndPermissionFields(): array
-    {
-        $roles = Role::query()->get();
-        $permissions = Permission::query()->get();
-
-        return [
-            BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
-                        ->options(
-                            fn () => $roles->mapWithKeys(
-                                fn ($role) => [$role->id => RolesEnum::from($role->name)->label()]
-                            )
-                        )
-                        ->resolveUsing(
-                            fn () => $roles->mapWithKeys(
-                                fn ($role) => [$role->id => $this->resource->hasRole($role->name)]
-                            )
-                        )->exceptOnForms(),
-
-            BooleanGroup::make(__('nova-permission::resources.Roles'), 'roles')
-                        ->options(
-                            fn () => $roles->mapWithKeys(
-                                fn ($role) => [$role->id => RolesEnum::from($role->name)->label()]
-                            )
-                        )
-                        ->resolveUsing(
-                            fn () => $roles->mapWithKeys(
-                                fn ($role) => [$role->id => $this->resource->hasRole($role->name)]
-                            )
-                        )
-                        ->onlyOnForms()
-                        ->canSee(function () {
-                            /* @var \App\Models\User $user */
-                            $user = request()->user();
-
-                            return $user->isSuperAdmin()
-                                || $user->can(PermissionsEnum::ROLE_ATTACH_ANY_USERS->value)
-                                || $user->can(PermissionsEnum::ROLE_ATTACH_USERS->value);
-                        }),
-
-            BooleanGroup::make(__('nova-permission::resources.Permissions'), 'permissions')
-                        ->options(function () use ($permissions) {
-                            return $permissions->mapWithKeys(function ($permission) {
-                                $group_name = PermissionsEnum::from($permission->group)->label();
-                                $permission_name = PermissionsEnum::from($permission->name)->label();
-
-                                return [
-                                    $permission->id => sprintf('%s-%s', $permission_name, $group_name),
-                                ];
-                            });
-                        })
-                        ->resolveUsing(
-                            fn () => $permissions->mapWithKeys(
-                                fn ($permission) => [$permission->id => $this->resource->hasPermissionTo($permission->name)]
-                            )
-                        )
-                        ->exceptOnForms(),
-
-            BooleanGroup::make(__('nova-permission::resources.Permissions'), 'permissions')
-                        ->options(function () use ($permissions) {
-                            return $permissions->mapWithKeys(function ($permission) {
-                                $group_name = PermissionsEnum::from($permission->group)->label();
-                                $permission_name = PermissionsEnum::from($permission->name)->label();
-
-                                return [
-                                    $permission->id => sprintf('%s-%s', $permission_name, $group_name),
-                                ];
-                            });
-                        })
-                        ->resolveUsing(
-                            fn () => $permissions->mapWithKeys(
-                                fn ($permission) => [$permission->id => $this->resource->hasPermissionTo($permission->name)]
-                            )
-                        )
-                        ->onlyOnForms()
-                        ->canSee(function () {
-                            /* @var \App\Models\User $user */
-                            $user = request()->user();
-
-                            return $user->isSuperAdmin()
-                                || $user->can(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS->value)
-                                || $user->can(PermissionsEnum::PERMISSION_ATTACH_USERS->value);
-                        }),
         ];
     }
 

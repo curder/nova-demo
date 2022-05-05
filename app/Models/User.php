@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Enums\RolesEnum;
-use Curder\NovaPermission\Models\SyncRoleAndPermission;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Nova\Auth\Impersonatable;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -25,7 +25,7 @@ class User extends Authenticatable
     use HasRoles;
     use Notifiable;
     use SoftDeletes;
-    use SyncRoleAndPermission;
+    use Impersonatable;
 
     /**
      * The attributes that are mass assignable.
