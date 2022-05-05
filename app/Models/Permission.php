@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Database\Factories\PermissionFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Models\Permission as SpatiePermission;
 
 /**

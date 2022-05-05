@@ -4,11 +4,10 @@ namespace App\Policies;
 
 use App\Enums\PermissionsEnum;
 use App\Enums\RolesEnum;
-use App\Models\User;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 /**
  * Class RolePolicy.
@@ -41,7 +40,6 @@ class RolePolicy
     {
         return $user->hasPermissionTo(PermissionsEnum::CREATE_ROLES->value);
     }
-
 
     /**
      * Determine whether the user can delete the model.
@@ -124,7 +122,6 @@ class RolePolicy
         return $user->hasPermissionTo(PermissionsEnum::UPDATE_ROLES->value);
     }
 
-
     /**
      * Determine whether the user can view the model.
      *
@@ -133,7 +130,7 @@ class RolePolicy
      *
      * @return bool
      */
-    public function view($user, $model) : bool
+    public function view($user, $model): bool
     {
         return $user->hasPermissionTo(PermissionsEnum::VIEW_ROLES->value);
     }
@@ -143,7 +140,7 @@ class RolePolicy
      *
      * @return bool
      */
-    public function viewAny($user) : bool
+    public function viewAny($user): bool
     {
         return $user->hasPermissionTo(PermissionsEnum::MANAGER_ROLES->value);
     }

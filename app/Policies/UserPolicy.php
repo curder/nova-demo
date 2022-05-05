@@ -5,12 +5,10 @@ namespace App\Policies;
 use App\Enums\PermissionsEnum;
 use App\Enums\RolesEnum;
 use App\Models\Permission;
-use App\Models\User;
 use App\Models\Role;
-use App\Policies\Policy;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 /**
  * Class UserPolicy.
@@ -43,7 +41,6 @@ class UserPolicy
     {
         return $user->hasPermissionTo(PermissionsEnum::CREATE_USERS->value);
     }
-
 
     /**
      * Determine whether the user can delete the model.

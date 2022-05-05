@@ -2,14 +2,12 @@
 
 namespace App\Providers;
 
-use App\Policies\PermissionPolicy;
-use App\Policies\RolePolicy;
-use Vyuldashev\NovaPermission\NovaPermissionTool;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use Outl1ne\MenuBuilder\MenuBuilder;
 use Spatie\BackupTool\BackupTool;
+use Vyuldashev\NovaPermission\NovaPermissionTool;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {

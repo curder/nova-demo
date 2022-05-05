@@ -3,18 +3,16 @@
 namespace App\Policies;
 
 use App\Enums\PermissionsEnum;
-use App\Models\User;
-use App\Models\Role;
 use App\Models\Permission;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 /**
  * Class PermissionPolicy.
  */
 class PermissionPolicy
 {
-
     /**
      * @param User $user
      * @param string $ability
@@ -60,7 +58,6 @@ class PermissionPolicy
         return false;
     }
 
-
     /**
      * Determine whether the user can view the model.
      *
@@ -69,7 +66,7 @@ class PermissionPolicy
      *
      * @return bool
      */
-    public function view($user, $model) : bool
+    public function view($user, $model): bool
     {
         return $user->hasPermissionTo(PermissionsEnum::VIEW_PERMISSIONS->value);
     }
@@ -79,7 +76,7 @@ class PermissionPolicy
      *
      * @return bool
      */
-    public function viewAny($user) : bool
+    public function viewAny($user): bool
     {
         return $user->hasPermissionTo(PermissionsEnum::MANAGER_PERMISSIONS->value);
     }

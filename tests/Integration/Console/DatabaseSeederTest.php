@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\User;
-use App\Models\Role;
+use App\Enums\PermissionsEnum;
 use App\Enums\RolesEnum;
 use App\Models\Permission;
-use App\Enums\PermissionsEnum;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class)
