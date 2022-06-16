@@ -17,6 +17,7 @@
         "spatie/nova-backup-tool": "^5.0"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "barryvdh/laravel-debugbar": "^3.6",
         "brianium/paratest": "^6.4",
         "deployer/deployer": "dev-l9",
