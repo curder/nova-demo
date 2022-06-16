@@ -1,6 +1,7 @@
 <?php
 namespace Database\Seeders;
 
+use App\Enums\UsersEnum;
 use App\Models\User;
 use App\Models\Role;
 use App\Enums\RolesEnum;
@@ -42,8 +43,13 @@ class RolesAndPermissionsSeeder extends Seeder
                 Role::findByName($item)->givePermissionTo(RolesEnum::permissions($item->value))
             )
             ->each(
-                fn(RolesEnum $role) => $role->users()->each(
-                    fn($email) => User::query()->where('email', $email)->first()?->assignRole($role->value)
+                fn(RolesEnum $role) => $role->users()
+                                            ->map(fn (string $user_enum) => UsersEnum::fromValue($user_enum))
+                                            ->each(
+                                                fn(UsersEnum $users_enum) => User::query()
+                                                                                 ->where('email', $users_enum->description)
+                                                                                 ->first()
+                                                                                 ?->assignRole($role->value)
                 )
             );
     }
