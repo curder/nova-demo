@@ -30,6 +30,7 @@
   "novaMenuBuilder.menuItemTargetNewWindow": "新窗口打开",
   "novaMenuBuilder.menuItemActive": "启用",
   "novaMenuBuilder.menuItemDisabled": "禁用",
+  "novaMenuBuilder.nestableLabel": "可嵌套",
   "novaMenuBuilder.toastDeleteSucces": "资源被删除",
   "novaMenuBuilder.toastCreateSuccess": "资源已创建",
   "novaMenuBuilder.toastUpdateSuccess": "资源被更新",
@@ -37,6 +38,8 @@
   "novaMenuBuilder.toastDuplicateSuccess": "资源复制成功",
   "novaMenuBuilder.serverError": "服务器错误，请稍候再试",
   "novaMenuBuilder.menuTypeRequired": "类型必须",
-
+  "novaMenuBuilder.copyMenuItemsFromTitle": "复制菜单项",
+  "novaMenuBuilder.copyMenuItemsButtonTitle": "复制项目",
+  "novaMenuBuilder.locale": "语言环境",
   "Open in": "打开方式"
 }
