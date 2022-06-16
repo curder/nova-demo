@@ -462,16 +462,5 @@
     "Verify Your Email Address": "验证 E-mail",
     "We won't ask for your password again for a few hours.": "确认完成后，接下来几个小时内您不需再输入密码。",
     "Your email address is not verified.": "您的电子邮件尚未验证通过",
-    "Dark Theme": "切换主题",
-    "Backups": "数据备份",
-    "Create Backup": "立马创建一个备份",
-    "Disk": "所属磁盘",
-    "Healthy": "健康状况",
-    "Amount of backups": "备份数量",
-    "Newest backup": "最新备份",
-    "Used Storage": "占用空间",
-    "Path": "路径",
-    "Created at": "创建时间",
-    "Size": "文件大小"
-
+    "Dark Theme": "切换主题"
 }
