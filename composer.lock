@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "84d1702af4ac836e23b68eda3ffa49f6",
+    "content-hash": "48f16f1d8224f2b896a8243207703636",
     "packages": [
         {
             "name": "bensampo/laravel-enum",
-            "version": "v5.3.0",
+            "version": "dev-adaptation-nova/5.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/BenSampo/laravel-enum.git",
-                "reference": "0440f7a7fd70d77716a6e6c7fed2a3e932d09b49"
+                "url": "https://github.com/curder/laravel-enum.git",
+                "reference": "8ecd9c5cd6e2f83ccd5d224798991ed4fd5a1186"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenSampo/laravel-enum/zipball/0440f7a7fd70d77716a6e6c7fed2a3e932d09b49",
-                "reference": "0440f7a7fd70d77716a6e6c7fed2a3e932d09b49",
+                "url": "https://api.github.com/repos/curder/laravel-enum/zipball/8ecd9c5cd6e2f83ccd5d224798991ed4fd5a1186",
+                "reference": "8ecd9c5cd6e2f83ccd5d224798991ed4fd5a1186",
                 "shasum": ""
             },
             "require": {
@@ -37,6 +37,7 @@
                 "phpunit/phpunit": "^9.5.10",
                 "squizlabs/php_codesniffer": "^3.6"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -58,7 +59,22 @@
                     "BenSampo\\Enum\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "BenSampo\\Enum\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "check-style": [
+                    "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+                ],
+                "fix-style": [
+                    "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+                ],
+                "test": [
+                    "phpunit"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -79,16 +95,15 @@
                 "validation"
             ],
             "support": {
-                "issues": "https://github.com/BenSampo/laravel-enum/issues",
-                "source": "https://github.com/BenSampo/laravel-enum/tree/v5.3.0"
+                "source": "https://github.com/curder/laravel-enum/tree/adaptation-nova/5.3.0"
             },
             "funding": [
                 {
-                    "url": "https://github.com/bensampo",
-                    "type": "github"
+                    "type": "github",
+                    "url": "https://github.com/bensampo"
                 }
             ],
-            "time": "2022-04-08T07:46:13+00:00"
+            "time": "2022-06-16T10:03:00+00:00"
         },
         {
             "name": "box/spout",
@@ -13777,6 +13792,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "bensampo/laravel-enum": 20,
         "roave/security-advisories": 20,
         "deployer/deployer": 20
     },
