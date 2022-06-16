@@ -38,7 +38,7 @@ class RolePolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::CREATE_ROLES->value);
+        return $user->hasPermissionTo(PermissionsEnum::CREATE_ROLES);
     }
 
     /**
@@ -53,7 +53,7 @@ class RolePolicy
      */
     public function delete($user, $model)
     {
-        if (RolesEnum::SuperAdmin->value === $model->name) {
+        if (RolesEnum::SUPER_ADMIN === $model->name) {
             return false;
         }
 
@@ -76,11 +76,11 @@ class RolePolicy
      */
     public function restore($user, $model)
     {
-        if ($user->hasRole($model->name) || RolesEnum::SuperAdmin->value === $model->name) {
+        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
             return false;
         }
 
-        return $user->hasPermissionTo(PermissionsEnum::RESTORE_ROLES->value);
+        return $user->hasPermissionTo(PermissionsEnum::RESTORE_ROLES);
     }
 
     /**
@@ -95,11 +95,11 @@ class RolePolicy
      */
     public function forceDelete($user, $model)
     {
-        if ($user->hasRole($model->name) || RolesEnum::SuperAdmin->value === $model->name) {
+        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
             return false;
         }
 
-        return $user->hasPermissionTo(PermissionsEnum::FORCE_DELETE_ROLES->value);
+        return $user->hasPermissionTo(PermissionsEnum::FORCE_DELETE_ROLES);
     }
 
     /**
@@ -115,11 +115,11 @@ class RolePolicy
     public function update($user, $model)
     {
         /* @var User $user */
-        if ($user->hasRole($model->name) || RolesEnum::SuperAdmin->value === $model->name) {
+        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
             return false;
         }
 
-        return $user->hasPermissionTo(PermissionsEnum::UPDATE_ROLES->value);
+        return $user->hasPermissionTo(PermissionsEnum::UPDATE_ROLES);
     }
 
     /**
@@ -132,7 +132,7 @@ class RolePolicy
      */
     public function view($user, $model): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::VIEW_ROLES->value);
+        return $user->hasPermissionTo(PermissionsEnum::VIEW_ROLES);
     }
 
     /**
@@ -142,7 +142,7 @@ class RolePolicy
      */
     public function viewAny($user): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::MANAGER_ROLES->value);
+        return $user->hasPermissionTo(PermissionsEnum::MANAGER_ROLES);
     }
 
     /**
@@ -161,11 +161,11 @@ class RolePolicy
             return true;
         }
 
-        if (RolesEnum::SuperAdmin->value === $role->name) {
+        if (RolesEnum::SUPER_ADMIN === $role->name) {
             return false;
         }
 
-        return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_ANY_USERS->value)
+        return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_ANY_USERS)
             // && !$user->roles->contains($role)
             ;
     }
@@ -180,7 +180,7 @@ class RolePolicy
      */
     public function attachUser($user, $role)
     {
-        return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_USERS->value);
+        return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_USERS);
     }
 
     /**
@@ -193,6 +193,6 @@ class RolePolicy
      */
     public function detachUser($user, $role)
     {
-        return $user->hasPermissionTo(PermissionsEnum::ROLE_DETACH_USERS->value);
+        return $user->hasPermissionTo(PermissionsEnum::ROLE_DETACH_USERS);
     }
 }

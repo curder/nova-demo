@@ -10,7 +10,7 @@ beforeEach(closure: function () {
 });
 
 it('can show users fields', function () {
-    // superUser
+    /** @var \App\Models\User $authed */
     $authed = $this->loginAsAdmin();
 
     $this->novaDetail('users', $authed->id)

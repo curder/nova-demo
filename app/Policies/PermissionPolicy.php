@@ -68,7 +68,7 @@ class PermissionPolicy
      */
     public function view($user, $model): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::VIEW_PERMISSIONS->value);
+        return $user->hasPermissionTo(PermissionsEnum::VIEW_PERMISSIONS);
     }
 
     /**
@@ -78,7 +78,7 @@ class PermissionPolicy
      */
     public function viewAny($user): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::MANAGER_PERMISSIONS->value);
+        return $user->hasPermissionTo(PermissionsEnum::MANAGER_PERMISSIONS);
     }
 
     /**
@@ -93,7 +93,7 @@ class PermissionPolicy
     public function attachAnyUser($user, Permission $permission): bool
     {
         return $user->hasPermissionTo(
-            PermissionsEnum::PERMISSION_ATTACH_ANY_USERS->value
+            PermissionsEnum::PERMISSION_ATTACH_ANY_USERS
         );
     }
 
@@ -108,7 +108,7 @@ class PermissionPolicy
     public function attachUser($user, Permission $permission): bool
     {
         return $user->hasPermissionTo(
-            PermissionsEnum::PERMISSION_ATTACH_USERS->value
+            PermissionsEnum::PERMISSION_ATTACH_USERS
         );
     }
 
@@ -123,7 +123,7 @@ class PermissionPolicy
     public function detachUser($user, Permission $permission): bool
     {
         return $user->hasPermissionTo(
-            PermissionsEnum::PERMISSION_DETACH_USERS->value
+            PermissionsEnum::PERMISSION_DETACH_USERS
         );
     }
 
@@ -138,7 +138,7 @@ class PermissionPolicy
      */
     public function attachAnyRole($user, $role): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES->value);
+        return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES);
     }
 
     /**
@@ -152,7 +152,7 @@ class PermissionPolicy
     public function attachRole($user, $role): bool
     {
         return $user->hasPermissionTo(
-            PermissionsEnum::PERMISSION_ATTACH_ROLES->value
+            PermissionsEnum::PERMISSION_ATTACH_ROLES
         );
     }
 
@@ -167,7 +167,7 @@ class PermissionPolicy
     public function detachRole($user, $role): bool
     {
         return $user->hasPermissionTo(
-            PermissionsEnum::PERMISSION_DETACH_ROLES->value
+            PermissionsEnum::PERMISSION_DETACH_ROLES
         );
     }
 
@@ -177,9 +177,9 @@ class PermissionPolicy
     protected function disabledGroup(): array
     {
         return [
-            PermissionsEnum::USERS->value,
-            PermissionsEnum::ROLES->value,
-            PermissionsEnum::PERMISSIONS->value,
+            PermissionsEnum::USERS,
+            PermissionsEnum::ROLES,
+            PermissionsEnum::PERMISSIONS,
         ];
     }
 }

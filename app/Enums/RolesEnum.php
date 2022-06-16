@@ -3,29 +3,32 @@
 namespace App\Enums;
 
 use App\Enums\PermissionsEnum as Permission;
+use BenSampo\Enum\Contracts\LocalizedEnum;
+use BenSampo\Enum\Enum;
 use Illuminate\Support\Collection;
 
-enum RolesEnum: string
+final class RolesEnum extends Enum implements LocalizedEnum
 {
-    case SuperAdmin = 'superAdmin'; // 超级管理员
-    case Content = 'content'; // 内容管理员
+    public const  SUPER_ADMIN = 'superAdmin'; // 超级管理员
+    public const  CONTENT = 'content'; // 内容管理员
 
-    public function label(): string
-    {
-        return match ($this) {
-            self::SuperAdmin => '超级管理员',
-            self::Content => '内容管理员',
-        };
-    }
+
+//    public function label(): string
+//    {
+//        return match ($this) {
+//            self::SUPER_ADMIN => '超级管理员',
+//            self::CONTENT => '内容管理员',
+//        };
+//    }
 
     public function users(): Collection
     {
-        return match ($this) {
-            self::SuperAdmin => collect([
-                UsersEnum::Super,
+        return match ($this->value) {
+            self::SUPER_ADMIN => collect([
+                UsersEnum::fromValue(UsersEnum::SUPER)->description,
             ]),
-            self::Content => collect([
-                UsersEnum::Example,
+            self::CONTENT => collect([
+                UsersEnum::fromValue(UsersEnum::EXAMPLE)->description,
             ]),
             default => collect([]),
         };
@@ -36,7 +39,7 @@ enum RolesEnum: string
      */
     public static function count(): int
     {
-        return count(self::cases());
+        return count(self::getConstants());
     }
 
     /**
@@ -49,16 +52,16 @@ enum RolesEnum: string
     public static function permissions(string $role): Collection
     {
         return collect([
-            self::SuperAdmin->value => PermissionsEnum::availablePermissions(),
-            self::Content->value => collect([
-                Permission::MANAGER_USERS->value,
-                Permission::VIEW_USERS->value,
-                Permission::UPDATE_USERS->value,
-                Permission::DELETE_USERS->value,
-                Permission::RESTORE_USERS->value,
+            self::SUPER_ADMIN => PermissionsEnum::availablePermissions(),
+            self::CONTENT => collect([
+                Permission::MANAGER_USERS,
+                Permission::VIEW_USERS,
+                Permission::UPDATE_USERS,
+                Permission::DELETE_USERS,
+                Permission::RESTORE_USERS,
 
-                Permission::MANAGER_MENUS->value,
-                Permission::VIEW_MENUS->value,
+                Permission::MANAGER_MENUS,
+                Permission::VIEW_MENUS,
             ]),
         ])->get($role, collect([]));
     }

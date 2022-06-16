@@ -33,11 +33,10 @@ expect()->extend('toBeOne', function () {
     return $this->toBe(1);
 });
 
-expect()->extend('toBeEnum', function ($name, $value, $label) {
-    $this->label()->toBe($label);
-
-    return $this->toHaveProperty('name', $name)
-         ->toHaveProperty('value', $value);
+expect()->extend('toBeEnum', function ($name, $value, $description) {
+    return $this->toHaveProperty('key', $name)
+         ->toHaveProperty('value', $value)
+        ->toHaveProperty('description', $description);
 });
 
 /*

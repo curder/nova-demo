@@ -2,6 +2,7 @@
 
 use App\Enums\PermissionsEnum;
 use App\Enums\RolesEnum;
+use App\Enums\UsersEnum;
 
 return [
     PermissionsEnum::class => [
@@ -43,10 +44,24 @@ return [
         PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES  => '赋予角色权限',
         PermissionsEnum::PERMISSION_ATTACH_ROLES      => '更新角色权限',
         PermissionsEnum::PERMISSION_DETACH_ROLES      => '取消角色权限',
+
+        // 菜单
+        PermissionsEnum::MENUS => '菜单',
+        PermissionsEnum::MANAGER_MENUS => '列表',
+        PermissionsEnum::VIEW_MENUS => '查看',
+        PermissionsEnum::CREATE_MENUS => '新建',
+        PermissionsEnum::UPDATE_MENUS => '编辑',
+        PermissionsEnum::DELETE_MENUS => '删除',
     ],
 
     RolesEnum::class => [
         RolesEnum::SUPER_ADMIN => '超级管理员',
         RolesEnum::CONTENT => '编辑管理员',
     ],
+
+    UsersEnum::class => [
+        UsersEnum::SUPER => 'super@example.com',
+        UsersEnum::EXAMPLE => 'example@example.com',
+    ],
+
 ];

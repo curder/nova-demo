@@ -10,7 +10,7 @@ beforeEach(closure: function () {
 });
 
 it('has users fields for super admin user', function () {
-    // superUser
+    /** @var \App\Models\User $authed */
     $authed = $this->loginAsAdmin();
 
     $this->novaEdit('users', $authed->id)
@@ -23,7 +23,7 @@ it('has users fields for super admin user', function () {
 });
 
 it('has some users fields for content manager user', function () {
-    // normal user
+    /** @var \App\Models\User $authed */
     $authed = $this->loginAsEditor();
 
     $this->novaEdit('users', $authed->id)

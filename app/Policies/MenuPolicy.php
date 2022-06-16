@@ -32,7 +32,7 @@ class MenuPolicy
      */
     public function viewAny(UserModel $user): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::MANAGER_MENUS->value);
+        return $user->hasPermissionTo(PermissionsEnum::MANAGER_MENUS);
     }
 
     /**
@@ -44,7 +44,7 @@ class MenuPolicy
      */
     public function view(UserModel $user, MenuModel $menuModel): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::VIEW_MENUS->value);
+        return $user->hasPermissionTo(PermissionsEnum::VIEW_MENUS);
     }
 
     /**
@@ -55,7 +55,7 @@ class MenuPolicy
      */
     public function create(UserModel $user): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::CREATE_MENUS->value);
+        return $user->hasPermissionTo(PermissionsEnum::CREATE_MENUS);
     }
 
     /**
@@ -67,7 +67,7 @@ class MenuPolicy
      */
     public function update(UserModel $user, MenuModel $menuModel): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::UPDATE_MENUS->value);
+        return $user->hasPermissionTo(PermissionsEnum::UPDATE_MENUS);
     }
 
     /**
@@ -79,6 +79,6 @@ class MenuPolicy
      */
     public function delete(UserModel $user, MenuModel $menuModel): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::DELETE_MENUS->value);
+        return $user->hasPermissionTo(PermissionsEnum::DELETE_MENUS);
     }
 }

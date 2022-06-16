@@ -16,14 +16,15 @@ it('has groups static method on permissionsEnum class', fn () => expect(Permissi
 it('has count static method on permissionsEnum class', fn () => expect(PermissionsEnum::count())
     ->toBeInt()->toBe($this->available_count));
 
-it('has enum key value and label method for Users', fn () => expect(PermissionsEnum::USERS)
-    ->toBeInstanceOf(PermissionsEnum::class)
-    ->toBeEnum('USERS', 'users', '用户'));
-
-it('has enum key value and label method for Roles', fn () => expect(PermissionsEnum::ROLES)
-    ->toBeInstanceOf(PermissionsEnum::class)
-    ->toBeEnum('ROLES', 'roles', '角色'));
-
-it('has enum key value and label method for Permissions', fn () => expect(PermissionsEnum::PERMISSIONS)
-    ->toBeInstanceOf(PermissionsEnum::class)
-    ->toBeEnum('PERMISSIONS', 'permissions', '权限'));
+it('has some items in PermissionsEnum class', function (string $value) {
+    expect(PermissionsEnum::fromValue($value))
+        ->toBeInstanceOf(PermissionsEnum::class)
+        ->key->toEqual(PermissionsEnum::fromValue($value)->key)
+        ->value->toEqual(PermissionsEnum::fromValue($value)->value)
+        ->description->toEqual(__('enums.App\Enums\PermissionsEnum.' . $value));
+})->with([
+    [PermissionsEnum::USERS],
+    [PermissionsEnum::ROLES],
+    [PermissionsEnum::PERMISSIONS],
+    [PermissionsEnum::MENUS],
+]);

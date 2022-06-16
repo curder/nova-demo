@@ -11,7 +11,7 @@ beforeEach(closure: function () {
 });
 
 it('has some fields for super admin user', function () {
-    $authed = $this->loginAsAdmin();
+    $this->loginAsAdmin();
 
     $this->novaCreate('users')
          ->assertFieldsInclude('email')
@@ -24,7 +24,7 @@ it('has some fields for super admin user', function () {
 it('has some fields for content manager user', function () {
     $authed = $this->loginAsEditor();
 
-    $authed->givePermissionTo(PermissionsEnum::CREATE_USERS->value);
+    $authed->givePermissionTo(PermissionsEnum::CREATE_USERS);
 
     $this->novaCreate('users')
          ->assertFieldsInclude('email')

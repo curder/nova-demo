@@ -2,33 +2,30 @@
 
 namespace App\Enums;
 
+use BenSampo\Enum\Contracts\LocalizedEnum;
+use BenSampo\Enum\Enum;
 use Illuminate\Support\Collection;
 
-enum UsersEnum: string
+final class UsersEnum extends Enum implements LocalizedEnum
 {
-    case Super = 'super@example.com';
-    case Example = 'example@example.com';
-
-    public function label(): string
-    {
-        return match ($this) {
-            self::Super => '超级管理员',
-            self::Example => '内容管理员',
-        };
-    }
+    public const SUPER   = 'super';
+    public const EXAMPLE = 'example';
 
     public static function permissions(): Collection
     {
         $config = [
-            self::Super->value => collect([
+            self::SUPER => collect([
                 //
             ]),
-            self::Example->value => collect([
-                PermissionsEnum::CREATE_USERS->value,
+            self::EXAMPLE => collect([
+                PermissionsEnum::CREATE_USERS,
             ]),
         ];
 
-        return collect($config)->filter(fn (Collection $permissions) => $permissions->isNotEmpty());
+        return collect($config)
+            ->mapWithKeys(
+                fn($permission, $key) => [UsersEnum::fromValue($key)->description => $permission]
+            )->filter(fn (Collection $permissions) => $permissions->isNotEmpty());
     }
 
     /**
@@ -36,6 +33,6 @@ enum UsersEnum: string
      */
     public static function count(): int
     {
-        return count(self::cases());
+        return count(self::getInstances());
     }
 }
