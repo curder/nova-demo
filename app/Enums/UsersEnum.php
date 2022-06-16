@@ -22,10 +22,7 @@ final class UsersEnum extends Enum implements LocalizedEnum
             ]),
         ];
 
-        return collect($config)
-            ->mapWithKeys(
-                fn ($permission, $key) => [UsersEnum::fromValue($key)->description => $permission]
-            )->filter(fn (Collection $permissions) => $permissions->isNotEmpty());
+        return collect($config)->filter(fn (Collection $permissions) => $permissions->isNotEmpty());
     }
 
     /**

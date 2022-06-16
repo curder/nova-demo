@@ -33,7 +33,7 @@ it('has users come policy', function () {
     $response = $this->novaIndex('users');
     $response->assertOk();
     $response->assertCanView();
-    $response->assertCanNotCreate();
+    $response->assertCanCreate();
     $response->assertCanNotUpdate();
     $response->assertCanNotDelete();
     $response->assertCanNotForceDelete();
