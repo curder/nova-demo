@@ -43,7 +43,7 @@ class RolesAndPermissionsSeeder extends Seeder
             )
             ->each(
                 fn(RolesEnum $role) => $role->users()->each(
-                    fn($email) => User::query()->where('email', $email)->first()->assignRole($role->value)
+                    fn($email) => User::query()->where('email', $email)->first()?->assignRole($role->value)
                 )
             );
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UsersEnum;
 use App\Models\User;
 use App\Enums\RolesEnum;
 use Illuminate\Database\Seeder;
@@ -23,13 +24,13 @@ class UserSeeder extends Seeder
             ->flatten()
             ->unique()
             ->values()
-            ->reject(fn($email) => User::query()->where('email', $email)->exists())
+            ->map(fn ($user_name) => UsersEnum::fromValue($user_name))
+            ->reject(fn(UsersEnum $user_enum) => User::query()->where('email', $user_enum->description)->exists())
             ->each(
-                fn($email) => User::factory()->create([
-                    'name' => $email,
-                    'email' => $email,
+                fn(UsersEnum $user_enum) => User::factory()->create([
+                    'name' => $user_enum->value,
+                    'email' => $user_enum->description,
                     'password' => $default_password
-                ])
-            );
+                ]));
     }
 }
