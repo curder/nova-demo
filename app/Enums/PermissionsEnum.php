@@ -2,10 +2,10 @@
 
 namespace App\Enums;
 
+use App\Enums\PermissionsEnum as Permission;
+use BenSampo\Enum\Contracts\LocalizedEnum;
 use BenSampo\Enum\Enum;
 use Illuminate\Support\Collection;
-use BenSampo\Enum\Contracts\LocalizedEnum;
-use App\Enums\PermissionsEnum as Permission;
 
 final class PermissionsEnum extends Enum implements LocalizedEnum
 {
@@ -80,7 +80,7 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
             self::MENUS,
         ];
 
-        return collect($groups)->mapWithKeys(fn($key) => [$key => self::fromValue($key)->description])->toArray();
+        return collect($groups)->mapWithKeys(fn ($key) => [$key => self::fromValue($key)->description])->toArray();
     }
 
     public static function count(): int

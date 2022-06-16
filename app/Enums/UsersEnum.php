@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 
 final class UsersEnum extends Enum implements LocalizedEnum
 {
-    public const SUPER   = 'super';
+    public const SUPER = 'super';
     public const EXAMPLE = 'example';
 
     public static function permissions(): Collection
@@ -24,7 +24,7 @@ final class UsersEnum extends Enum implements LocalizedEnum
 
         return collect($config)
             ->mapWithKeys(
-                fn($permission, $key) => [UsersEnum::fromValue($key)->description => $permission]
+                fn ($permission, $key) => [UsersEnum::fromValue($key)->description => $permission]
             )->filter(fn (Collection $permissions) => $permissions->isNotEmpty());
     }
 
