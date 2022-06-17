@@ -76,7 +76,6 @@ class RolePolicy
      */
     public function restore($user, $model)
     {
-
         return false;
 
 //        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {

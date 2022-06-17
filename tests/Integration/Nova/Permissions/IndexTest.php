@@ -3,8 +3,8 @@
 namespace Tests\Integration\Nova\Users;
 
 use App\Enums\PermissionsEnum;
-use Database\Seeders\UserSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
+use Database\Seeders\UserSeeder;
 
 beforeEach(closure: function (): void {
     $this->seed([UserSeeder::class, RolesAndPermissionsSeeder::class]);

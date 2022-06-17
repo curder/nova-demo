@@ -2,7 +2,6 @@
 
 namespace Tests\Integration\Nova\Users;
 
-use App\Models\Permission;
 use App\Models\Role;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\UserSeeder;
