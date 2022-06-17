@@ -8,8 +8,8 @@ use Illuminate\Support\Collection;
 
 final class UsersEnum extends Enum implements LocalizedEnum
 {
-    public const SUPER = 'super';
-    public const EXAMPLE = 'example';
+    public const SUPER = 'Super';
+    public const EXAMPLE = 'Example';
 
     public static function permissions(): Collection
     {
