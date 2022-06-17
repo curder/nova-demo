@@ -43,7 +43,7 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
     //    public const UPDATE_PERMISSIONS = 'updatePermissions'; // 编辑
 //    public const DELETE_PERMISSIONS = 'deletePermissions'; // 删除
 //    public const RESTORE_PERMISSIONS = 'restorePermissions'; // 恢复删除
-    public const FORCE_DELETE_PERMISSIONS = 'forceDeletePermissions'; // 强制删除
+//    public const FORCE_DELETE_PERMISSIONS = 'forceDeletePermissions'; // 强制删除
     public const PERMISSION_ATTACH_ANY_ROLES = 'permissionAttachAnyRoles'; // 赋予角色权限
     public const PERMISSION_ATTACH_ROLES = 'permissionAttachRoles'; // 更新角色权限
     public const PERMISSION_DETACH_ROLES = 'permissionDetachRoles'; // 取消赋予角色权限

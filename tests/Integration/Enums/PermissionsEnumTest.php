@@ -4,7 +4,7 @@ use App\Enums\PermissionsEnum;
 
 beforeEach(function () {
     $this->group_count = 4;
-    $this->available_count = 26;
+    $this->available_count = 25;
 });
 
 it('has availablePermissions static method on permissionsEnum class', fn () => expect(PermissionsEnum::availablePermissions())

@@ -40,7 +40,7 @@ return [
 //        PermissionsEnum::UPDATE_PERMISSIONS           => '编辑',
 //        PermissionsEnum::DELETE_PERMISSIONS           => '删除',
 //        PermissionsEnum::RESTORE_PERMISSIONS          => '恢复删除',
-        PermissionsEnum::FORCE_DELETE_PERMISSIONS     => '强制删除',
+//        PermissionsEnum::FORCE_DELETE_PERMISSIONS     => '强制删除',
         PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES  => '赋予角色权限',
         PermissionsEnum::PERMISSION_ATTACH_ROLES      => '更新角色权限',
         PermissionsEnum::PERMISSION_DETACH_ROLES      => '取消角色权限',

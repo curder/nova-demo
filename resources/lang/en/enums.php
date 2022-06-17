@@ -39,7 +39,7 @@ return [
 //        PermissionsEnum::UPDATE_PERMISSIONS           => 'Update Permission',
 //        PermissionsEnum::DELETE_PERMISSIONS           => 'Delete Permission',
 //        PermissionsEnum::RESTORE_PERMISSIONS          => 'Restore Permission',
-        PermissionsEnum::FORCE_DELETE_PERMISSIONS     => 'Force Delete Permission1',
+//        PermissionsEnum::FORCE_DELETE_PERMISSIONS     => 'Force Delete Permission1',
         PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES  => 'Permission Attach Any Role',
         PermissionsEnum::PERMISSION_ATTACH_ROLES      => 'Permission Attach Role',
         PermissionsEnum::PERMISSION_DETACH_ROLES      => 'Permission Detach Role',

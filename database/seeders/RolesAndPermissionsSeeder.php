@@ -111,7 +111,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 PermissionsEnum::VIEW_PERMISSIONS,
 //                PermissionsEnum::DELETE_PERMISSIONS,
 //                PermissionsEnum::RESTORE_PERMISSIONS,
-                PermissionsEnum::FORCE_DELETE_PERMISSIONS,
+//                PermissionsEnum::FORCE_DELETE_PERMISSIONS,
                 PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES,
                 PermissionsEnum::PERMISSION_ATTACH_ROLES,
                 PermissionsEnum::PERMISSION_DETACH_ROLES,
