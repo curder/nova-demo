@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Nova\Permission;
+use App\Nova\Role;
+use App\Policies\PermissionPolicy;
+use App\Policies\RolePolicy;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
@@ -80,7 +84,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools(): array
     {
         return [
-            NovaPermissionTool::make(),
+            NovaPermissionTool::make()->permissionResource(Permission::class)->roleResource(Role::class)
+                              ->permissionPolicy(PermissionPolicy::class)->rolePolicy(RolePolicy::class),
             MenuBuilder::make()->canSee(fn ($request) => $request->user()->isSuperAdmin()),
             BackupTool::make()->canSee(fn ($request) => $request->user()->isSuperAdmin()),
         ];

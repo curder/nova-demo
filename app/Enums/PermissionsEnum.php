@@ -26,11 +26,11 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
     public const ROLES = 'roles'; // 分组标示
     public const MANAGER_ROLES = 'managerRoles'; // 列表
     public const VIEW_ROLES = 'viewRoles'; // 查看
-    public const CREATE_ROLES = 'createRoles'; // 新建
-    public const UPDATE_ROLES = 'updateRoles'; // 编辑
-    public const DELETE_ROLES = 'deleteRoles'; // 删除
-    public const RESTORE_ROLES = 'restoreRoles'; // 恢复删除
-    public const FORCE_DELETE_ROLES = 'forceDeleteRoles'; // 强制删除
+//    public const CREATE_ROLES = 'createRoles'; // 新建
+//    public const UPDATE_ROLES = 'updateRoles'; // 编辑
+//    public const DELETE_ROLES = 'deleteRoles'; // 删除
+//    public const RESTORE_ROLES = 'restoreRoles'; // 恢复删除
+//    public const FORCE_DELETE_ROLES = 'forceDeleteRoles'; // 强制删除
     public const ROLE_ATTACH_ANY_USERS = 'roleAttachAnyUsers'; // 赋予用户角色
     public const ROLE_ATTACH_USERS = 'roleAttachUsers'; // 更新用户角色
     public const ROLE_DETACH_USERS = 'roleDetachUsers'; // 取消用户角色
@@ -41,8 +41,8 @@ final class PermissionsEnum extends Enum implements LocalizedEnum
     public const VIEW_PERMISSIONS = 'viewPermissions'; // 查看
     //    public const CREATE_PERMISSIONS = 'createPermissions'; // 新建
     //    public const UPDATE_PERMISSIONS = 'updatePermissions'; // 编辑
-    public const DELETE_PERMISSIONS = 'deletePermissions'; // 删除
-    public const RESTORE_PERMISSIONS = 'restorePermissions'; // 恢复删除
+//    public const DELETE_PERMISSIONS = 'deletePermissions'; // 删除
+//    public const RESTORE_PERMISSIONS = 'restorePermissions'; // 恢复删除
     public const FORCE_DELETE_PERMISSIONS = 'forceDeletePermissions'; // 强制删除
     public const PERMISSION_ATTACH_ANY_ROLES = 'permissionAttachAnyRoles'; // 赋予角色权限
     public const PERMISSION_ATTACH_ROLES = 'permissionAttachRoles'; // 更新角色权限
