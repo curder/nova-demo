@@ -31,7 +31,7 @@ class RolesAndPermissionsSeeder extends Seeder
         // 3. create permissions for each collection item
         $this->getPermissions()->each(
             fn($item, $group) => collect($item)->each(
-                fn($permission) => Permission::create(['name' => $permission])
+                fn($permission) => Permission::query()->create(['name' => $permission])
             )
         );
 

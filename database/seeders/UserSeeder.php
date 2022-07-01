@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
             ->map(fn ($user_name) => UsersEnum::fromValue($user_name))
             ->reject(fn(UsersEnum $user_enum) => User::query()->where('email', $user_enum->description)->exists())
             ->each(
-                fn(UsersEnum $user_enum) => User::factory()->create([
+                fn(UsersEnum $user_enum) => User::query()->create([
                     'name' => $user_enum->value,
                     'email' => $user_enum->description,
                     'password' => $default_password
