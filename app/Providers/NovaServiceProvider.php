@@ -24,9 +24,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        Nova::footer(function ($request) {
-            return view('vendor.nova.partials.footer')->render();
-        });
+        Nova::footer(fn ($request) => view('vendor.nova.partials.footer')->render());
     }
 
     /**
