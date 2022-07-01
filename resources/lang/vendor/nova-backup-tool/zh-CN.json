@@ -4,9 +4,9 @@
     "Path": "路径",
     "Created at": "创建时间",
     "Size": "文件大小",
-    "No backups present": "No backups present",
-    "Delete backup": "Delete backup",
-    "Are you sure you want to delete the backup created at :date ?": "Are you sure you want to delete the backup created at :date ?",
+    "No backups present": "现在不存在备份",
+    "Delete backup": "删除备份",
+    "Are you sure you want to delete the backup created at :date ?": "您确定要删除在 :date 创建的备份吗？",
     "Disk": "所属磁盘",
     "Healthy": "健康状况",
     "Amount of backups": "备份数量",
@@ -22,5 +22,6 @@
     "MB": "MB",
     "GB": "GB",
     "TB": "TB",
-    "local": "local"
+    "local": "本地存储",
+    "qiniu-backup": "七牛云存储"
 }
