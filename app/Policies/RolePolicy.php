@@ -167,7 +167,7 @@ class RolePolicy
 
         return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_ANY_USERS->value)
             // && !$user->roles->contains($role)
-            ;
+        ;
     }
 
     /**

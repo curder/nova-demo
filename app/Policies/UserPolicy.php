@@ -150,7 +150,7 @@ class UserPolicy
 
         return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_ANY_USERS->value)
             // && !$user->roles->contains($role)
-            ;
+        ;
     }
 
     /**
@@ -199,7 +199,7 @@ class UserPolicy
 
         return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS->value)
             // && !$user->roles->contains($role)
-            ;
+        ;
     }
 
     /**
