@@ -89,6 +89,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function register()
     {
+        Nova::footer(fn () => '');
         Nova::initialPath('/resources/users'); // https://nova.laravel.com/docs/4.0/installation.html#brand-logo
     }
 }
