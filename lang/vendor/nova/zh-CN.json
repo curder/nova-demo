@@ -472,6 +472,11 @@
     "Used Storage": "占用空间",
     "Path": "路径",
     "Created at": "创建时间",
-    "Size": "文件大小"
-
+    "Drop file or click to choose": "拖拽或者点击选择文件",
+    "Standalone Actions": "独立操作",
+    "Size": "文件大小",
+    "From": "从",
+    "To": "到",
+    "Min": "最小",
+    "Max": "最大"
 }
