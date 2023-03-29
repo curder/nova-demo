@@ -138,7 +138,7 @@ class UserPolicy extends Policy
 
         return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_ANY_USERS)
             // && !$user->roles->contains($role)
-            ;
+        ;
     }
 
     /**
@@ -189,7 +189,7 @@ class UserPolicy extends Policy
 
         return $user->hasPermissionTo(PermissionsEnum::PERMISSION_ATTACH_ANY_USERS)
             // && !$user->roles->contains($role)
-            ;
+        ;
     }
 
     /**
