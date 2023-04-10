@@ -5,19 +5,19 @@ import:
   - contrib/rsync.php
 
 config:
-  application: 'laravel-deployer'
+  application: curder.com
   repository: 'git@github.com:curder/laravel-deployer.git'
   keep_releases: 5
   default_timeout: 3600
   remote_user: deployer
   http_user: webadmin
-  # 'bin/php': '/usr/local/bin/php81'
-  # 'bin/git': '/usr/bin/git'
-  # 'bin/yarn': '~/.nvm/versions/node/v16.13.0/bin/yarn'
-  # 'bin/composer': '/usr/local/bin/php81 /usr/local/bin/composer'
+  'bin/php': /usr/local/bin/php81
+  'bin/git': /usr/bin/git
+  'bin/yarn': ~/.nvm/versions/node/v16.13.0/bin/yarn
+  'bin/composer': '{{bin/php}} /usr/local/bin/composer'
   identity_file: ~/.ssh/id_rsa
-  base_deploy_path: '/var/www/codes/curder.com'
-  # php_fpm_version: '81'
+  base_deploy_path: '/var/www/codes/{{ applicaiton }}'
+  php_fpm_version: 81
   php_fpm_service: 'php-fpm{{php_fpm_version}}'
   shared_dirs:
     - storage
