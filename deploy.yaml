@@ -2,6 +2,7 @@ import:
   - recipe/laravel.php
   - contrib/php-fpm.php
   - contrib/yarn.php
+  - contrib/rsync.php
 
 config:
   application: 'laravel-deployer'
