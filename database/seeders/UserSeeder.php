@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
                                        ->values()
                                        ->reject(fn(UsersEnum $email) => User::query()->where('email', $email->value)->exists())
                                        ->each(
-                                           fn(UsersEnum $email) => User::factory()->create([
+                                           fn(UsersEnum $email) => User::query()->create([
                                                'name' => $email->name,
                                                'email' => $email->value,
                                                'password' => $default_password
