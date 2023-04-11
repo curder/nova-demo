@@ -41,6 +41,11 @@ class RolePolicy
         return $user->hasPermissionTo(PermissionsEnum::CREATE_ROLES->value);
     }
 
+    public function replicate(User $user, \Spatie\Permission\Models\Role $role): bool
+    {
+        return false;
+    }
+
     /**
      * Determine whether the user can delete the model.
      * 1. 自己不能删除自己所在的角色组

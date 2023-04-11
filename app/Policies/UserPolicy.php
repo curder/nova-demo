@@ -42,6 +42,11 @@ class UserPolicy
         return $user->hasPermissionTo(PermissionsEnum::CREATE_USERS->value);
     }
 
+    public function replicate(User $user, User $model): bool
+    {
+        return false;
+    }
+
     /**
      * Determine whether the user can delete the model.
      * 1. 不能删除其他超级管理员
