@@ -56,7 +56,7 @@ class User extends Resource
         return [
             ID::make()->sortable(),
 
-            Gravatar::make(__('users.avatarLabel')),
+            // Gravatar::make(__('users.avatarLabel')),
 
             Text::make(__('users.nameLabel'), 'name')
                 ->sortable()
