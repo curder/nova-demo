@@ -188,4 +188,9 @@ return [
     'actions' => [
         'resource' => ActionResource::class,
     ],
+    
+    'impersonation' => [
+        'started' => env('NOVA_PATH', '/'),
+        'stopped' => env('NOVA_PATH', '/'),
+    ],
 ];
