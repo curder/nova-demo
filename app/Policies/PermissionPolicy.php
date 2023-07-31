@@ -90,7 +90,7 @@ class PermissionPolicy
      *
      * @return bool
      */
-    public function attachAnyUser($user, Permission $permission): bool
+    public function attachAnyUser($user, Permission|\Spatie\Permission\Models\Permission $permission): bool
     {
         return $user->hasPermissionTo(
             PermissionsEnum::PERMISSION_ATTACH_ANY_USERS->value
