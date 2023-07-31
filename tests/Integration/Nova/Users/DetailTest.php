@@ -20,5 +20,5 @@ it('can show users fields', function () {
          ->assertFieldsExclude('created_at')
          ->assertFieldsExclude(['email_verified_at', 'remember_token', 'deleted_at', 'created_at', 'updated_at'])
          ->assertFieldsExclude(['created_at' => $authed->created_at, 'updated_at' => $authed->updated_at])
-         ->assertFields(fn ($fields) => $fields->count() === 6);
+         ->assertFields(fn ($fields) => $fields->count() === 5);
 });
