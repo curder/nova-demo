@@ -80,7 +80,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 ->rolePolicy(RolePolicy::class)
                 ->permissionPolicy(PermissionPolicy::class),
             MenuBuilder::make(),
-            BackupTool::make()->canSee(fn ($request) => $request->user()->isSuperAdmin()),
+            BackupTool::make(),
         ];
     }
 
