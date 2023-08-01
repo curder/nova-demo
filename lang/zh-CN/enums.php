@@ -19,7 +19,7 @@ return [
         PermissionsEnum::PermissionDetachUsers->value => '取消用户授权', // 取消用户授权
 
         // 角色
-        PermissionsEnum::Roles->value => '管理员角色',
+        PermissionsEnum::Roles->value => '角色',
         PermissionsEnum::ManagerRoles->value => '角色列表',
         PermissionsEnum::ViewRoles->value => '查看角色',
         PermissionsEnum::CreateRoles->value => '新建角色',
