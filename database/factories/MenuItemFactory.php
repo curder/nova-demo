@@ -19,8 +19,6 @@ class MenuItemFactory extends Factory
 
     /**
      * Define the model's default state.
-     *
-     * @return array
      */
     public function definition(): array
     {
@@ -30,10 +28,10 @@ class MenuItemFactory extends Factory
             'locale' => 'zh-CN',
             'class' => $this->faker->randomElement([
                 MenuItemTextType::class,
-                MenuItemStaticURLType::class
+                MenuItemStaticURLType::class,
             ]),
             'value' => '/',
-            'target' => $this->faker->randomElement(['_self', '_blank',]),
+            'target' => $this->faker->randomElement(['_self', '_blank']),
             'data' => null,
             'parent_id' => null,
             'order' => 1,

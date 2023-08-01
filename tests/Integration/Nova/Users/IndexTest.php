@@ -14,16 +14,16 @@ beforeEach(closure: function (): void {
 
 it('can render users index resources page', function () {
     $this->novaIndex('users')
-         ->assertResourceCount(UsersEnum::count())
-         ->assertResources(fn ($resources) => $resources->count() === UsersEnum::count());
+        ->assertResourceCount(UsersEnum::count())
+        ->assertResources(fn ($resources) => $resources->count() === UsersEnum::count());
 });
 
 it('can render users index resources fields', function () {
     $this->novaIndex('users')
-         ->assertFieldsInclude('id')
-         ->assertFieldsInclude(['id', 'email', 'name'])
-         ->assertFieldsInclude(['id' => $this->authed->id, 'email' => $this->authed->email])
-         ->assertFieldsInclude('id', User::query()->get()->pluck('id'))
+        ->assertFieldsInclude('id')
+        ->assertFieldsInclude(['id', 'email', 'name'])
+        ->assertFieldsInclude(['id' => $this->authed->id, 'email' => $this->authed->email])
+        ->assertFieldsInclude('id', User::query()->get()->pluck('id'))
         // collection of field arrays
-         ->assertFields(fn ($fields) => $fields->count() === UsersEnum::count() && count($fields->first()) === 3);
+        ->assertFields(fn ($fields) => $fields->count() === UsersEnum::count() && count($fields->first()) === 3);
 });

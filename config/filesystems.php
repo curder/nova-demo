@@ -56,11 +56,17 @@ return [
         ],
 
         'qiniu-backup' => [
-            'driver'     => 'qiniu',
+            'driver' => 'qiniu',
             'access_key' => env('BACKUP_QINIU_ACCESS_KEY', ''),
             'secret_key' => env('BACKUP_QINIU_SECRET_KEY', ''),
-            'bucket'     => env('BACKUP_QINIU_BUCKET', ''),
-            'domain'     => env('BACKUP_QINIU_DOMAIN', ''), // or host: https://xxxx.clouddn.com
+            'bucket' => env('BACKUP_QINIU_BUCKET', ''),
+            'domain' => env('BACKUP_QINIU_DOMAIN', ''), // or host: https://xxxx.clouddn.com
+        ],
+
+        'logs' => [
+            'driver' => 'local',
+            'root' => storage_path('logs'),
+            'throw' => false,
         ],
 
     ],

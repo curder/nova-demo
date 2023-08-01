@@ -478,5 +478,8 @@
     "From": "从",
     "To": "到",
     "Min": "最小",
-    "Max": "最大"
+    "Max": "最大",
+    "Main Section": "内容管理",
+    "System Section": "系统管理",
+    "Logs": "系统日志"
 }

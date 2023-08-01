@@ -24,18 +24,23 @@ enum UsersEnum: string
                 //
             ]),
             self::Example->value => collect([
-                PermissionsEnum::CREATE_USERS->value,
+                PermissionsEnum::CreateUsers->value,
             ]),
         ];
 
         return collect($config)->filter(fn (Collection $permissions) => $permissions->isNotEmpty());
     }
 
-    /**
-     * @return int
-     */
     public static function count(): int
     {
         return count(self::cases());
+    }
+
+    public static function canImpersonateUsers(): array
+    {
+        return [
+            self::Super->value,
+            self::Example->value,
+        ];
     }
 }

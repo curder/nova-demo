@@ -18,8 +18,8 @@ it('will return empty collection when use faker value for permissions static met
 
 it('has enum key value and label method for SuperAdmin', fn () => expect(RolesEnum::SuperAdmin)
     ->toBeInstanceOf(RolesEnum::class)
-    ->toBeEnum('SuperAdmin', 'superAdmin', '超级管理员'));
+    ->toBeEnum('SuperAdmin', 'Super Admin', '超级管理员'));
 
 it('has enum key value and label method for Content', fn () => expect(RolesEnum::Content)
     ->toBeInstanceOf(RolesEnum::class)
-    ->toBeEnum('Content', 'content', '内容管理员'));
+    ->toBeEnum('Content', 'Content', '编辑员'));

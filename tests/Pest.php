@@ -37,7 +37,7 @@ expect()->extend('toBeEnum', function ($name, $value, $label) {
     $this->label()->toBe($label);
 
     return $this->toHaveProperty('name', $name)
-         ->toHaveProperty('value', $value);
+        ->toHaveProperty('value', $value);
 });
 
 /*

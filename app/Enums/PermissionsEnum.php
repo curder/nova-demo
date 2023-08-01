@@ -8,86 +8,114 @@ use Illuminate\Support\Collection;
 enum PermissionsEnum: string
 {
     // 用户
-    case USERS = 'users'; // 分组标示
-    case MANAGER_USERS = 'managerUsers'; // 列表
-    case VIEW_USERS = 'viewUsers'; // 查看
-    case CREATE_USERS = 'createUsers'; // 新建
-    case UPDATE_USERS = 'updateUsers'; // 编辑
-    case DELETE_USERS = 'deleteUsers'; // 删除
-    case RESTORE_USERS = 'restoreUsers'; // 恢复删除
-    case FORCE_DELETE_USERS = 'forceDeleteUsers'; // 强制删除
-    case PERMISSION_ATTACH_ANY_USERS = 'attachAnyUsers'; // 赋予用户权限
-    case PERMISSION_ATTACH_USERS = 'attachUsers'; // 更新用户权限
-    case PERMISSION_DETACH_USERS = 'detachUsers';    // 取消用户授权
+    case Users = 'users'; // 分组标示
+    case ManagerUsers = 'managerUsers'; // 列表
+    case ViewUsers = 'viewUsers'; // 查看
+    case CreateUsers = 'createUsers'; // 新建
+    case UpdateUsers = 'updateUsers'; // 编辑
+    case DeleteUsers = 'deleteUsers'; // 删除
+    case RestoreUsers = 'restoreUsers'; // 恢复删除
+    case ForceDeleteUsers = 'forceDeleteUsers'; // 强制删除
+    case PermissionAttachAnyUsers = 'attachAnyUsers'; // 赋予用户权限
+    case PermissionAttachUsers = 'attachUsers'; // 更新用户权限
+    case PermissionDetachUsers = 'detachUsers';    // 取消用户授权
 
     // 角色
-    case ROLES = 'roles'; // 分组标示
-    case MANAGER_ROLES = 'managerRoles'; // 列表
-    case VIEW_ROLES = 'viewRoles'; // 查看
-    case CREATE_ROLES = 'createRoles'; // 新建
-    case UPDATE_ROLES = 'updateRoles'; // 编辑
-    case DELETE_ROLES = 'deleteRoles'; // 删除
-    case RESTORE_ROLES = 'restoreRoles'; // 恢复删除
-    case FORCE_DELETE_ROLES = 'forceDeleteRoles'; // 强制删除
-    case ROLE_ATTACH_ANY_USERS = 'roleAttachAnyUsers'; // 赋予用户角色
-    case ROLE_ATTACH_USERS = 'roleAttachUsers'; // 更新用户角色
-    case ROLE_DETACH_USERS = 'roleDetachUsers'; // 取消用户角色
+    case Roles = 'roles'; // 分组标示
+    case ManagerRoles = 'managerRoles'; // 列表
+    case ViewRoles = 'viewRoles'; // 查看
+    case CreateRoles = 'createRoles'; // 新建
+    case UpdateRoles = 'updateRoles'; // 编辑
+    case DeleteRoles = 'deleteRoles'; // 删除
+    case RestoreRoles = 'restoreRoles'; // 恢复删除
+    case ForceDeleteRoles = 'forceDeleteRoles'; // 强制删除
+    case RoleAttachAnyUsers = 'roleAttachAnyUsers'; // 赋予用户角色
+    case RoleAttachUsers = 'roleAttachUsers'; // 更新用户角色
+    case RoleDetachUsers = 'roleDetachUsers'; // 取消用户角色
 
     // 权限
-    case PERMISSIONS = 'permissions'; // 分组标示
-    case MANAGER_PERMISSIONS = 'managerPermissions'; // 列表
-    case VIEW_PERMISSIONS = 'viewPermissions'; // 查看
-    //    case CREATE_PERMISSIONS = 'createPermissions'; // 新建
-    //    case UPDATE_PERMISSIONS = 'updatePermissions'; // 编辑
-    case DELETE_PERMISSIONS = 'deletePermissions'; // 删除
-    case RESTORE_PERMISSIONS = 'restorePermissions'; // 恢复删除
-    case FORCE_DELETE_PERMISSIONS = 'forceDeletePermissions'; // 强制删除
-    case PERMISSION_ATTACH_ANY_ROLES = 'permissionAttachAnyRoles'; // 赋予角色权限
-    case PERMISSION_ATTACH_ROLES = 'permissionAttachRoles'; // 更新角色权限
-    case PERMISSION_DETACH_ROLES = 'permissionDetachRoles'; // 取消赋予角色权限
+    case Permissions = 'permissions'; // 分组标示
+    case ManagerPermissions = 'managerPermissions'; // 列表
+    case ViewPermissions = 'viewPermissions'; // 查看
+    //        case CreatePermissions = 'createPermissions'; // 新建
+    //        case UpdatePermissions = 'updatePermissions'; // 编辑
+    // case DeletePermissions = 'deletePermissions'; // 删除
+    // case RestorePermissions = 'restorePermissions'; // 恢复删除
+    // case ForceDeletePermissions = 'forceDeletePermissions'; // 强制删除
+    case PermissionAttachAnyRoles = 'permissionAttachAnyRoles'; // 赋予角色权限
+    case PermissionAttachRoles = 'permissionAttachRoles'; // 更新角色权限
+    case PermissionDetachRoles = 'permissionDetachRoles'; // 取消赋予角色权限
 
     // 菜单
-    case MENUS = 'menus'; // 菜单
-    case MANAGER_MENUS = 'managerMenus'; // 列表
-    case VIEW_MENUS = 'viewMenus'; // 查看
-    case CREATE_MENUS = 'createMenus'; // 新建
-    case UPDATE_MENUS = 'updateMenus'; // 编辑
-    case DELETE_MENUS = 'deleteMenus'; // 删除
+    case Menus = 'menus'; // 菜单
+    case ManagerMenus = 'managerMenus'; // 列表
+    case ViewMenus = 'viewMenus'; // 查看
+    case CreateMenus = 'createMenus'; // 新建
+    case UpdateMenus = 'updateMenus'; // 编辑
+    case DeleteMenus = 'deleteMenus'; // 删除
+
+    // 设置
+    case Settings = 'settings'; // 设置
+    case ViewLogs = 'viewLogs'; // 日志
 
     public function label(): string
     {
         return match ($this) {
-            self::MANAGER_USERS, self::MANAGER_ROLES, self::MANAGER_PERMISSIONS, self::MANAGER_MENUS => '列表',
-            self::VIEW_USERS, self::VIEW_ROLES, self::VIEW_PERMISSIONS, self::VIEW_MENUS => '查看',
-            self::CREATE_USERS, self::CREATE_ROLES, self::CREATE_MENUS => '新建',
-            self::UPDATE_USERS, self::UPDATE_ROLES, self::UPDATE_MENUS => '编辑',
-            self::DELETE_USERS, self::DELETE_ROLES, self::DELETE_PERMISSIONS, self::DELETE_MENUS => '删除',
-            self::RESTORE_USERS, self::RESTORE_ROLES, self::RESTORE_PERMISSIONS => '恢复删除',
-            self::FORCE_DELETE_USERS, self::FORCE_DELETE_ROLES, self::FORCE_DELETE_PERMISSIONS => '强制删除',
-            self::PERMISSION_ATTACH_ANY_USERS => '赋予用户权限',
-            self::PERMISSION_ATTACH_USERS => '更新用户权限',
-            self::PERMISSION_DETACH_USERS => '取消用户授权',
+            // Users
+            self::Users => self::labelFromTranslate(self::Users),
+            self::ManagerUsers => self::labelFromTranslate(self::ManagerUsers),
+            self::ViewUsers => self::labelFromTranslate(self::ViewUsers),
+            self::CreateUsers => self::labelFromTranslate(self::CreateUsers),
+            self::UpdateUsers => self::labelFromTranslate(self::UpdateUsers),
+            self::DeleteUsers => self::labelFromTranslate(self::DeleteUsers),
+            self::RestoreUsers => self::labelFromTranslate(self::RestoreUsers),
+            self::ForceDeleteUsers => self::labelFromTranslate(self::ForceDeleteUsers),
+            self::PermissionAttachAnyUsers => self::labelFromTranslate(self::PermissionAttachAnyUsers),
+            self::PermissionAttachUsers => self::labelFromTranslate(self::PermissionAttachUsers),
+            self::PermissionDetachUsers => self::labelFromTranslate(self::PermissionDetachUsers),
 
-            self::USERS => '用户',
+            // Roles
+            self::Roles => self::labelFromTranslate(self::Roles),
+            self::ManagerRoles => self::labelFromTranslate(self::ManagerRoles),
+            self::ViewRoles => self::labelFromTranslate(self::ViewRoles),
+            self::CreateRoles => self::labelFromTranslate(self::CreateRoles),
+            self::UpdateRoles => self::labelFromTranslate(self::UpdateRoles),
+            self::DeleteRoles => self::labelFromTranslate(self::DeleteRoles),
+            self::RestoreRoles => self::labelFromTranslate(self::RestoreRoles),
+            self::ForceDeleteRoles => self::labelFromTranslate(self::ForceDeleteRoles),
+            self::RoleAttachAnyUsers => self::labelFromTranslate(self::RoleAttachAnyUsers),
+            self::RoleAttachUsers => self::labelFromTranslate(self::RoleAttachUsers),
+            self::RoleDetachUsers => self::labelFromTranslate(self::RoleDetachUsers),
 
-            self::ROLES => '角色',
-            self::ROLE_ATTACH_ANY_USERS => '赋予用户角色',
-            self::ROLE_ATTACH_USERS => '更新用户角色',
-            self::ROLE_DETACH_USERS => '取消用户角色',
+            // Permissions
+            self::Permissions => self::labelFromTranslate(self::Permissions),
+            self::ManagerPermissions => self::labelFromTranslate(self::ManagerPermissions),
+            self::ViewPermissions => self::labelFromTranslate(self::ViewPermissions),
+            self::PermissionAttachAnyRoles => self::labelFromTranslate(self::PermissionAttachAnyRoles),
+            self::PermissionAttachRoles => self::labelFromTranslate(self::PermissionAttachRoles),
+            self::PermissionDetachRoles => self::labelFromTranslate(self::PermissionDetachRoles),
 
-            self::PERMISSIONS => '权限',
-            self::PERMISSION_ATTACH_ANY_ROLES => '赋予角色权限',
-            self::PERMISSION_ATTACH_ROLES => '更新角色权限',
-            self::PERMISSION_DETACH_ROLES => '取消赋予角色权限',
+            // Menus
+            self::Menus => self::labelFromTranslate(self::Menus),
+            self::ManagerMenus => self::labelFromTranslate(self::ManagerMenus),
+            self::ViewMenus => self::labelFromTranslate(self::ViewMenus),
+            self::CreateMenus => self::labelFromTranslate(self::CreateMenus),
+            self::UpdateMenus => self::labelFromTranslate(self::UpdateMenus),
+            self::DeleteMenus => self::labelFromTranslate(self::DeleteMenus),
 
-            self::MENUS => '菜单',
+            // Settings
+            self::Settings => self::labelFromTranslate(self::Settings),
+            self::ViewLogs => self::labelFromTranslate(self::ViewLogs),
         };
+    }
+
+    protected static function labelFromTranslate(self $enum): string
+    {
+        return trans('enums.'.PermissionsEnum::class.'.'.$enum->value);
     }
 
     /**
      * 所有可用权限
-     *
-     * @return Collection
      */
     public static function availablePermissions(): Collection
     {
@@ -96,16 +124,14 @@ enum PermissionsEnum: string
             ->pluck('value');
     }
 
-    /**
-     * @return array
-     */
     public static function groups(): array
     {
         return [
-            self::USERS->value => self::USERS->label(),
-            self::ROLES->value => self::ROLES->label(),
-            self::PERMISSIONS->value => self::PERMISSIONS->label(),
-            self::MENUS->value => self::MENUS->label(),
+            self::Users->value => self::Users->label(),
+            self::Roles->value => self::Roles->label(),
+            self::Permissions->value => self::Permissions->label(),
+            self::Menus->value => self::Menus->label(),
+            self::Settings->value => self::Settings->label(),
         ];
     }
 

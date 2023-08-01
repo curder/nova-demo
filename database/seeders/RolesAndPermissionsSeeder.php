@@ -1,11 +1,12 @@
 <?php
+
 namespace Database\Seeders;
 
-use App\Models\User;
-use App\Models\Role;
+use App\Enums\PermissionsEnum;
 use App\Enums\RolesEnum;
 use App\Models\Permission;
-use App\Enums\PermissionsEnum;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -15,12 +16,10 @@ class RolesAndPermissionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run() : void
+    public function run(): void
     {
-        if(!app()->environment('testing')) {
+        if (! app()->environment('testing')) {
             // 1. refresh exists table
             $this->refreshTables();
             // 2. Reset cached roles and permissions
@@ -29,29 +28,25 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // 3. create permissions for each collection item
         $this->getPermissions()->each(
-            fn($item, $group) => collect($item)->each(
-                fn($permission) => Permission::create(['name' => $permission])
+            fn ($item, $group) => collect($item)->each(
+                fn ($permission) => Permission::create(['name' => $permission])
             )
         );
 
         // 4. Create roles and assign permissions
         collect(RolesEnum::cases())
-            ->each(fn(RolesEnum $item) => Role::create(['name' => $item->value]))
+            ->each(fn (RolesEnum $item) => Role::create(['name' => $item->value]))
             ->each(
-                fn(RolesEnum $item) =>
-                Role::findByName($item->value)->givePermissionTo(RolesEnum::permissions($item->value))
+                fn (RolesEnum $item) => Role::findByName($item->value)->givePermissionTo(RolesEnum::permissions($item->value))
             )
             ->each(
-                fn(RolesEnum $role) => $role->users()->each(
-                    fn($email) => User::query()->where('email', $email)->first()->assignRole($role->value)
+                fn (RolesEnum $role) => $role->users()->each(
+                    fn ($email) => User::query()->where('email', $email)->first()->assignRole($role->value)
                 )
             );
     }
 
-    /**
-     *
-     */
-    protected function refreshTables() : void
+    protected function refreshTables(): void
     {
         // DB::beginTransaction();
 
@@ -72,51 +67,51 @@ class RolesAndPermissionsSeeder extends Seeder
         // DB::commit();
     }
 
-
     protected function getPermissions(): Collection
     {
         return collect([
-            PermissionsEnum::USERS->value => [
-                PermissionsEnum::MANAGER_USERS->value,
-                PermissionsEnum::VIEW_USERS->value,
-                PermissionsEnum::CREATE_USERS->value,
-                PermissionsEnum::UPDATE_USERS->value,
-                PermissionsEnum::DELETE_USERS->value,
-                PermissionsEnum::RESTORE_USERS->value,
-                PermissionsEnum::FORCE_DELETE_USERS->value,
-                PermissionsEnum::PERMISSION_ATTACH_ANY_USERS->value,
-                PermissionsEnum::PERMISSION_ATTACH_USERS->value,
-                PermissionsEnum::PERMISSION_DETACH_USERS->value,
+            PermissionsEnum::Users->value => [
+                PermissionsEnum::ManagerUsers->value,
+                PermissionsEnum::ViewUsers->value,
+                PermissionsEnum::CreateUsers->value,
+                PermissionsEnum::UpdateUsers->value,
+                PermissionsEnum::DeleteUsers->value,
+                PermissionsEnum::RestoreUsers->value,
+                PermissionsEnum::ForceDeleteUsers->value,
+                PermissionsEnum::PermissionAttachAnyUsers->value,
+                PermissionsEnum::PermissionAttachUsers->value,
+                PermissionsEnum::PermissionDetachUsers->value,
             ],
-            PermissionsEnum::ROLES->value => [
-                PermissionsEnum::MANAGER_ROLES->value,
-                PermissionsEnum::VIEW_ROLES->value,
-                PermissionsEnum::CREATE_ROLES->value,
-                PermissionsEnum::UPDATE_ROLES->value,
-                PermissionsEnum::DELETE_ROLES->value,
-                PermissionsEnum::RESTORE_ROLES->value,
-                PermissionsEnum::FORCE_DELETE_ROLES->value,
-                PermissionsEnum::ROLE_ATTACH_ANY_USERS->value,
-                PermissionsEnum::ROLE_ATTACH_USERS->value,
-                PermissionsEnum::ROLE_DETACH_USERS->value,
+            PermissionsEnum::Roles->value => [
+                PermissionsEnum::ManagerRoles->value,
+                PermissionsEnum::ViewRoles->value,
+                PermissionsEnum::CreateRoles->value,
+                PermissionsEnum::UpdateRoles->value,
+                PermissionsEnum::DeleteRoles->value,
+                PermissionsEnum::RestoreRoles->value,
+                PermissionsEnum::ForceDeleteRoles->value,
+                PermissionsEnum::RoleAttachAnyUsers->value,
+                PermissionsEnum::RoleAttachUsers->value,
+                PermissionsEnum::RoleDetachUsers->value,
             ],
-            PermissionsEnum::PERMISSIONS->value => [
-                PermissionsEnum::MANAGER_PERMISSIONS->value,
-                PermissionsEnum::VIEW_PERMISSIONS->value,
-                PermissionsEnum::DELETE_PERMISSIONS->value,
-                PermissionsEnum::RESTORE_PERMISSIONS->value,
-                PermissionsEnum::FORCE_DELETE_PERMISSIONS->value,
-                PermissionsEnum::PERMISSION_ATTACH_ANY_ROLES->value,
-                PermissionsEnum::PERMISSION_ATTACH_ROLES->value,
-                PermissionsEnum::PERMISSION_DETACH_ROLES->value,
+            PermissionsEnum::Permissions->value => [
+                PermissionsEnum::ManagerPermissions->value,
+                PermissionsEnum::ViewPermissions->value,
+                PermissionsEnum::PermissionAttachAnyRoles->value,
+                PermissionsEnum::PermissionAttachRoles->value,
+                PermissionsEnum::PermissionDetachRoles->value,
             ],
 
-            PermissionsEnum::MENUS->value => [
-                PermissionsEnum::MANAGER_MENUS->value,
-                PermissionsEnum::VIEW_MENUS->value,
-                PermissionsEnum::CREATE_MENUS->value,
-                PermissionsEnum::UPDATE_MENUS->value,
-                PermissionsEnum::DELETE_MENUS->value,
+            PermissionsEnum::Menus->value => [
+                PermissionsEnum::ManagerMenus->value,
+                PermissionsEnum::ViewMenus->value,
+                PermissionsEnum::CreateMenus->value,
+                PermissionsEnum::UpdateMenus->value,
+                PermissionsEnum::DeleteMenus->value,
+            ],
+
+            PermissionsEnum::Settings->value => [
+                PermissionsEnum::ViewLogs->value,
             ],
         ]);
     }

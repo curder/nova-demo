@@ -11,7 +11,7 @@ beforeEach(function () {
 });
 
 it('has menus come policy', function () {
-    $user = $this->loginAsAdmin();
+    $this->loginAsAdmin();
     $response = $this->novaIndex('nova-menus');
 
     $response->assertOk();
@@ -20,7 +20,7 @@ it('has menus come policy', function () {
     $response->assertCanUpdate();
     $response->assertCanDelete();
 
-    $user = $this->loginAsEditor();
+    $this->loginAsEditor();
     $response = $this->novaIndex('nova-menus');
     $response->assertOk();
 
@@ -30,15 +30,15 @@ it('has menus come policy', function () {
 });
 
 it('has user can not view signal menu', function () {
-    $user = $this->loginAsEditor();
+    $this->loginAsEditor();
 
     $this->novaDetail('nova-menus', $this->menu->id)
-         ->assertOK();
+        ->assertOK();
 });
 
 it('has user can not edit signal menu', function () {
-    $user = $this->loginAsEditor();
+    $this->loginAsEditor();
 
     $this->novaEdit('nova-menus', $this->menu->id)
-         ->assertStatus(Response::HTTP_FORBIDDEN);
+        ->assertStatus(Response::HTTP_FORBIDDEN);
 });

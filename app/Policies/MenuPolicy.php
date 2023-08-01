@@ -12,9 +12,7 @@ class MenuPolicy
     use HandlesAuthorization;
 
     /**
-     * @param UserModel $user
-     * @param string $ability
-     *
+     * @param  string  $ability
      * @return bool|null
      */
     public function before(UserModel $user, $ability)
@@ -26,59 +24,41 @@ class MenuPolicy
 
     /**
      * Determine whether the user can view any videos.
-     *
-     * @param UserModel $user
-     * @return bool
      */
     public function viewAny(UserModel $user): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::MANAGER_MENUS->value);
+        return $user->hasPermissionTo(PermissionsEnum::ManagerMenus->value);
     }
 
     /**
      * Determine whether the user can view the video.
-     *
-     * @param UserModel $user
-     * @param MenuModel $menuModel
-     * @return bool
      */
     public function view(UserModel $user, MenuModel $menuModel): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::VIEW_MENUS->value);
+        return $user->hasPermissionTo(PermissionsEnum::ViewMenus->value);
     }
 
     /**
      * Determine whether the user can create videos.
-     *
-     * @param UserModel $user
-     * @return bool
      */
     public function create(UserModel $user): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::CREATE_MENUS->value);
+        return $user->hasPermissionTo(PermissionsEnum::CreateMenus->value);
     }
 
     /**
      * Determine whether the user can update the video.
-     *
-     * @param UserModel $user
-     * @param MenuModel $menuModel
-     * @return bool
      */
     public function update(UserModel $user, MenuModel $menuModel): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::UPDATE_MENUS->value);
+        return $user->hasPermissionTo(PermissionsEnum::UpdateMenus->value);
     }
 
     /**
      * Determine whether the user can delete the video.
-     *
-     * @param UserModel $user
-     * @param MenuModel $menuModel
-     * @return bool
      */
     public function delete(UserModel $user, MenuModel $menuModel): bool
     {
-        return $user->hasPermissionTo(PermissionsEnum::DELETE_MENUS->value);
+        return $user->hasPermissionTo(PermissionsEnum::DeleteMenus->value);
     }
 }

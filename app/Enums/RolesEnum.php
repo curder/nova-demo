@@ -7,15 +7,20 @@ use Illuminate\Support\Collection;
 
 enum RolesEnum: string
 {
-    case SuperAdmin = 'superAdmin'; // 超级管理员
-    case Content = 'content'; // 内容管理员
+    case SuperAdmin = 'Super Admin'; // 超级管理员
+    case Content = 'Content'; // 内容管理员
 
     public function label(): string
     {
         return match ($this) {
-            self::SuperAdmin => '超级管理员',
-            self::Content => '内容管理员',
+            self::SuperAdmin => self::labelFromTranslate(self::SuperAdmin),
+            self::Content => self::labelFromTranslate(self::Content),
         };
+    }
+
+    protected static function labelFromTranslate(self $enum): string
+    {
+        return __('enums.'.RolesEnum::class.'.'.$enum->value);
     }
 
     public function users(): Collection
@@ -31,9 +36,6 @@ enum RolesEnum: string
         };
     }
 
-    /**
-     * @return int
-     */
     public static function count(): int
     {
         return count(self::cases());
@@ -41,24 +43,20 @@ enum RolesEnum: string
 
     /**
      * 角色对应的权限关联关系
-     *
-     * @param string $role
-     *
-     * @return \Illuminate\Support\Collection
      */
     public static function permissions(string $role): Collection
     {
         return collect([
             self::SuperAdmin->value => PermissionsEnum::availablePermissions(),
             self::Content->value => collect([
-                Permission::MANAGER_USERS->value,
-                Permission::VIEW_USERS->value,
-                Permission::UPDATE_USERS->value,
-                Permission::DELETE_USERS->value,
-                Permission::RESTORE_USERS->value,
+                Permission::ManagerUsers->value,
+                Permission::ViewUsers->value,
+                Permission::UpdateUsers->value,
+                Permission::DeleteUsers->value,
+                Permission::RestoreUsers->value,
 
-                Permission::MANAGER_MENUS->value,
-                Permission::VIEW_MENUS->value,
+                Permission::ManagerMenus->value,
+                Permission::ViewMenus->value,
             ]),
         ])->get($role, collect([]));
     }

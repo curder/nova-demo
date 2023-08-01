@@ -3,8 +3,8 @@
 use App\Enums\PermissionsEnum;
 
 beforeEach(function () {
-    $this->group_count = 4;
-    $this->available_count = 33;
+    $this->group_count = 5;
+    $this->available_count = 31;
 });
 
 it('has availablePermissions static method on permissionsEnum class', fn () => expect(PermissionsEnum::availablePermissions())
@@ -16,14 +16,14 @@ it('has groups static method on permissionsEnum class', fn () => expect(Permissi
 it('has count static method on permissionsEnum class', fn () => expect(PermissionsEnum::count())
     ->toBeInt()->toBe($this->available_count));
 
-it('has enum key value and label method for Users', fn () => expect(PermissionsEnum::USERS)
+it('has enum key value and label method for Users', fn () => expect(PermissionsEnum::Users)
     ->toBeInstanceOf(PermissionsEnum::class)
-    ->toBeEnum('USERS', 'users', '用户'));
+    ->toBeEnum('Users', 'users', '用户'));
 
-it('has enum key value and label method for Roles', fn () => expect(PermissionsEnum::ROLES)
+it('has enum key value and label method for Roles', fn () => expect(PermissionsEnum::Roles)
     ->toBeInstanceOf(PermissionsEnum::class)
-    ->toBeEnum('ROLES', 'roles', '角色'));
+    ->toBeEnum('Roles', 'roles', '角色'));
 
-it('has enum key value and label method for Permissions', fn () => expect(PermissionsEnum::PERMISSIONS)
+it('has enum key value and label method for Permissions', fn () => expect(PermissionsEnum::Permissions)
     ->toBeInstanceOf(PermissionsEnum::class)
-    ->toBeEnum('PERMISSIONS', 'permissions', '权限'));
+    ->toBeEnum('Permissions', 'permissions', '权限'));

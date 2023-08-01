@@ -14,9 +14,6 @@ class Permission extends SpatiePermission
 {
     use HasFactory;
 
-    /**
-     * @return \Database\Factories\PermissionFactory
-     */
     protected static function newFactory(): PermissionFactory
     {
         return PermissionFactory::new();

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Enums\PermissionsEnum;
 use App\Enums\UsersEnum;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -19,8 +18,7 @@ class UserHasPermissionsSeeder extends Seeder
     {
         // 获取当前所有用户并遍历后赋予权限
         UsersEnum::permissions()->each(
-            fn(Collection $permissions, $email) =>
-            User::query()->where('email', $email)->first()->syncPermissions($permissions->pluck('value'))
+            fn (Collection $permissions, $email) => User::query()->where('email', $email)->first()->syncPermissions($permissions->pluck('value'))
         );
     }
 }

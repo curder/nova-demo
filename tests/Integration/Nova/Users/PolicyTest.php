@@ -44,21 +44,21 @@ it('has user can not view any', function () {
     $user = $this->loginAsEditor();
     $role = $user->roles()->first();
 
-    $role->revokePermissionTo(PermissionsEnum::MANAGER_USERS->value);
+    $role->revokePermissionTo(PermissionsEnum::ManagerUsers->value);
 
     $this->novaIndex('users')
-         ->assertStatus(Response::HTTP_FORBIDDEN);
+        ->assertStatus(Response::HTTP_FORBIDDEN);
 });
 
 it('has user policy can not asserts', function () {
     $user = $this->loginAsEditor();
 
     $revoke_permissions = [
-        PermissionsEnum::CREATE_USERS->value,
-        PermissionsEnum::UPDATE_USERS->value,
-        PermissionsEnum::DELETE_USERS->value,
-        PermissionsEnum::FORCE_DELETE_USERS->value,
-        PermissionsEnum::RESTORE_USERS->value,
+        PermissionsEnum::CreateUsers->value,
+        PermissionsEnum::UpdateUsers->value,
+        PermissionsEnum::DeleteUsers->value,
+        PermissionsEnum::ForceDeleteUsers->value,
+        PermissionsEnum::RestoreUsers->value,
     ];
 
     $user->revokePermissionTo($revoke_permissions);
