@@ -19,14 +19,12 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: [ '8.1' ]
+        php-versions: [ '8.2', '8.1' ]
         dependency-stability: [ prefer-stable ]
 
-        laravel: [ '9.*', '10.*' ]
+        laravel: [ '10.*' ]
         include:
-          - laravel:  9.*
-            testbench: 7.*
-          - laravel:  9.*
+          - laravel:  10.*
             testbench: 8.*
 
     name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
