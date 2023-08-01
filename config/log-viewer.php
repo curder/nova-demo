@@ -33,7 +33,7 @@ return [
     |
     */
 
-    'route_path' => env('NOVA_PATH').'/resources/logs',
+    'route_path' => env('NOVA_PATH').'/logs',
 
     /*
     |--------------------------------------------------------------------------
