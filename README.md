@@ -7,7 +7,7 @@
 -   添加授权用户名，密码
 
 ```bash
-composer config http-basic.nova.laravel.com ${NOVA_USERNAME} ${NOVA_PASSWORD}
+composer config http-basic.nova.laravel.com ${NOVA_USERNAME} ${NOVA_LICENSE}
 ```
 
 > 通过上面的命令可以设置对应的 Nova 授权，其中用户名为 https://nova.laravel.com 的登陆邮箱，密码在[Nova 设置处获取](https://nova.laravel.com/settings#password)
@@ -38,7 +38,7 @@ php artisan migrate:refresh --seed
 http://nova-demo.test
 ```
 
-- 默认管理员用户名/密码：`curder@example.com` / `password`
+- 默认管理员用户名/密码：`super@example.com` / `password`
 
 - 默认编辑用户名/密码：`example@example.com` / `password`
 
