@@ -24,9 +24,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         parent::boot();
 
         Nova::withBreadcrumbs();
-
+        Nova::withoutGlobalSearch();
         Nova::withoutNotificationCenter();
-
         Nova::mainMenu(callback: Menu::make());
     }
 
