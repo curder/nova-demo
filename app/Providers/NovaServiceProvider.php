@@ -10,6 +10,7 @@ use App\Supports\Menu;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Mastani\NovaPasswordReset\PasswordReset;
 use Outl1ne\MenuBuilder\MenuBuilder;
 use Spatie\BackupTool\BackupTool;
 use Vyuldashev\NovaPermission\NovaPermissionTool;
@@ -26,7 +27,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::withBreadcrumbs();
         Nova::withoutGlobalSearch();
         Nova::withoutNotificationCenter();
-        Nova::mainMenu(callback: Menu::make());
+        Nova::mainMenu(callback: Menu::main());
+        Nova::userMenu(userMenuCallback: Menu::user());
     }
 
     /**
@@ -81,6 +83,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 ->permissionPolicy(PermissionPolicy::class),
             MenuBuilder::make(),
             BackupTool::make(),
+            PasswordReset::make(),
         ];
     }
 

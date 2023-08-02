@@ -15,12 +15,21 @@ use Laravel\Nova\Menu\MenuSection;
 
 class Menu
 {
-    public static function make(): Closure
+    public static function main(): Closure
     {
         return fn (Request $request) => [
             self::mainSection()->icon('document-text')->collapsable(),
             self::systemSection()->icon('cog')->collapsable(),
         ];
+    }
+
+    public static function user(): Closure
+    {
+        return function (Request $request, \Laravel\Nova\Menu\Menu $menu) {
+            return $menu->append([
+                MenuItem::externalLink(__('password-reset::password-reset.ResetPassword'), self::url('password-reset')),
+            ]);
+        };
     }
 
     private static function mainSection(): MenuSection
