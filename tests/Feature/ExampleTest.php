@@ -6,4 +6,4 @@ it('welcome page has the correct index URL')
 
 it('has welcome page')
     ->get('/')
-    ->assertRedirect('/cp/dashboards/main');
+    ->assertRedirect('/cp/resources/users');
