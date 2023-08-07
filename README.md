@@ -40,10 +40,3 @@ http://nova-demo.test
 - 默认管理员用户名/密码：`super@example.com` / `password`
 
 - 默认编辑用户名/密码：`example@example.com` / `password`
-
-
-## 插件
-
--   [Laravel 权限管理 spatie/laravel-permission](https://github.com/spatie/laravel-permission)
--   [权限管理 vyuldashev/nova-permission](https://github.com/vyuldashev/nova-permission)
--   [枚举管理 bensampo/laravel-enum](https://github.com/BenSampo/laravel-enum)
