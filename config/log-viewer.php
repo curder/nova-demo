@@ -46,7 +46,7 @@ return [
     |
     */
 
-    'back_to_system_url' => config('app.url', null).env('NOVA_PATH'),
+    'back_to_system_url' => env('APP_URL').env('NOVA_PATH'),
 
     'back_to_system_label' => env('APP_NAME'), // Displayed by default: "Back to {{ app.name }}"
 
