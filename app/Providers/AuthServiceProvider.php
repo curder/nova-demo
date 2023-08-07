@@ -2,15 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\Menu;
-use App\Models\User;
-use App\Policies\MenuPolicy;
-use App\Policies\PermissionPolicy;
-use App\Policies\RolePolicy;
-use App\Policies\UserPolicy;
+use App\Models;
+use App\Policies;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -20,10 +14,10 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        User::class => UserPolicy::class,
-        Permission::class => PermissionPolicy::class,
-        Role::class => RolePolicy::class,
-        Menu::class => MenuPolicy::class,
+        Models\User::class => Policies\User::class,
+        Models\Permission::class => Policies\Permission::class,
+        Models\Role::class => Policies\Role::class,
+        Models\Menu::class => Policies\Menu::class,
     ];
 
     /**

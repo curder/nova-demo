@@ -2,10 +2,7 @@
 
 namespace App\Providers;
 
-use App\Nova\Permission;
-use App\Nova\Role;
-use App\Policies\PermissionPolicy;
-use App\Policies\RolePolicy;
+use App\Policies;
 use App\Supports\Menu;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
@@ -77,10 +74,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             NovaPermissionTool::make()
-                ->roleResource(Role::class)
-                ->permissionResource(Permission::class)
-                ->rolePolicy(RolePolicy::class)
-                ->permissionPolicy(PermissionPolicy::class),
+                ->roleResource(\App\Nova\Role::class)
+                ->permissionResource(\App\Nova\Permission::class)
+                ->rolePolicy(Policies\Role::class)
+                ->permissionPolicy(Policies\Permission::class),
             MenuBuilder::make(),
             BackupTool::make(),
             PasswordReset::make(),
