@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\RolesEnum;
-use App\Enums\UsersEnum;
+use App\Enums;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -59,7 +58,7 @@ class User extends Authenticatable
      */
     public function isSuperAdmin(): bool
     {
-        return $this->hasRole(RolesEnum::SuperAdmin->value);
+        return $this->hasRole(Enums\Role::SuperAdmin->value);
     }
 
     /**
@@ -67,6 +66,6 @@ class User extends Authenticatable
      */
     public function canImpersonate($impersonated = null): bool
     {
-        return in_array($this->email, UsersEnum::canImpersonateUsers(), true);
+        return in_array($this->email, Enums\User::canImpersonateUsers(), true);
     }
 }

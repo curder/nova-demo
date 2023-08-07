@@ -27,7 +27,7 @@ class User
      */
     public function create(Models\User $user): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::CreateUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::CreateUsers->value);
     }
 
     public function replicate(Models\User $user, Models\User $model): bool
@@ -47,7 +47,7 @@ class User
             return $user->id !== $model->id && ! $model->isSuperAdmin();
         }
 
-        return $user->can(Enums\PermissionsEnum::DeleteUsers->value) // 拥有删除用户权限
+        return $user->can(Enums\Permission::DeleteUsers->value) // 拥有删除用户权限
             && $user->id !== $model->id //
             && ! $model->isSuperAdmin();
     }
@@ -63,7 +63,7 @@ class User
             return $user->id !== $model->id;
         }
 
-        return $user->can(Enums\PermissionsEnum::RestoreUsers->value)
+        return $user->can(Enums\Permission::RestoreUsers->value)
             && $user->id !== $model->id
             && ! $model->isSuperAdmin();
     }
@@ -81,7 +81,7 @@ class User
             }
         }
 
-        return $user->can(Enums\PermissionsEnum::UpdateUsers->value);
+        return $user->can(Enums\Permission::UpdateUsers->value);
     }
 
     /**
@@ -95,7 +95,7 @@ class User
             return $user->id !== $model->id;
         }
 
-        return $user->can(Enums\PermissionsEnum::ForceDeleteUsers->value)
+        return $user->can(Enums\Permission::ForceDeleteUsers->value)
             && $user->id !== $model->id
             && ! $model->isSuperAdmin();
     }
@@ -111,11 +111,11 @@ class User
             return true;
         }
 
-        if (Enums\RolesEnum::SuperAdmin->value === $role->name) {
+        if (Enums\Role::SuperAdmin->value === $role->name) {
             return false;
         }
 
-        return $user->hasPermissionTo(Enums\PermissionsEnum::RoleAttachAnyUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::RoleAttachAnyUsers->value);
         // && !$user->roles->contains($role)
     }
 
@@ -124,7 +124,7 @@ class User
      */
     public function attachRole(Models\User $user, Models\User $role): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::RoleAttachUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::RoleAttachUsers->value);
     }
 
     /**
@@ -132,7 +132,7 @@ class User
      */
     public function detachRole(Models\User $user, Models\User $model): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::RoleDetachUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::RoleDetachUsers->value);
     }
 
     /**
@@ -148,7 +148,7 @@ class User
             }
         }
 
-        return $user->hasPermissionTo(Enums\PermissionsEnum::PermissionAttachAnyUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::PermissionAttachAnyUsers->value);
         // && !$user->roles->contains($role)
     }
 
@@ -157,7 +157,7 @@ class User
      */
     public function attachPermission(Models\User $user, Models\User $use): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::PermissionAttachUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::PermissionAttachUsers->value);
     }
 
     /**
@@ -166,7 +166,7 @@ class User
     public function detachPermission(Models\User $user, Models\User $model): bool
     {
 
-        return $user->hasPermissionTo(Enums\PermissionsEnum::PermissionDetachUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::PermissionDetachUsers->value);
     }
 
     /**
@@ -174,11 +174,11 @@ class User
      */
     public function view(Models\User $user, Models\User $model): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::ViewUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::ViewUsers->value);
     }
 
     public function viewAny(Models\User $user): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::ManagerUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::ManagerUsers->value);
     }
 }

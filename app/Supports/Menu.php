@@ -2,10 +2,7 @@
 
 namespace App\Supports;
 
-use App\Enums\PermissionsEnum;
-use App\Nova\Permission;
-use App\Nova\Role;
-use App\Nova\User;
+use App\Nova;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -58,14 +55,14 @@ class Menu
         return MenuSection::make(__('System Section'), [
             MenuItem::externalLink(__('Backups'), self::url('backups'))->canSee(Authorize::canSeeBackups()),
             MenuItem::externalLink(__('Logs'), self::url('logs'))->withBadge(self::logsCount())->canSee(Authorize::canSeeLogs()),
-            MenuItem::resource(User::class),
-            MenuItem::resource(Role::class),
-            MenuItem::resource(Permission::class),
+            MenuItem::resource(Nova\User::class),
+            MenuItem::resource(Nova\Role::class),
+            MenuItem::resource(Nova\Permission::class),
         ]);
     }
 
     private static function logsCount(): Closure
     {
-        return fn () => (string) collect(Storage::disk('logs')->files())->filter(fn ($log) => Str::endsWith($log, '.log'))->values()->count();
+        return fn () => (string) collect(Storage::disk('logs')->files())->filter(fn (string $log) => Str::endsWith($log, '.log'))->values()->count();
     }
 }

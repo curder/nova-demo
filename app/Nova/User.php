@@ -2,29 +2,25 @@
 
 namespace App\Nova;
 
-use App\Models\User as UserModel;
+use App\Models;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
-use Vyuldashev\NovaPermission\Permission;
-use Vyuldashev\NovaPermission\Role;
 
 /**
  * Class User
  *
- * @property UserModel $resource
+ * @property Models\User $resource
  */
 class User extends Resource
 {
     /**
      * The model the resource corresponds to.
-     *
-     * @var string
      */
-    public static $model = UserModel::class;
+    public static string $model = Models\User::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -69,12 +65,6 @@ class User extends Resource
 
             MorphToMany::make(__('users.roles'), 'roles', Role::class),
             MorphToMany::make(__('users.permissions'), 'permissions', Permission::class),
-
-            // new Panel(__('users.groupLabel'), $this->getRoleAndPermissionFields()),
-
-            //            BooleanGroup::make('Permissions')->options(
-            //                Permission::get()->pluck('name', 'id')->toArray()
-            //            ),
         ];
     }
 

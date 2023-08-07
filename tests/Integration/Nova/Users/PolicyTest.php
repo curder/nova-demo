@@ -2,17 +2,15 @@
 
 namespace Tests\Integration\Nova\Users;
 
-use App\Enums\PermissionsEnum;
-use Database\Seeders\RolesAndPermissionsSeeder;
-use Database\Seeders\UserHasPermissionsSeeder;
-use Database\Seeders\UserSeeder;
+use App\Enums;
+use Database\Seeders;
 use Symfony\Component\HttpFoundation\Response;
 
 beforeEach(closure: function () {
     $this->seed([
-        UserSeeder::class,
-        RolesAndPermissionsSeeder::class,
-        UserHasPermissionsSeeder::class,
+        Seeders\UserSeeder::class,
+        Seeders\RolesAndPermissionsSeeder::class,
+        Seeders\UserHasPermissionsSeeder::class,
     ]);
 });
 
@@ -44,7 +42,7 @@ it('has user can not view any', function () {
     $user = $this->loginAsEditor();
     $role = $user->roles()->first();
 
-    $role->revokePermissionTo(PermissionsEnum::ManagerUsers->value);
+    $role->revokePermissionTo(Enums\Permission::ManagerUsers->value);
 
     $this->novaIndex('users')
         ->assertStatus(Response::HTTP_FORBIDDEN);
@@ -54,11 +52,11 @@ it('has user policy can not asserts', function () {
     $user = $this->loginAsEditor();
 
     $revoke_permissions = [
-        PermissionsEnum::CreateUsers->value,
-        PermissionsEnum::UpdateUsers->value,
-        PermissionsEnum::DeleteUsers->value,
-        PermissionsEnum::ForceDeleteUsers->value,
-        PermissionsEnum::RestoreUsers->value,
+        Enums\Permission::CreateUsers->value,
+        Enums\Permission::UpdateUsers->value,
+        Enums\Permission::DeleteUsers->value,
+        Enums\Permission::ForceDeleteUsers->value,
+        Enums\Permission::RestoreUsers->value,
     ];
 
     $user->revokePermissionTo($revoke_permissions);

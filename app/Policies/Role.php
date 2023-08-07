@@ -18,7 +18,7 @@ class Role
      */
     public function create(Models\User $user): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::CreateRoles->value);
+        return $user->hasPermissionTo(Enums\Permission::CreateRoles->value);
     }
 
     public function replicate(Models\User $user, Models\Role $role): bool
@@ -33,7 +33,7 @@ class Role
      */
     public function delete(Models\User $user, Models\Role $model): bool
     {
-        if (Enums\RolesEnum::SuperAdmin->value === $model->name) {
+        if (Enums\Role::SuperAdmin->value === $model->name) {
             return false;
         }
 
@@ -51,11 +51,11 @@ class Role
      */
     public function restore(Models\User $user, Models\Role $model): bool
     {
-        if ($user->hasRole($model->name) || Enums\RolesEnum::SuperAdmin->value === $model->name) {
+        if ($user->hasRole($model->name) || Enums\Role::SuperAdmin->value === $model->name) {
             return false;
         }
 
-        return $user->hasPermissionTo(Enums\PermissionsEnum::RestoreRoles->value);
+        return $user->hasPermissionTo(Enums\Permission::RestoreRoles->value);
     }
 
     /**
@@ -65,11 +65,11 @@ class Role
      */
     public function forceDelete(Models\User $user, Models\Role $model): bool
     {
-        if ($user->hasRole($model->name) || Enums\RolesEnum::SuperAdmin->value === $model->name) {
+        if ($user->hasRole($model->name) || Enums\Role::SuperAdmin->value === $model->name) {
             return false;
         }
 
-        return $user->hasPermissionTo(Enums\PermissionsEnum::ForceDeleteRoles->value);
+        return $user->hasPermissionTo(Enums\Permission::ForceDeleteRoles->value);
     }
 
     /**
@@ -79,11 +79,11 @@ class Role
      */
     public function update(Models\User $user, Models\Role $model): bool
     {
-        if ($user->hasRole($model->name) || Enums\RolesEnum::SuperAdmin->value === $model->name) {
+        if ($user->hasRole($model->name) || Enums\Role::SuperAdmin->value === $model->name) {
             return false;
         }
 
-        return $user->hasPermissionTo(Enums\PermissionsEnum::UpdateRoles->value);
+        return $user->hasPermissionTo(Enums\Permission::UpdateRoles->value);
     }
 
     /**
@@ -91,12 +91,12 @@ class Role
      */
     public function view(Models\User $user, Models\Role $model): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::ViewRoles->value);
+        return $user->hasPermissionTo(Enums\Permission::ViewRoles->value);
     }
 
     public function viewAny(Models\User $user): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::ManagerRoles->value);
+        return $user->hasPermissionTo(Enums\Permission::ManagerRoles->value);
     }
 
     /**
@@ -110,11 +110,11 @@ class Role
             return true;
         }
 
-        if (Enums\RolesEnum::SuperAdmin->value === $role->name) {
+        if (Enums\Role::SuperAdmin->value === $role->name) {
             return false;
         }
 
-        return $user->hasPermissionTo(Enums\PermissionsEnum::RoleAttachAnyUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::RoleAttachAnyUsers->value);
         // && !$user->roles->contains($role)
     }
 
@@ -123,7 +123,7 @@ class Role
      */
     public function attachUser(Models\User $user, Models\Role $role): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::RoleAttachUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::RoleAttachUsers->value);
     }
 
     /**
@@ -131,6 +131,6 @@ class Role
      */
     public function detachUser(Models\User $user, Models\Role $role): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::RoleDetachUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::RoleDetachUsers->value);
     }
 }

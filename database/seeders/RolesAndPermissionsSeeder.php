@@ -2,11 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Enums\PermissionsEnum;
-use App\Enums\RolesEnum;
-use App\Models\Permission;
-use App\Models\Role;
-use App\Models\User;
+use App\Enums;
+use App\Models;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -29,19 +26,19 @@ class RolesAndPermissionsSeeder extends Seeder
         // 3. create permissions for each collection item
         $this->getPermissions()->each(
             fn ($item, $group) => collect($item)->each(
-                fn ($permission) => Permission::create(['name' => $permission])
+                fn ($permission) => Models\Permission::create(['name' => $permission])
             )
         );
 
         // 4. Create roles and assign permissions
-        collect(RolesEnum::cases())
-            ->each(fn (RolesEnum $item) => Role::create(['name' => $item->value]))
+        collect(Enums\Role::cases())
+            ->each(fn (Enums\Role $item) => Models\Role::create(['name' => $item->value]))
             ->each(
-                fn (RolesEnum $item) => Role::findByName($item->value)->givePermissionTo(RolesEnum::permissions($item->value))
+                fn (Enums\Role $item) => Models\Role::findByName($item->value)->givePermissionTo(Enums\Role::permissions($item->value))
             )
             ->each(
-                fn (RolesEnum $role) => $role->users()->each(
-                    fn ($email) => User::query()->where('email', $email)->first()->assignRole($role->value)
+                fn (Enums\Role $role) => $role->users()->each(
+                    fn ($email) => Models\User::query()->where('email', $email)->first()->assignRole($role->value)
                 )
             );
     }
@@ -70,48 +67,48 @@ class RolesAndPermissionsSeeder extends Seeder
     protected function getPermissions(): Collection
     {
         return collect([
-            PermissionsEnum::Users->value => [
-                PermissionsEnum::ManagerUsers->value,
-                PermissionsEnum::ViewUsers->value,
-                PermissionsEnum::CreateUsers->value,
-                PermissionsEnum::UpdateUsers->value,
-                PermissionsEnum::DeleteUsers->value,
-                PermissionsEnum::RestoreUsers->value,
-                PermissionsEnum::ForceDeleteUsers->value,
-                PermissionsEnum::PermissionAttachAnyUsers->value,
-                PermissionsEnum::PermissionAttachUsers->value,
-                PermissionsEnum::PermissionDetachUsers->value,
+            Enums\Permission::Users->value => [
+                Enums\Permission::ManagerUsers->value,
+                Enums\Permission::ViewUsers->value,
+                Enums\Permission::CreateUsers->value,
+                Enums\Permission::UpdateUsers->value,
+                Enums\Permission::DeleteUsers->value,
+                Enums\Permission::RestoreUsers->value,
+                Enums\Permission::ForceDeleteUsers->value,
+                Enums\Permission::PermissionAttachAnyUsers->value,
+                Enums\Permission::PermissionAttachUsers->value,
+                Enums\Permission::PermissionDetachUsers->value,
             ],
-            PermissionsEnum::Roles->value => [
-                PermissionsEnum::ManagerRoles->value,
-                PermissionsEnum::ViewRoles->value,
-                PermissionsEnum::CreateRoles->value,
-                PermissionsEnum::UpdateRoles->value,
-                PermissionsEnum::DeleteRoles->value,
-                PermissionsEnum::RestoreRoles->value,
-                PermissionsEnum::ForceDeleteRoles->value,
-                PermissionsEnum::RoleAttachAnyUsers->value,
-                PermissionsEnum::RoleAttachUsers->value,
-                PermissionsEnum::RoleDetachUsers->value,
+            Enums\Permission::Roles->value => [
+                Enums\Permission::ManagerRoles->value,
+                Enums\Permission::ViewRoles->value,
+                Enums\Permission::CreateRoles->value,
+                Enums\Permission::UpdateRoles->value,
+                Enums\Permission::DeleteRoles->value,
+                Enums\Permission::RestoreRoles->value,
+                Enums\Permission::ForceDeleteRoles->value,
+                Enums\Permission::RoleAttachAnyUsers->value,
+                Enums\Permission::RoleAttachUsers->value,
+                Enums\Permission::RoleDetachUsers->value,
             ],
-            PermissionsEnum::Permissions->value => [
-                PermissionsEnum::ManagerPermissions->value,
-                PermissionsEnum::ViewPermissions->value,
-                PermissionsEnum::PermissionAttachAnyRoles->value,
-                PermissionsEnum::PermissionAttachRoles->value,
-                PermissionsEnum::PermissionDetachRoles->value,
-            ],
-
-            PermissionsEnum::Menus->value => [
-                PermissionsEnum::ManagerMenus->value,
-                PermissionsEnum::ViewMenus->value,
-                PermissionsEnum::CreateMenus->value,
-                PermissionsEnum::UpdateMenus->value,
-                PermissionsEnum::DeleteMenus->value,
+            Enums\Permission::Permissions->value => [
+                Enums\Permission::ManagerPermissions->value,
+                Enums\Permission::ViewPermissions->value,
+                Enums\Permission::PermissionAttachAnyRoles->value,
+                Enums\Permission::PermissionAttachRoles->value,
+                Enums\Permission::PermissionDetachRoles->value,
             ],
 
-            PermissionsEnum::Settings->value => [
-                PermissionsEnum::ViewLogs->value,
+            Enums\Permission::Menus->value => [
+                Enums\Permission::ManagerMenus->value,
+                Enums\Permission::ViewMenus->value,
+                Enums\Permission::CreateMenus->value,
+                Enums\Permission::UpdateMenus->value,
+                Enums\Permission::DeleteMenus->value,
+            ],
+
+            Enums\Permission::Settings->value => [
+                Enums\Permission::ViewLogs->value,
             ],
         ]);
     }

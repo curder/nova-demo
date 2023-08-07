@@ -2,12 +2,14 @@
 
 namespace Tests\Integration\Nova\Users;
 
-use App\Enums\PermissionsEnum;
-use Database\Seeders\RolesAndPermissionsSeeder;
-use Database\Seeders\UserSeeder;
+use App\Enums;
+use Database\Seeders;
 
 beforeEach(closure: function () {
-    $this->seed([UserSeeder::class, RolesAndPermissionsSeeder::class]);
+    $this->seed([
+        Seeders\UserSeeder::class,
+        Seeders\RolesAndPermissionsSeeder::class,
+    ]);
 });
 
 it('has some fields for super admin user', function () {
@@ -24,7 +26,7 @@ it('has some fields for super admin user', function () {
 it('has some fields for content manager user', function () {
     $authed = $this->loginAsEditor();
 
-    $authed->givePermissionTo(PermissionsEnum::CreateUsers->value);
+    $authed->givePermissionTo(Enums\Permission::CreateUsers->value);
 
     $this->novaCreate('users')
         ->assertFieldsInclude('email')

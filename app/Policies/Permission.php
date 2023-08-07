@@ -27,12 +27,12 @@ class Permission
 
     public function view(Models\User $user, Models\Permission $model): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::ViewPermissions->value);
+        return $user->hasPermissionTo(Enums\Permission::ViewPermissions->value);
     }
 
     public function viewAny(Models\User $user): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::ManagerPermissions->value);
+        return $user->hasPermissionTo(Enums\Permission::ManagerPermissions->value);
     }
 
     /**
@@ -41,7 +41,7 @@ class Permission
      */
     public function attachAnyUser(Models\User $user, Models\Permission $permission): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::PermissionAttachAnyUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::PermissionAttachAnyUsers->value);
     }
 
     /**
@@ -49,7 +49,7 @@ class Permission
      */
     public function attachUser(Models\User $user, Models\Permission $permission): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::PermissionAttachUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::PermissionAttachUsers->value);
     }
 
     /**
@@ -57,7 +57,7 @@ class Permission
      */
     public function detachUser(Models\User $user, Models\Permission $permission): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::PermissionDetachUsers->value);
+        return $user->hasPermissionTo(Enums\Permission::PermissionDetachUsers->value);
     }
 
     /**
@@ -66,7 +66,7 @@ class Permission
      */
     public function attachAnyRole(Models\User $user, Models\Role $role): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::PermissionAttachAnyRoles->value);
+        return $user->hasPermissionTo(Enums\Permission::PermissionAttachAnyRoles->value);
     }
 
     /**
@@ -74,7 +74,7 @@ class Permission
      */
     public function attachRole(Models\User $user, Models\Role $role): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::PermissionAttachRoles->value);
+        return $user->hasPermissionTo(Enums\Permission::PermissionAttachRoles->value);
     }
 
     /**
@@ -82,15 +82,15 @@ class Permission
      */
     public function detachRole(Models\User $user, Models\Role $role): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::PermissionDetachRoles->value);
+        return $user->hasPermissionTo(Enums\Permission::PermissionDetachRoles->value);
     }
 
     protected function disabledGroup(): array
     {
         return [
-            Enums\PermissionsEnum::Users->value,
-            Enums\PermissionsEnum::Roles->value,
-            Enums\PermissionsEnum::Permissions->value,
+            Enums\Permission::Users->value,
+            Enums\Permission::Roles->value,
+            Enums\Permission::Permissions->value,
         ];
     }
 }

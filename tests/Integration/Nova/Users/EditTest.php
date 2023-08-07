@@ -2,11 +2,10 @@
 
 namespace Tests\Integration\Nova\Users;
 
-use Database\Seeders\RolesAndPermissionsSeeder;
-use Database\Seeders\UserSeeder;
+use Database\Seeders;
 
 beforeEach(closure: function () {
-    $this->seed([UserSeeder::class, RolesAndPermissionsSeeder::class]);
+    $this->seed([Seeders\UserSeeder::class, Seeders\RolesAndPermissionsSeeder::class]);
 });
 
 it('has users fields for super admin user', function () {

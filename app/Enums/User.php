@@ -2,9 +2,10 @@
 
 namespace App\Enums;
 
+use App\Enums;
 use Illuminate\Support\Collection;
 
-enum UsersEnum: string
+enum User: string
 {
     case Super = 'super@example.com';
     case Example = 'example@example.com';
@@ -24,7 +25,7 @@ enum UsersEnum: string
                 //
             ]),
             self::Example->value => collect([
-                PermissionsEnum::CreateUsers->value,
+                Enums\Permission::CreateUsers->value,
             ]),
         ];
 

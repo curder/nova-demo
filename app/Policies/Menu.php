@@ -26,7 +26,7 @@ class Menu
      */
     public function viewAny(Models\User $user): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::ManagerMenus->value);
+        return $user->hasPermissionTo(Enums\Permission::ManagerMenus->value);
     }
 
     /**
@@ -34,7 +34,7 @@ class Menu
      */
     public function view(Models\User $user, Models\Menu $menu): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::ViewMenus->value);
+        return $user->hasPermissionTo(Enums\Permission::ViewMenus->value);
     }
 
     /**
@@ -42,7 +42,7 @@ class Menu
      */
     public function create(Models\User $user): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::CreateMenus->value);
+        return $user->hasPermissionTo(Enums\Permission::CreateMenus->value);
     }
 
     /**
@@ -50,7 +50,7 @@ class Menu
      */
     public function update(Models\User $user, Models\Menu $menu): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::UpdateMenus->value);
+        return $user->hasPermissionTo(Enums\Permission::UpdateMenus->value);
     }
 
     /**
@@ -58,6 +58,6 @@ class Menu
      */
     public function delete(Models\User $user, Models\Menu $menu): bool
     {
-        return $user->hasPermissionTo(Enums\PermissionsEnum::DeleteMenus->value);
+        return $user->hasPermissionTo(Enums\Permission::DeleteMenus->value);
     }
 }

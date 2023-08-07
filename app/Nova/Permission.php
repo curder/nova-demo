@@ -2,28 +2,23 @@
 
 namespace App\Nova;
 
-use App\Enums\PermissionsEnum;
-use App\Enums\RolesEnum;
+use App\Enums;
+use App\Models;
 use Illuminate\Validation\Rule;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\MorphToMany;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Nova;
 use Spatie\Permission\PermissionRegistrar;
-use Vyuldashev\NovaPermission\Permission as BasePermission;
-use Vyuldashev\NovaPermission\RoleBooleanGroup;
+use Vyuldashev\NovaPermission;
 
-class Permission extends BasePermission
+class Permission extends NovaPermission\Permission
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Permission>
+     * @var class-string<Models\Permission>
      */
-    public static $model = \App\Models\Permission::class;
+    public static $model = Models\Permission::class;
 
     public function fields(NovaRequest $request): array
     {
@@ -31,45 +26,35 @@ class Permission extends BasePermission
             return [$key => $key];
         });
 
+        /** @var User $userResource */
         $userResource = Nova::resourceForModel(getModelForGuard($this->guard_name ?? config('auth.defaults.guard')));
 
         return [
-            ID::make()->sortable(),
+            Fields\ID::make()->sortable(),
 
-            Text::make(__('permissions.name'), 'name')
+            Fields\Text::make(__('permissions.name'), 'name')
                 ->rules(['required', 'string', 'max:255'])
                 ->creationRules('unique:'.config('permission.table_names.permissions'))
                 ->updateRules('unique:'.config('permission.table_names.permissions').',name,{{resourceId}}')
-                ->displayUsing(fn ($value) => PermissionsEnum::tryFrom($value)?->label().'('.$value.')'),
+                ->displayUsing(fn ($value) => Enums\Permission::tryFrom($value)?->label().'('.$value.')'),
 
-            Text::make(
-                __('permissions.display_name'),
-                fn () => __('permissions.display_names.'.$this->name)
-            )->canSee(function () {
-                return is_array(__('permissions.display_names'));
-            }),
-
-            Select::make(__('permissions.guard_name'), 'guard_name')
+            Fields\Select::make(__('permissions.guard_name'), 'guard_name')
                 ->options($guardOptions->toArray())
                 ->rules(['required', Rule::in($guardOptions)]),
 
-            DateTime::make(__('permissions.created_at'), 'created_at')
+            Fields\DateTime::make(__('permissions.created_at'), 'created_at')
                 ->displayUsing(fn ($value) => $value ? $value->format('Y-m-d H:i:s') : '')
                 ->exceptOnForms(),
-            DateTime::make(__('permissions.updated_at'), 'updated_at')
+            Fields\DateTime::make(__('permissions.updated_at'), 'updated_at')
                 ->displayUsing(fn ($value) => $value ? $value->format('Y-m-d H:i:s') : '')
                 ->exceptOnForms(),
 
-            RoleBooleanGroup::make(__('permissions.roles'), 'roles')
-                ->options(function () {
-                    $roleClass = app(PermissionRegistrar::class)->getRoleClass();
+            NovaPermission\RoleBooleanGroup::make(__('permissions.roles'), 'roles')
+                ->options(fn () => (app(PermissionRegistrar::class)->getRoleClass())::all()
+                    ->pluck('name', 'name')
+                    ->mapWithKeys(fn ($key, $value) => [$key => Enums\Role::tryFrom($value)?->label() ?? $value])),
 
-                    return $roleClass::all()
-                        ->pluck('name', 'name')
-                        ->mapWithKeys(fn ($key, $value) => [$key => RolesEnum::tryFrom($value)?->label() ?? $value]);
-                }),
-
-            MorphToMany::make($userResource::label(), 'users', $userResource)
+            Fields\MorphToMany::make($userResource::label(), 'users', $userResource)
                 ->searchable()
                 ->singularLabel($userResource::singularLabel()),
         ];
