@@ -8,7 +8,7 @@ trait InteractsWithOptions
 {
     public static function asSelectOptions(): Support\Collection
     {
-        return collect(self::cases())->mapWithKeys(fn(self $enum) => [$enum->value => $enum->label()]);
+        return collect(self::cases())->mapWithKeys(fn (self $enum) => [$enum->value => $enum->label()]);
     }
 
     public function label(): string

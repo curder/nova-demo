@@ -29,5 +29,3 @@ test('enums')
 test('traits')
     ->expect('App\Traits')
     ->toBeTraits();
-
-

@@ -3,8 +3,8 @@
 namespace App\Enums;
 
 use App\Enums;
-use Illuminate\Support\Collection;
 use App\Traits\Enums\InteractsWithOptions;
+use Illuminate\Support\Collection;
 
 enum Role: string
 {
