@@ -22,15 +22,11 @@ class ResetPasswordController extends Controller
 
     /**
      * Where to redirect users after resetting their password.
-     *
-     * @var string
      */
-    protected $redirectTo = '/home';
+    protected string $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {

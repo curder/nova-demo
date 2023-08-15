@@ -11,17 +11,6 @@ class Menu
     use HandlesAuthorization;
 
     /**
-     * @param  string  $ability
-     * @return bool|null
-     */
-    public function before(Models\User $user, $ability)
-    {
-        if ($user->isSuperAdmin()) {
-            return true;
-        }
-    }
-
-    /**
      * Determine whether the user can view any videos.
      */
     public function viewAny(Models\User $user): bool

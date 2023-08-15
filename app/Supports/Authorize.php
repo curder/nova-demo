@@ -15,7 +15,7 @@ class Authorize
 
     public static function canSeeLogs(): Closure
     {
-        return fn ($request) => $request->user()->hasPermissionTo(Enums\Permission::ViewLogs->value);
+        return fn (Request $request) => $request->user()->hasPermissionTo(Enums\Permission::ViewLogs->value);
     }
 
     public static function canSeeBackups(): Closure

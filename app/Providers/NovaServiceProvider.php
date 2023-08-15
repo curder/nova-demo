@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use App\Policies;
 use App\Supports\Menu;
 use Illuminate\Support\Facades\Gate;
@@ -46,7 +47,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function gate(): void
     {
-        Gate::define('viewNova', function ($user) {
+        Gate::define('viewNova', function (User $user) {
             return true;
         });
     }

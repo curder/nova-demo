@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Enums;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields;
@@ -22,7 +23,7 @@ class Role extends NovaPermission\Role
 
     public function fields(NovaRequest $request): array
     {
-        $guardOptions = collect(config('auth.guards'))->mapWithKeys(function ($value, $key) {
+        $guardOptions = collect(config('auth.guards'))->mapWithKeys(function (string $value, string $key) {
             return [$key => $key];
         });
 
@@ -36,17 +37,17 @@ class Role extends NovaPermission\Role
                 ->rules(['required', 'string', 'max:255'])
                 ->creationRules('unique:'.config('permission.table_names.roles'))
                 ->updateRules('unique:'.config('permission.table_names.roles').',name,{{resourceId}}')
-                ->displayUsing(fn ($value) => Enums\Role::tryFrom($value)?->label() ?? $value),
+                ->displayUsing(fn (string $value) => Enums\Role::tryFrom($value)?->label() ?? $value),
 
             Fields\Select::make(__('roles.guard_name'), 'guard_name')
                 ->options($guardOptions->toArray())
                 ->rules(['required', Rule::in($guardOptions)]),
 
             Fields\DateTime::make(__('roles.created_at'), 'created_at')
-                ->displayUsing(fn ($value) => $value ? $value->format('Y-m-d H:i:s') : '')
+                ->displayUsing(fn (?Carbon $value) => $value ? $value->format('Y-m-d H:i:s') : '')
                 ->exceptOnForms(),
             Fields\DateTime::make(__('roles.updated_at'), 'updated_at')
-                ->displayUsing(fn ($value) => $value ? $value->format('Y-m-d H:i:s') : '')
+                ->displayUsing(fn (?Carbon $value) => $value ? $value->format('Y-m-d H:i:s') : '')
                 ->exceptOnForms(),
 
             NovaPermission\PermissionBooleanGroup::make(__('roles.permissions'), 'permissions')
@@ -54,7 +55,7 @@ class Role extends NovaPermission\Role
                     return (app(PermissionRegistrar::class)->getPermissionClass())::all()
                         ->filter(fn (string $permission) => Auth::user()->can('view', $permission))
                         ->pluck('name', 'name')
-                        ->mapWithKeys(fn ($key, Enums\Permission $value) => [$key => Enums\Permission::tryFrom($value)?->label() ?? $value]);
+                        ->mapWithKeys(fn (string $key, string $value) => [$key => Enums\Permission::tryFrom($value)?->label() ?? $value]);
                 }),
 
             Fields\MorphToMany::make($userResource::label(), 'users', $userResource)

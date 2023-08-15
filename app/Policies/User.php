@@ -13,17 +13,8 @@ class User
 {
     use HandlesAuthorization;
 
-    public function before(Models\User $user, $ability)
-    {
-        //
-    }
-
     /**
      * Determine whether the user can create models.
-     *
-     *
-     *
-     * @throws \Exception
      */
     public function create(Models\User $user): bool
     {

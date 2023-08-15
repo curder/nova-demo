@@ -21,7 +21,7 @@ class Kernel extends ConsoleKernel
      *
      * @return void
      */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
         $schedule->command('backup:run --only-db')->daily()->at('02:00'); // 凌晨2点备份数据库
         $schedule->command('backup:clean')->daily()->at('02:05'); // 凌晨2点5分清理旧的备份
@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
      *
      * @return void
      */
-    protected function commands()
+    protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');
 

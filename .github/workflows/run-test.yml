@@ -82,6 +82,9 @@ jobs:
       - name: Show Laravel versions
         run: php artisan --version
 
+      - name: Execute type coverage tests via Pest
+        run: php artisan test --type-coverage --min=99
+
       - name: Execute tests (Unit and Feature tests) via Pest
         # Set environment
         env:

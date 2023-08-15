@@ -61,10 +61,7 @@ class User extends Authenticatable
         return $this->hasRole(Enums\Role::SuperAdmin->value);
     }
 
-    /**
-     * @param  null  $impersonated
-     */
-    public function canImpersonate($impersonated = null): bool
+    public function canImpersonate(): bool
     {
         return in_array($this->email, Enums\User::canImpersonateUsers(), true);
     }

@@ -22,15 +22,11 @@ class VerificationController extends Controller
 
     /**
      * Where to redirect users after verification.
-     *
-     * @var string
      */
-    protected $redirectTo = '/home';
+    protected string $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
