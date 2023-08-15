@@ -3,10 +3,11 @@
 namespace App\Enums;
 
 use Illuminate\Support\Collection;
+use App\Traits\Enums\InteractsWithOptions;
 
 enum Permission: string
 {
-    use Traits\InteractsWithOptions;
+    use InteractsWithOptions;
 
     // 用户
     case Users = 'users'; // 分组标示

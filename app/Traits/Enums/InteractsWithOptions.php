@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enums\Traits;
+namespace App\Traits\Enums;
 
 use Illuminate\Support;
 
@@ -8,9 +8,7 @@ trait InteractsWithOptions
 {
     public static function asSelectOptions(): Support\Collection
     {
-        return collect(self::cases())->mapWithKeys(function (self $enum) {
-            return [$enum->value => $enum->label()];
-        });
+        return collect(self::cases())->mapWithKeys(fn(self $enum) => [$enum->value => $enum->label()]);
     }
 
     public function label(): string

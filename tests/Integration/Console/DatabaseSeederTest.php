@@ -2,9 +2,9 @@
 
 use App\Enums;
 use App\Models;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
-uses(RefreshDatabase::class)
+uses(LazilyRefreshDatabase::class)
     ->beforeEach(fn () => $this->seed());
 
 it('can see some init data in tables', function () {

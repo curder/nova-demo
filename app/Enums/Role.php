@@ -4,10 +4,11 @@ namespace App\Enums;
 
 use App\Enums;
 use Illuminate\Support\Collection;
+use App\Traits\Enums\InteractsWithOptions;
 
 enum Role: string
 {
-    use Enums\Traits\InteractsWithOptions;
+    use InteractsWithOptions;
 
     case SuperAdmin = 'Super Admin'; // 超级管理员
     case Content = 'Content'; // 内容管理员
