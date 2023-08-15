@@ -6,7 +6,7 @@ on:
       - '**.php'
 
 jobs:
-  Pint:
+  type-coverage:
     runs-on: ubuntu-latest
     steps:
       - uses: shivammathur/setup-php@v2
