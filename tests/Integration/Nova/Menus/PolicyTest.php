@@ -37,8 +37,9 @@ it('has user can not view signal menu', function () {
 });
 
 it('has user can not edit signal menu', function () {
-    $this->loginAsEditor();
+    ray()->showQueries();
 
-    $this->novaEdit('nova-menus', $this->menu->id)
+    $this->loginAsEditor();
+    $this->novaEdit('nova-menus', 1)
         ->assertStatus(Response::HTTP_FORBIDDEN);
 });

@@ -1,7 +1,7 @@
 <?php
 
 test('globals')
-    ->expect(['dd', 'dump'])
+    ->expect(['dd', 'dump', 'ray'])
     ->not->toBeUsed();
 
 test('nova')

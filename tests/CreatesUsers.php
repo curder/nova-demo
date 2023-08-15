@@ -6,28 +6,23 @@ use App\Models\User;
 
 trait CreatesUsers
 {
-    protected function loginAsEditor()
+    protected function loginAsEditor(): User
     {
-        $users = User::query()->latest('id')->get();
-        $authed = $users->first();
+        /** @var User $authed */
+        $authed = User::query()->latest('id')->first();
 
-        $this->loginAs($authed);
+        $this->actingAs($authed);
 
         return $authed;
     }
 
-    protected function loginAsAdmin()
+    protected function loginAsAdmin(): User
     {
-        $users = User::query()->first();
-        $authed = $users->first();
+        /** @var User $authed */
+        $authed = User::query()->first();
 
-        $this->loginAs($authed);
+        $this->actingAs($authed);
 
         return $authed;
-    }
-
-    protected function loginAs(User $user): void
-    {
-        $this->be($user);
     }
 }
