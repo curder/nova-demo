@@ -1,32 +1,29 @@
 <?php
 
 use App\Models\Menu;
-use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\UserSeeder;
 use Symfony\Component\HttpFoundation\Response;
 
 beforeEach(function () {
-    $this->seed([UserSeeder::class, RolesAndPermissionsSeeder::class]);
+    $this->seed(UserSeeder::class);
     $this->menu = Menu::factory()->create();
 });
 
 it('has menus come policy', function () {
     $this->loginAsAdmin();
-    $response = $this->novaIndex('nova-menus');
-
-    $response->assertOk();
-    $response->assertCanView();
-    $response->assertCanCreate();
-    $response->assertCanUpdate();
-    $response->assertCanDelete();
+    $this->novaIndex('nova-menus')
+        ->assertOk()
+        ->assertCanView()
+        ->assertCanUpdate()
+        ->assertCanDelete()
+        ->assertCanCreate();
 
     $this->loginAsEditor();
-    $response = $this->novaIndex('nova-menus');
-    $response->assertOk();
-
-    $response->assertCanNotCreate();
-    $response->assertCanNotUpdate();
-    $response->assertCanNotDelete();
+    $this->novaIndex('nova-menus')
+        ->assertOk()
+        ->assertCanNotUpdate()
+        ->assertCanNotDelete()
+        ->assertCanNotCreate();
 });
 
 it('has user can not view signal menu', function () {

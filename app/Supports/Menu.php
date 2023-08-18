@@ -37,7 +37,8 @@ class Menu
             //                    ->withBadge(badgeCallback: fn () => \App\Models\Post::query()->count(), type: 'success'),
             //                MenuItem::resource(\App\Nova\Category::class)
             //                    ->withBadge(badgeCallback: fn () => Category::query()->count()),
-            MenuItem::externalLink(__('menus.label'), self::url('menus'))->canSee(Authorize::canSeeMenus()),
+            MenuItem::externalLink(__('menus.label'), self::url('menus'))
+                ->canSee(Authorize::canSeeMenus()),
             //                MenuItem::externalLink(__('MetaSeo'), self::url('/settings/meta-seo'))
             //                    ->canSee(fn (NovaRequest $request) => $request->user()->hasPermissionTo(PermissionsEnum::meta_seo_settings->value)),
             //                MenuItem::externalLink(__('URLs'), self::url('/settings/urls'))
@@ -56,8 +57,6 @@ class Menu
             MenuItem::externalLink(__('Backups'), self::url('backups'))->canSee(Authorize::canSeeBackups()),
             MenuItem::externalLink(__('Logs'), self::url('logs'))->withBadge(self::logsCount())->canSee(Authorize::canSeeLogs()),
             MenuItem::resource(Nova\User::class),
-            MenuItem::resource(Nova\Role::class),
-            MenuItem::resource(Nova\Permission::class),
         ]);
     }
 

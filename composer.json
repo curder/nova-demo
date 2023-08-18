@@ -7,7 +7,6 @@
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.2",
-        "kiritokatklian/nova-permission": "^4.0",
         "laravel/framework": "^10.0",
         "laravel/nova": "4.22.*",
         "laravel/sanctum": "^3.2",

@@ -16,13 +16,10 @@ class UserSeeder extends Seeder
     {
         $default_password = Hash::make('password');
 
-        collect(Enums\Role::cases())->map(fn (Enums\Role $role) => $role->users())
-            ->flatten()
-            ->unique()
-            ->values()
-            ->reject(fn (Enums\User $email) => Models\User::query()->where('email', $email->value)->exists())
+        collect(Enums\UserEnum::cases())
+            ->reject(fn (Enums\UserEnum $email) => Models\User::query()->where('email', $email->value)->exists())
             ->each(
-                fn (Enums\User $email) => Models\User::query()->create([
+                fn (Enums\UserEnum $email) => Models\User::query()->create([
                     'name' => $email->name,
                     'email' => $email->value,
                     'password' => $default_password,

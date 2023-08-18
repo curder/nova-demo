@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
-use App\Policies;
+use App\Supports\Authorize;
 use App\Supports\Menu;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
@@ -11,7 +11,6 @@ use Laravel\Nova\NovaApplicationServiceProvider;
 use Mastani\NovaPasswordReset\PasswordReset;
 use Outl1ne\MenuBuilder\MenuBuilder;
 use Spatie\BackupTool\BackupTool;
-use Vyuldashev\NovaPermission\NovaPermissionTool;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -50,6 +49,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Gate::define('viewNova', function (User $user) {
             return true;
         });
+
+        Gate::define('viewLogViewer', function (User $user) {
+            return Authorize::canSeeLogs();
+        });
     }
 
     /**
@@ -74,11 +77,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools(): array
     {
         return [
-            NovaPermissionTool::make()
-                ->roleResource(\App\Nova\Role::class)
-                ->permissionResource(\App\Nova\Permission::class)
-                ->rolePolicy(Policies\Role::class)
-                ->permissionPolicy(Policies\Permission::class),
             MenuBuilder::make(),
             BackupTool::make(),
             PasswordReset::make(),

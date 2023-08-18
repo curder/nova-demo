@@ -6,7 +6,7 @@ use App\Enums;
 use App\Models;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class Menu
+class MenuPolicy
 {
     use HandlesAuthorization;
 
@@ -15,7 +15,7 @@ class Menu
      */
     public function viewAny(Models\User $user): bool
     {
-        return $user->hasPermissionTo(Enums\Permission::ManagerMenus->value);
+        return $user->allow(Enums\PermissionEnum::ManagerMenus);
     }
 
     /**
@@ -23,7 +23,7 @@ class Menu
      */
     public function view(Models\User $user, Models\Menu $menu): bool
     {
-        return $user->hasPermissionTo(Enums\Permission::ViewMenus->value);
+        return $user->allow(Enums\PermissionEnum::ViewMenus);
     }
 
     /**
@@ -31,7 +31,7 @@ class Menu
      */
     public function create(Models\User $user): bool
     {
-        return $user->hasPermissionTo(Enums\Permission::CreateMenus->value);
+        return $user->allow(Enums\PermissionEnum::CreateMenus);
     }
 
     /**
@@ -39,7 +39,7 @@ class Menu
      */
     public function update(Models\User $user, Models\Menu $menu): bool
     {
-        return $user->hasPermissionTo(Enums\Permission::UpdateMenus->value);
+        return $user->allow(Enums\PermissionEnum::UpdateMenus);
     }
 
     /**
@@ -47,6 +47,6 @@ class Menu
      */
     public function delete(Models\User $user, Models\Menu $menu): bool
     {
-        return $user->hasPermissionTo(Enums\Permission::DeleteMenus->value);
+        return $user->allow(Enums\PermissionEnum::DeleteMenus);
     }
 }

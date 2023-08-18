@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Enums\UserEnum;
 use App\Models\User;
 
 trait CreatesUsers
@@ -9,9 +10,7 @@ trait CreatesUsers
     protected function loginAsEditor(): User
     {
         /** @var User $authed */
-        $authed = User::query()->latest('id')->first();
-
-        $this->actingAs($authed);
+        $this->actingAs($authed = User::query()->where('email', UserEnum::Example->value)->first());
 
         return $authed;
     }
@@ -19,9 +18,7 @@ trait CreatesUsers
     protected function loginAsAdmin(): User
     {
         /** @var User $authed */
-        $authed = User::query()->first();
-
-        $this->actingAs($authed);
+        $this->actingAs($authed = User::query()->where('email', UserEnum::Super->value)->first());
 
         return $authed;
     }

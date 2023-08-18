@@ -1,16 +1,16 @@
 <?php
 
 use App\Enums;
+use App\Traits\Enums\InteractsWithOptions;
 
-beforeEach(function () {
-    $this->group_count = 5;
-    $this->available_count = 31;
+it('has availablePermissions static method on permissionsEnum class', fn () => expect(Enums\PermissionEnum::cases())
+    ->toHaveCount(9));
+
+it('include setting traits', function () {
+    return expect(new ReflectionEnum(Enums\PermissionEnum::class))
+        ->getTraits()
+        ->toHaveCount(1)
+        ->sequence(
+            fn ($obj, $trait) => $trait->toBe(InteractsWithOptions::class),
+        );
 });
-
-it('has availablePermissions static method on permissionsEnum class', fn () => expect(Enums\Permission::availablePermissions())->toHaveCount($this->available_count));
-
-it('has groups static method on permissionsEnum class', fn () => expect(Enums\Permission::groups())
-    ->toBeArray()->toHaveCount($this->group_count));
-
-it('has count static method on permissionsEnum class', fn () => expect(Enums\Permission::count())
-    ->toBeInt()->toBe($this->available_count));
