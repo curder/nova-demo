@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Enums\PermissionEnum;
 use App\Models\User;
 use App\Supports\Authorize;
 use App\Supports\Menu;
@@ -51,7 +52,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         });
 
         Gate::define('viewLogViewer', function (User $user) {
-            return Authorize::canSeeLogs();
+            return $user->allow(PermissionEnum::ViewLogs);
         });
     }
 
