@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Enums\PermissionEnum;
 use App\Models\User;
-use App\Supports\Authorize;
 use App\Supports\Menu;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
