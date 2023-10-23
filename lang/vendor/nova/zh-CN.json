@@ -416,6 +416,7 @@
     "An error occured while uploading the file.": "上传文件时出错。",
     "Previewing": "预览",
     "Replicate": "复制",
+    "Replicate :resource": "复制:resource",
     "Are you sure you want to log out?": "您确定要退出当前登录?",
     "There are no new notifications.": "当前没有新的通知。",
     "Resource Row Dropdown": "资源行下拉",
