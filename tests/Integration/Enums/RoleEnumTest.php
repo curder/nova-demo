@@ -9,8 +9,7 @@ it('has a corresponding enum value', closure: fn () => expect(RoleEnum::cases())
     ->each(fn (Expectation $expectation) => expect($expectation->value->value)->toBeString()));
 
 it('has a permissions method', closure: fn () => expect(RoleEnum::SuperAdmin)
-    ->toHaveMethod('permissions')
-    ->permissions(RoleEnum::SuperAdmin->value)
+    ->permissions()
     ->toHaveCount(count(PermissionEnum::cases()))
     ->and(
         expect(RoleEnum::Content)->permissions()->toHaveCount(5)
