@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
-use NovaTesting\NovaAssertions;
 use Tests\CreatesUsers;
+use NovaTesting\NovaAssertions;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 /*
 |--------------------------------------------------------------------------

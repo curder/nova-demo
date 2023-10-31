@@ -1,8 +1,8 @@
 <?php
 
-use App\Enums\PermissionEnum;
-use App\Enums\RoleEnum;
 use Pest\Expectation;
+use App\Enums\RoleEnum;
+use App\Enums\PermissionEnum;
 
 it('has a corresponding enum value', closure: fn () => expect(RoleEnum::cases())
     ->toHaveCount(2)

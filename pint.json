@@ -1,0 +1,13 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "ordered_imports": {
+            "sort_algorithm": "length",
+            "imports_order": [
+                "const",
+                "class",
+                "function"
+            ]
+        }
+    }
+}

@@ -5,8 +5,8 @@ namespace Database\Factories;
 use App\Models\Menu;
 use App\Models\MenuItem;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Outl1ne\MenuBuilder\MenuItemTypes\MenuItemStaticURLType;
 use Outl1ne\MenuBuilder\MenuItemTypes\MenuItemTextType;
+use Outl1ne\MenuBuilder\MenuItemTypes\MenuItemStaticURLType;
 
 class MenuItemFactory extends Factory
 {

@@ -2,8 +2,8 @@
 
 namespace App\Supports;
 
-use App\Enums;
 use Closure;
+use App\Enums;
 use Illuminate\Http\Request;
 
 class Authorize

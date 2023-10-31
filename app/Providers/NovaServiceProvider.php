@@ -2,15 +2,15 @@
 
 namespace App\Providers;
 
-use App\Enums\PermissionEnum;
 use App\Models\User;
 use App\Supports\Menu;
-use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
-use Laravel\Nova\NovaApplicationServiceProvider;
-use Mastani\NovaPasswordReset\PasswordReset;
-use Outl1ne\MenuBuilder\MenuBuilder;
+use App\Enums\PermissionEnum;
 use Spatie\BackupTool\BackupTool;
+use Illuminate\Support\Facades\Gate;
+use Outl1ne\MenuBuilder\MenuBuilder;
+use Mastani\NovaPasswordReset\PasswordReset;
+use Laravel\Nova\NovaApplicationServiceProvider;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {

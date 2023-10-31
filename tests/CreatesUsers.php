@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use App\Enums\UserEnum;
 use App\Models\User;
+use App\Enums\UserEnum;
 
 trait CreatesUsers
 {

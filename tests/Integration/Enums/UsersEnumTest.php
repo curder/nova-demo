@@ -1,7 +1,7 @@
 <?php
 
-use App\Enums\UserEnum;
 use Pest\Expectation;
+use App\Enums\UserEnum;
 
 it('has a corresponding enum value', closure: fn () => expect(enum_exists(UserEnum::class))
     ->toBeTrue()
