@@ -1,6 +1,7 @@
 <?php
 
 use Database\Seeders\UserSeeder;
+
 use function Pest\Laravel\get;
 
 it('can redirect correct url when user login in', function () {
