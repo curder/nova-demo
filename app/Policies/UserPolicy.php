@@ -46,6 +46,7 @@ class UserPolicy extends Policy
         if ($user->isSuperAdmin()) {
             return $user->id !== $model->id && ! $model->isSuperAdmin();
         }
+
         /* @var $model User */
         return $user->can(PermissionsEnum::DELETE_USERS) // 拥有删除用户权限
             && $user->id !== $model->id //
@@ -68,6 +69,7 @@ class UserPolicy extends Policy
         if ($user->isSuperAdmin()) {
             return $user->id !== $model->id;
         }
+
         /* @var $model User */
         return $user->can(PermissionsEnum::RESTORE_USERS)
             && $user->id !== $model->id
