@@ -13,13 +13,13 @@ final class RolesEnum extends Enum implements LocalizedEnum
     public const  CONTENT = 'content'; // 内容管理员
 
 
-//    public function label(): string
-//    {
-//        return match ($this) {
-//            self::SUPER_ADMIN => '超级管理员',
-//            self::CONTENT => '内容管理员',
-//        };
-//    }
+    //    public function label(): string
+    //    {
+    //        return match ($this) {
+    //            self::SUPER_ADMIN => '超级管理员',
+    //            self::CONTENT => '内容管理员',
+    //        };
+    //    }
 
     public function users(): Collection
     {

@@ -78,11 +78,11 @@ class RolePolicy
     {
         return false;
 
-//        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
-//            return false;
-//        }
-//
-//        return $user->hasPermissionTo(PermissionsEnum::RESTORE_ROLES);
+        //        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
+        //            return false;
+        //        }
+        //
+        //        return $user->hasPermissionTo(PermissionsEnum::RESTORE_ROLES);
     }
 
     /**
@@ -98,11 +98,11 @@ class RolePolicy
     public function forceDelete($user, $model)
     {
         return false;
-//        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
-//            return false;
-//        }
-//
-//        return $user->hasPermissionTo(PermissionsEnum::FORCE_DELETE_ROLES);
+        //        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
+        //            return false;
+        //        }
+        //
+        //        return $user->hasPermissionTo(PermissionsEnum::FORCE_DELETE_ROLES);
     }
 
     /**
@@ -118,12 +118,12 @@ class RolePolicy
     public function update($user, $model)
     {
         return false;
-//        /* @var User $user */
-//        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
-//            return false;
-//        }
-//
-//        return $user->hasPermissionTo(PermissionsEnum::UPDATE_ROLES);
+        //        /* @var User $user */
+        //        if ($user->hasRole($model->name) || RolesEnum::SUPER_ADMIN === $model->name) {
+        //            return false;
+        //        }
+        //
+        //        return $user->hasPermissionTo(PermissionsEnum::UPDATE_ROLES);
     }
 
     /**
@@ -171,7 +171,7 @@ class RolePolicy
 
         return $user->hasPermissionTo(PermissionsEnum::ROLE_ATTACH_ANY_USERS)
             // && !$user->roles->contains($role)
-            ;
+        ;
     }
 
     /**
