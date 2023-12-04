@@ -22,7 +22,7 @@ it('has menus come policy', function () {
     $response->assertForbidden();
 
     $response->assertCanNotCreate();
-//    $response->assertCanNotDelete();
+    //    $response->assertCanNotDelete();
 });
 
 it('has user can not view signal menu', function () {
